@@ -1,0 +1,326 @@
+/*****Contact Us*****/
+
+.contactus-style {
+    position: relative;
+    top: -125px;
+    font-size: 50px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact-style,
+.proposal,
+.our-address,
+.stay-connect {
+    text-align: center;
+    padding: 20px;
+    color: #00095A;
+}
+
+/*****Form*****/
+
+.form-box {
+    box-sizing: border-box;
+    width: 730px;
+    height: 375px !important;
+    margin-left: 190px;
+    margin-bottom: 40px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+input[type=text],
+input[type=email],
+input[type=number],
+textarea {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 10px;
+    margin: 15px 10px;
+    width: 300px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 108px;
+    height: 45px;
+    margin-top: 30px;
+    margin-left: 185px;
+    background: #00095A;
+    color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px !important;
+}
+
+input[type=text],
+input[type=email],
+input[type=number],
+input[type=submit],
+textarea:focus {
+    outline: none;
+}
+
+.address-img {
+    margin-left: 80px;
+}
+
+textarea {
+    width: 650px !important;
+    border-radius: 20px !important;
+    margin-top: 20px !important;
+    margin-left: 10px !important;
+}
+
+#aycompany {
+    resize: none;
+}
+
+input.out-line:focus,
+textarea.out-line:focus {
+    border: 2px solid rgb(0, 0, 63) !important;
+}
+
+.btn-submit {
+    position: relative;
+    left: 280px;
+    margin-top: 20px;
+    color: #fff !important;
+    background-color: #00095A !important;
+    border: none !important;
+    border-radius: 20px !important;
+}
+
+.btn-submit:hover {
+    background-color: #00095A !important;
+    opacity: 0.8;
+}
+
+
+
+
+
+@media (max-width: 1199.98px) {
+    .form-box {
+        width: 730px;
+        height: 405px !important;
+        margin-left: 105px;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .form-box {
+        width: 730px;
+        height: 375px !important;
+        margin-left: 0px;
+        margin-bottom: 40px;
+    }
+}
+
+@media (max-width: 767.98px) {
+
+    .form-box {
+        width: 530px;
+        height: 535px !important;
+        margin-left: 0px;
+        margin-bottom: 40px;
+        padding-top: 130px;
+        padding-bottom: 130px;
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=number],
+    textarea {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        padding: 10px;
+        margin: 15px 10px;
+        width: 95% !important;
+        box-sizing: border-box;
+    }
+
+    .btn-submit {
+        position: relative;
+        left: 190px;
+        margin-top: 20px;
+        color: #fff !important;
+        background-color: #00095A !important;
+        border: none !important;
+        border-radius: 20px !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .form-box {
+        width: auto;
+        height: 520px !important;
+        margin-left: 10px !important;
+        margin-bottom: 40px;
+        padding-top: 200px;
+        padding-bottom: 200px;
+    }
+
+    input[type=text],
+    input[type=email],
+    input[type=number],
+    textarea {
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px;
+        padding: 10px;
+        margin: 15px 10px;
+        width: 95% !important;
+        box-sizing: border-box;
+    }
+
+    .btn-submit {
+        position: relative;
+        left: 170px;
+        margin-top: 20px;
+        color: #fff !important;
+        background-color: #00095A !important;
+        border: none !important;
+        border-radius: 20px !important;
+    }
+}
+
+
+/*****Address*****/
+
+
+.address {
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    font-weight: 600;
+    padding: 20px;
+}
+
+
+.mail-id {
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    font-weight: 600;
+    padding-right: 40px;
+}
+
+.tele-number {
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    font-weight: 600;
+    margin-top: -40px;
+    padding-right: 105px;
+}
+
+.whatsapp-num {
+    display: flex;
+    justify-content: center;
+    font-size: x-large;
+    font-weight: 600;
+    margin-top: -40px;
+    padding-right: 118px;
+}
+
+/*****Stay Connect******/
+
+.stay-connect-icons {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 820px !important;
+    height: 226px;
+    margin-left: 165px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px !important;
+}
+
+.icon-color
+{
+    color: #00095A !important;
+}
+
+.icon-color:hover
+{
+    opacity: 0.5;
+}
+
+.icon-size
+{
+    width:150px; 
+    height:100px;
+}
+
+
+
+
+@media (max-width: 1199.98px) {
+    .stay-connect-icons {
+        width: 820px !important;
+        height: 226px;
+        margin-left: 70px;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 30px !important;
+    }
+  }
+
+@media (max-width: 991.98px) { 
+    .stay-connect-icons {
+        width: 690px !important;
+        height: 156px !important;
+        margin-left: 0px;
+    }
+
+.icon-size
+{
+    width:125px; 
+    height:75px;
+}
+ }
+
+@media (max-width: 767.98px) { 
+    .stay-connect-icons {
+        width: 670px !important;
+        height: 106px !important;
+        margin-left: 0px;
+    }
+
+
+.icon-size
+{
+    width:90px; 
+    height:50px;
+}
+}
+
+@media (max-width: 575.98px) { 
+    .stay-connect-icons {
+        position: relative;
+        width: 440px !important;
+        height: 130px !important;
+        margin-left: 25px;
+    }
+
+.icon-size
+{
+    width:70px; 
+    height:40px;
+}
+}

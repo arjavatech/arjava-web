@@ -1,0 +1,418 @@
+/******
+
+@media (max-width: 1399.98px) { }
+
+@media (max-width: 1199.98px) {  }
+
+@media (max-width: 991.98px) {  }
+
+@media (max-width: 767.98px) { }
+
+@media (max-width: 575.98px) {  }
+
+*****/
+
+
+
+
+
+
+/*****Our Products******/
+
+.products,
+.development-process {
+    text-align: center;
+    padding: 20px;
+    color: #00095A;
+}
+
+.our-story-content {
+    padding-bottom: 40px;
+}
+
+/*****Find a Bed & Sorting analysis******/
+
+.find-app-mockup {
+    position: absolute;
+    left: 100;
+    margin-top: 50px;
+    width: auto;
+    height: auto;
+
+}
+
+.find-app-box {
+    position: relative;
+    left: 570;
+    top: 0;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px !important;
+}
+
+
+
+@media (max-width: 1199.98px) {
+
+    .find-app-mockup {
+        margin-left: -30px;
+        margin-top: 90px;
+        width: 400;
+        height: 250;
+
+    }
+
+    .find-app-box {
+        position: absolute;
+        left: 470;
+        width: auto;
+        height: auto;
+        background: red !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+
+    .find-app-mockup {
+        position: relative;
+        top: 10;
+        left: 0;
+        margin-left: 65px;
+        margin-top: -20px;
+        margin-bottom: 20px;
+        width: 600;
+        height: 350;
+    }
+
+    .find-app-box {
+        position: relative;
+        left: 0;
+        width: 703px !important;
+        height: 409px !important;
+        background: green !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .find-app-mockup {
+        position: relative;
+        left: 0;
+        margin-top: -20px;
+        margin-left: 40px;
+        margin-bottom: 20px;
+        width: 600;
+        height: 350;
+    }
+
+    .find-app-box {
+        position: relative;
+        left: -10;
+        width: 530px !important;
+        height: 409px !important;
+        background: blue !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .find-app-mockup {
+        position: relative;
+        left: 0;
+        margin-top: -30px;
+        margin-left: 0x;
+        margin-bottom: 0;
+        width: auto;
+        height: auto;
+    }
+
+    .find-app-box {
+        position: relative;
+        top: 20px;
+        left: 0;
+        width: auto !important;
+        height: auto !important;
+        background: pink !important;
+    }
+}
+
+
+/*****Sehatuka******/
+
+.sehatuka-app-box {
+    position: relative;
+    top: 70;
+    left: 0;
+    bottom: 50px;
+    margin-bottom: 70px;
+    width: 503px;
+    height: 439px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px !important;
+}
+
+.sehatuka-app-mockup {
+    position: relative;
+    right: -585px;
+    top: -400px;
+    width: auto;
+    height: auto;
+
+}
+
+@media (max-width: 1199.98px) {
+
+    .sehatuka-app-mockup {
+        margin-left: -90px;
+        margin-top: 80px;
+        width: 400;
+        height: 250;
+
+    }
+
+    .sehatuka-app-box {
+        position: absolute;
+        left: 0;
+        width: auto;
+        height: auto;
+        background: red !important;
+    }
+}
+
+@media (max-width: 991.98px) {
+
+    .sehatuka-app-mockup {
+        position: relative;
+        margin-left: -515px;
+        margin-top: -40px;
+        width: 600;
+        height: 350;
+    }
+
+    .sehatuka-app-box {
+        position: relative;
+        top: 400px;
+        left: 0;
+        width: 703px !important;
+        height: 409px !important;
+        background: green !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .sehatuka-app-mockup {
+        position: relative;
+        left: 0;
+        margin-top: -30px;
+        margin-left: 40px;
+        margin-bottom: 20px;
+        width: 600;
+        height: 350;
+    }
+
+    .sehatuka-app-box {
+        position: relative;
+        top: 320px;
+        left: -10;
+        width: 530px !important;
+        height: 409px !important;
+        background: blue !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .sehatuka-app-mockup {
+        position: relative;
+        left: 0;
+        width: 600;
+        height: 350;
+    }
+
+    .sehatuka-app-box {
+        position: relative;
+        top: 315px;
+        left: 0;
+        width: auto !important;
+        height: auto !important;
+        background: pink !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .sehatuka-app-mockup {
+        position: relative;
+        width: 600;
+        height: 350;
+    }
+
+    .sehatuka-app-box {
+        position: relative;
+        top: 315px;
+        left: 0;
+        width: auto !important;
+        height: auto !important;
+        background:green !important;
+    }
+}
+
+/******* Sorting Analysis******/
+
+.sort-app-mockup {
+    position: absolute;
+    left: 100;
+    margin-top: 130px;
+    width: 600;
+    height: 350;
+
+}
+
+.sort-app-box {
+    position: relative;
+    left: 580;
+    top: -270;
+    width: 503px;
+    height: 439px;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px !important;
+}
+
+
+@media (max-width: 1199.98px) {
+
+    .sort-app-mockup {
+        position: absolute;
+        left: 60;
+        margin-top: 150px;
+        width: 600;
+        height: 350;
+
+    }
+
+    .sort-app-box {
+        position: relative;
+        left: 470;
+        top: -260;
+        width: 503px;
+        height: 439px;
+        background: red !important;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 20px !important;
+    }
+
+}
+
+@media (max-width: 991.98px) {
+
+    .sort-app-mockup {
+        margin-left: 150px;
+        margin-top: 375px;
+        width: 600;
+        height: 350;
+        
+    }
+
+    .sort-app-box {
+        position: relative;
+        top: 420px;
+        left: 0;
+        margin-bottom: 1000;
+        width: 703px !important;
+        height: 409px !important;
+        background: green !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .sort-app-mockup {
+        position: relative;
+        left: 0;
+        margin-top: 40px;
+        margin-left: 40px;
+        margin-bottom: 20px;
+        width: 600;
+        height: 350;
+    }
+
+    .sort-app-box {
+        position: relative;
+        top: 0px;
+        left: -10;
+        width: 530px !important;
+        height: 409px !important;
+        background: blue !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .sort-app-mockup {
+        position: relative;
+        left: 0;
+        margin-top: 50px;
+        margin-left: 0x;
+        margin-bottom: 0;
+        width: 600;
+        height: 350;
+    }
+
+    .sort-app-box {
+        position: relative;
+        top: 15px;
+        left: 0;
+        width: auto !important;
+        height: auto !important;
+        background: pink !important;
+    }
+}
+
+/******Development Process******/
+
+/***
+.plan-icon
+{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
+
+.plan
+{
+    font-weight: 600;
+    margin-top: 60px;
+    margin-left: 15px;
+}
+
+.dash
+{
+    margin-top: 80px;
+    margin-left: 130px;
+    width: 120px;
+    border: 2px dashed #000;
+}
+
+.design-icon
+{
+    position: relative;
+    top: 0;
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+}
+
+.design
+{
+    font-weight: 600;
+    margin-top: 60px;
+    margin-left: 15px;
+}
+
+.dash
+{
+    margin-top: 80px;
+    margin-left: 130px;
+    width: 120px;
+    border: 2px dashed #000;
+}  ***/

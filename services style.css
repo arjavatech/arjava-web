@@ -1,0 +1,413 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'roboto', sans-serif;
+    overflow-x: clip;
+}
+
+.logo {
+    position: relative;
+    left: 60px;
+    width: 185;
+    height: 60;
+}
+
+
+
+#navbar {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 10;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+}
+
+li {
+    padding: 10px;
+}
+
+.bg-shadow {
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+    height: 85px !important;
+}
+
+a.nav-links {
+    font-weight: 600 !important;
+    color: #4B4B4B;
+    opacity: 0.6;
+}
+
+a.nav-links:hover {
+    color: rgb(0, 0, 63) !important;
+    font-weight: 600 !important;
+    border-bottom: 2px solid rgb(0, 0, 63);
+    transition: 0.1s !important;
+    opacity: 1;
+}
+
+a.actived {
+    color: rgb(0, 0, 63) !important;
+    font-weight: 600 !important;
+    border-bottom: 2px solid rgb(0, 0, 63);
+    opacity: 1;
+}
+
+button.out-line:focus {
+    border: 2px solid rgb(0, 0, 63) !important;
+}
+
+.btn-bg-color {
+    color: rgb(0, 0, 63) !important;
+}
+
+
+/********Our Services******/
+
+.services-style {
+    position: relative;
+    top: -125px;
+    font-size: 50px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.services {
+    text-align: center;
+    padding: 20px;
+    color: #00095A;
+}
+
+.card-style {
+    width: 300px;
+}
+
+.product-card-head {
+    width: 300px;
+    height: 195px;
+    background: rgba(75, 75, 75, 0.1);
+    border-radius: 5px;
+    transform: matrix(1, 0, 0, 1, 0, 0);
+}
+
+.mob-app-img {
+    margin-left: 30px;
+    width: 240 !important;
+    height: 190;
+}
+
+.card-title-style {
+    color: #00095A;
+    font-weight: 600;
+}
+
+.row-services {
+    margin-left: 35px !important;
+}
+
+.read-more
+{
+    text-decoration:none
+}
+
+/*****Media Queries*****/
+
+@media (max-width: 1399.98px) {
+    .row-services {
+        margin-left: 35px !important;
+    }
+}
+
+@media (max-width: 1199.98px) {
+    .row-services {
+        margin-left: -10px !important;
+    }
+
+}
+
+@media (max-width: 991.98px) {}
+
+
+@media (max-width: 767.98px) {
+    .card {
+        width: 255px;
+    }
+
+    .product-card-head {
+        width: 255px;
+        height: 145px;
+    }
+
+    .mob-app-img {
+        margin-left: 30px;
+        width: 200 !important;
+        height: 150;
+    }
+
+    .card-title-style {
+        color: #00095A;
+        font-weight: 600;
+    }
+
+
+}
+
+/*****Development Process*****/
+
+
+.nav-style {
+    margin-left: 18px;
+}
+
+.circle {
+    background-color: rgba(75, 75, 75, 0.1) !important;
+    color: rgba(75, 75, 75, 0.5) !important;
+    border: 1px solid rgba(75, 75, 75, 0.2) !important;
+    padding: 10px !important;
+}
+
+.circle:hover {
+    background-color: #00095A !important;
+    color: #fff !important;
+    padding: 10px !important;
+}
+
+a.active {
+    background-color: #00095A !important;
+    color: #fff !important;
+    padding: 10px !important;
+}
+
+.service-dev-icon {
+    width: 70px;
+    height: 70px;
+}
+
+.title {
+    position: relative;
+    bottom: 0;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
+}
+
+.title-tab {
+    color: #00095A !important;
+    padding-bottom: 10px;
+    margin-left: 10px;
+}
+
+.tab-content
+{
+    margin-left: 10px;
+}
+
+/*****Media Queries******/
+
+@media (max-width: 1199.98px) {
+
+    .title-tab {
+        color: #000;
+    }
+
+    .service-dev-icon {
+        width: 65px;
+        height: 65px;
+    }
+}
+
+@media (max-width: 991.98px) {
+
+    .circle {
+        padding: 10px !important;
+    }
+
+    .circle:hover {
+        padding: 10px !important;
+    }
+
+    a.active {
+        padding: 10px !important;
+    }
+
+    .service-dev-icon {
+        width: 45px;
+        height: 45px;
+    }
+
+    .nav-style {
+        margin-left: 0px;
+    }
+
+    .title-tab {
+        color: #00095A !important;
+        padding-bottom: 10px;
+        margin-left: 0px;
+    }
+
+    .tab-content
+{
+    margin-left: 0px;
+}
+
+}
+
+
+@media (max-width: 767.98px) {
+
+
+    .circle {
+        padding: 5px !important;
+    }
+
+    .circle:hover {
+        padding: 5px !important;
+    }
+
+    a.active {
+        padding: 5px !important;
+    }
+
+    .nav-style {
+
+        position: relative;
+        left: 4px
+    }
+
+    .service-dev-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    .title {
+        font-weight: 500;
+    }
+
+}
+
+@media (max-width: 575.98px) {
+
+
+    .circle {
+        padding: 3px !important;
+    }
+
+    .circle:hover {
+        padding: 3px !important;
+    }
+
+    a.active {
+        padding: 3px !important;
+    }
+
+    .title {
+        font-weight: 400;
+    }
+
+    .nav-style {
+        margin: -5px;
+    }
+
+    .service-dev-icon {
+        width: 15px;
+        height: 15px;
+    }
+
+    .col-dig-cent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+.dev-process {
+    text-align: center;
+    padding: 20px;
+    color: #00095A;
+}
+
+
+/******Footer******/
+
+footer {
+    background: #00095A;
+    color: #fff;
+}
+
+.footer-row {
+    padding-right: 0px;
+    padding-left: 110px;
+}
+
+@media (max-width: 1399.98px) {
+    .footer-row {
+        padding-right: 0px;
+        padding-left: 150px;
+    }
+  }
+
+
+@media (max-width: 991.98px) {
+    .footer-row {
+        padding-right: 50px;
+        padding-left: 0px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .footer-row {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+
+}
+
+/*****Quick Explore*****/
+
+.quick-explore {
+    color: #fff;
+    text-decoration: none;
+}
+
+.quick-explore:hover {
+    color: #fff;
+    opacity: 0.5;
+}
+
+i {
+    color: #fff;
+    font-size: 20px;
+}
+
+.social-media {
+    color: #fff;
+    padding: 5px;
+}
+
+.social-media:hover {
+    opacity: 0.5;
+}
+
+.txt-cen {
+    position: relative;
+    left: 110px;
+}
+
+@media (max-width: 991.98px) {
+    .txt-cen {
+        position: relative;
+        left: 0px;
+    }
+}
+
+@media (max-width: 575.98px) {}
+
+.location-link {
+    width: 390px;
+    height: 230px;
+    margin-top: 10px;
+    border-radius: 20px;
+}

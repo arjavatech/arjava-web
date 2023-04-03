@@ -1,0 +1,119 @@
+/******
+
+@media (max-width: 1399.98px) { }
+
+@media (max-width: 1199.98px) {  }
+
+@media (max-width: 991.98px) {  }
+
+@media (max-width: 767.98px) { }
+
+@media (max-width: 575.98px) {  }
+
+*****/
+
+
+
+/*****Our Products******/
+
+.products,
+.development-process {
+    text-align: center;
+    padding: 20px;
+    color: #00095A;
+}
+
+.our-story-content {
+    padding-bottom: 40px;
+}
+
+.products-style {
+    position: relative;
+    top: -125px;
+    font-size: 50px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*****Find a Bed******/
+
+.find-app-mockup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.find-app-box {
+
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px !important;
+    margin-bottom: 30px;
+}
+
+
+/*****Sehatuka******/
+
+
+.Sehatuka-app-mockup {
+    position: relative;
+    left: 590px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Sehatuka-app-box {
+    position: relative;
+    right: 560px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px !important;
+    margin-bottom: 30px;
+}
+
+@media (max-width: 1199.98px) {
+
+    .Sehatuka-app-mockup {
+        position: relative;
+        left: 470px;
+    }
+
+    .Sehatuka-app-box {
+        position: relative;
+        right: 495px;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .Sehatuka-app-mockup {
+        position: relative;
+        left: 0px;
+    }
+
+    .Sehatuka-app-box {
+        position: relative;
+        right: 0px;
+    }
+}
+
+
+/******Sorting analysis******/
+
+.sort-app-mockup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sort-app-box {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 20px !important;
+    margin-bottom: 30px;
+}
+
+
+/******Development Process******/

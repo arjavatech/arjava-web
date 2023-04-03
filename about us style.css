@@ -1,0 +1,246 @@
+/******About Us******/
+
+
+.about-cover-img {
+    width: 1440px !important;
+    height: 252px !important;
+}
+
+
+.aboutus-style {
+    position: relative;
+    top: -125px;
+    font-size: 50px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/******Our Story******/
+
+.our-story,
+.vision,
+.mission {
+    text-align: center;
+    padding: 20px;
+    color: #00095A;
+}
+
+.our-story-content {
+    color: #4B4B4B;
+    opacity: 0.9;
+}
+
+/*******Vision********/
+
+.aboutus-vision-box {
+    width: 171px !important;
+    height: 161px;
+    background: #00095A;
+}
+
+.aboutus-vision-icon {
+    position: relative;
+    left: 10px;
+    top: 10px;
+    width: 120px !important;
+    height: 70px !important;
+    margin-top: 35px;
+}
+
+.aboutus-vision-content {
+    position: absolute;
+    top: 20px;
+    left: 185px;
+    color: #4B4B4B;
+    font-size: 20px;
+}
+
+
+/*******Mission********/
+
+.abt-card-mission {
+    height: 161px;
+}
+
+.aboutus-mission-box {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 171px !important;
+    height: 161px;
+    background: #00095A;
+}
+
+.aboutus-mission-icon {
+    position: absolute;
+    top: 0;
+    left: 27px;
+    width: 120px !important;
+    height: 95px !important;
+    margin-top: 35px;
+}
+
+.aboutus-mission-content {
+    position: absolute;
+    top: 20px;
+    right: 180px;
+    padding-left: 10px;
+    color: #4B4B4B;
+    font-size: 20px;
+}
+
+/******Timeline******/
+
+.timeline {
+    width: 1150;
+    height: 800;
+    margin-top: 30px;
+}
+
+/*****media queries*****/
+
+@media (max-width: 767.98px) {
+
+
+    /*******Vision********/
+
+    .abt-card-vission {
+        height: 162px;
+    }
+
+    .aboutus-vision-box {
+        width: 171px !important;
+        height: 161px;
+        background: #00095A;
+    }
+
+    .aboutus-vision-icon {
+        position: relative;
+        left: 10px;
+        top: 10px;
+        width: 120px !important;
+        height: 70px !important;
+        margin-top: 35px;
+    }
+
+    .aboutus-vision-content {
+        position: absolute;
+        top: 0px;
+        padding: 10px;
+        left: 185px;
+        font-size: 20px;
+        color: #4B4B4B;
+    }
+
+
+    /*******Mission********/
+
+    .abt-card-mission {
+        height: 161px;
+    }
+
+    .aboutus-mission-box {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 171px !important;
+        height: 161px;
+        background: #00095A;
+    }
+
+    .aboutus-mission-icon {
+        position: absolute;
+        top: 0;
+        left: 27px;
+        width: 120px !important;
+        height: 95px !important;
+        margin-top: 35px;
+    }
+
+    .aboutus-mission-content {
+        position: absolute;
+        top: 0px;
+        padding: 10px;
+        right: 180px;
+        font-size: 20px;
+        padding-left: 10px;
+        color: #4B4B4B;
+    }
+
+}
+
+@media (max-width: 575.98px) {
+
+    /*******Vision********/
+
+    .abt-card-vission {
+        height: 172px;
+    }
+
+    .aboutus-vision-box {
+        width: 131px !important;
+        height: 171px;
+    }
+
+    .aboutus-vision-icon {
+        position: relative;
+        left: 5px;
+        top: 0px;
+        width: 100px !important;
+        height: 60px !important;
+        margin-top: 55px;
+    }
+
+    .aboutus-vision-content {
+        position: absolute;
+        top: 0px;
+        left: 130px;
+        font-size: 18px;
+        padding: 5px;
+        color: #4B4B4B;
+    }
+
+
+    /*******Mission********/
+
+    .abt-card-mission {
+        height: 172px;
+    }
+
+    .aboutus-mission-box {
+        width: 131px !important;
+        height: 171px;
+        background: #00095A;
+    }
+
+    .aboutus-mission-icon {
+        width: 100px !important;
+        height: 80px !important;
+        margin-top: 50px;
+        margin-left: -10px;
+    }
+
+    .aboutus-mission-content {
+        position: absolute;
+        top: 0px;
+        right: 130px;
+        padding: 5px;
+        font-size: 18px;
+        padding: 5px;
+        color: #4B4B4B;
+    }
+
+
+}
+
+
+
+@media (max-width: 991.98px) {}
+
+
+@media (max-width: 1199.98px) {}
+
+
+@media (max-width: 1399.98px) {}
