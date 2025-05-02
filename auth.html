@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google OAuth with FastAPI</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <h2>Login with Google</h2>
+    <div id="g_id_onload"
+         data-client_id="447446222391-9gggf7bs8agc2bq6qcokvt35pfau4iie.apps.googleusercontent.com"
+         data-callback="handleCredentialResponse">
+    </div>
+    <div class="g_id_signin" data-type="standard"></div>
+
+    <script>
+        function handleCredentialResponse(response) {
+            const idToken = response.credential;
+            console.log("ID Token: ",`Bearer ${idToken}`);
+
+            // Send the token in Authorization header to FastAPI for verification
+            fetch("http://127.0.0.1:8000/admin", {
+                method: "GET",
+                headers: {
+                    "authorization": `Bearer ${idToken}`
+                }
+            })
+            .then(res => res.json())
+            .then(data => alert("student id was :" + data))
+            .catch(err => console.error("Error:", err));
+        }
+    </script>
+</body>
+</html>
