@@ -845,6 +845,73 @@ a.nav-title-circle.active {
     transform: scale(1.1);
 }
 
+/* Tab content images uniform sizing */
+.tab-content .card img {
+    width: 100%;
+    height: 250px;
+    /* object-fit: cover; */
+    display: block;
+}
+
+/* Founders Section */
+.founder-card {
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    border: none;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.founder-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.founder-avatar {
+    padding: 10px 0;
+    color: #00095A;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.founder-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 15px rgba(0, 9, 90, 0.15);
+}
+
+.founder-name {
+    font-weight: 600;
+    color: #00095A;
+    margin-bottom: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.founder-title {
+    font-weight: 500;
+    color: #007bff;
+    margin-bottom: 5px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.founder-desc {
+    color: #6c757d;
+    font-size: 13px;
+    margin-bottom: 0;
+}
+
 
 
 
