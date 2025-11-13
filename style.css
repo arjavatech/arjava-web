@@ -115,19 +115,7 @@ a.nav-links {
 
 
 #navbar {
-    position: sticky;
-    top: 0;
-    background: transparent;
-    z-index: 1000;
-    transition: all 0.3s ease;
-    padding: 1rem 0;
-}
-
-#navbar.scrolled {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(20px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    padding: 0.5rem 0;
+    background: white !important;
 }
 
 .navbar-nav .nav-item {
