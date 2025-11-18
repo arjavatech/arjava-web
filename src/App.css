@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Offset for fixed navbar */
+#about,
+#services,
+#projects,
+#contact {
+  scroll-margin-top: 80px;
+}
