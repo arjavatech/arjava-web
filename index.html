@@ -20,140 +20,43 @@
     .slide-right { opacity: 0; transform: translateX(50px); transition: all 0.7s ease; }
     .slide-right.visible { opacity: 1; transform: translateX(0); }
     
-    /* Founders Section Styles */
     .founder-card {
-      background: linear-gradient(145deg, #ffffff 0%, #f8fafc 100%);
-      border-radius: 20px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(0, 0, 0, 0.05);
-      padding: 32px 24px;
-      text-align: center;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      width: 240px;
-      height: 320px;
-      border: 1px solid rgba(255, 255, 255, 0.8);
       position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      transition: all 0.5s ease;
     }
     
-    .founder-card::before {
+    .founder-card::after {
       content: '';
       position: absolute;
-      top: 0;
+      bottom: 0;
       left: 0;
-      right: 0;
+      width: 100%;
       height: 4px;
       background: linear-gradient(90deg, #3b82f6, #8b5cf6, #06b6d4);
-      opacity: 0;
-      transition: opacity 0.3s ease;
+      transform: scaleX(0);
+      transition: transform 0.5s ease;
+      border-radius: 0 0 20px 20px;
+    }
+    
+    .founder-card:hover::after {
+      transform: scaleX(1);
     }
     
     .founder-card:hover {
-      transform: translateY(-8px) scale(1.02);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 8px 16px rgba(0, 0, 0, 0.08);
-      background: linear-gradient(145deg, #ffffff 0%, #f1f5f9 100%);
-    }
-    
-    .founder-card:hover::before {
-      opacity: 1;
-    }
-    
-    .founder-image {
-      width: 140px;
-      height: 140px;
-      margin: 0 auto 20px;
-      background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-      border-radius: 50%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border: 4px solid #ffffff;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      transition: all 0.3s ease;
-    }
-    
-    .founder-card:hover .founder-image {
-      transform: scale(1.05);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    }
-    
-    .founder-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-    
-    .founder-card:hover .founder-image img {
-      transform: scale(1.1);
-    }
-    
-    .founder-name {
-      font-size: 20px;
-      font-weight: 700;
-      color: #1e293b;
-      margin-bottom: 8px;
-      font-family: 'Poppins', sans-serif;
-      transition: color 0.3s ease;
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     }
     
     .founder-card:hover .founder-name {
       color: #3b82f6;
     }
     
-    .founder-position {
-      font-size: 14px;
-      color: #64748b;
-      font-weight: 500;
-      padding-bottom: 12px;
-      border-bottom: 2px solid #e2e8f0;
-      font-family: 'Poppins', sans-serif;
-      position: relative;
-      transition: all 0.3s ease;
+    .founder-card:hover .founder-image {
+      transform: scale(1.05);
     }
     
-    .founder-position::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-      transition: width 0.3s ease;
-    }
-    
-    .founder-card:hover .founder-position::after {
-      width: 60px;
-    }
-    
-    .founders-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-      max-width: 1400px;
-      margin: 0 auto;
-      flex-wrap: nowrap;
-    }
-    
-    @media (max-width: 768px) {
-      .founders-container {
-        gap: 16px;
-      }
-      .founder-card {
-        max-width: 200px;
-        padding: 28px 20px;
-      }
-      .founder-image {
-        width: 100px;
-        height: 100px;
-      }
+    .founder-card:hover .founder-image img {
+      transform: scale(1.1);
     }
   </style>
 </head>
@@ -173,6 +76,7 @@
             <a href="about us.html" class="text-sm font-medium text-gray-700 hover:text-blue-900 transition-colors">About</a>
             <a href="our services.html" class="text-sm font-medium text-gray-700 hover:text-blue-900 transition-colors">Services</a>
             <a href="./products.html" class="text-sm font-medium text-gray-700 hover:text-blue-900 transition-colors">Projects</a>
+            <a href="privacy_policy.html" class="text-sm font-medium text-gray-700 hover:text-blue-900 transition-colors">Privacy</a>
           </div>
         </div>
         <a href="contact us.html" class="hidden md:block bg-blue-900 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-800 transition-colors">Contact</a>
@@ -191,6 +95,7 @@
         <a href="about us.html" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-900 hover:bg-gray-50 rounded-lg">About</a>
         <a href="our services.html" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-900 hover:bg-gray-50 rounded-lg">Services</a>
         <a href="./products.html" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-900 hover:bg-gray-50 rounded-lg">Projects</a>
+        <a href="privacy_policy.html" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-900 hover:bg-gray-50 rounded-lg">Privacy</a>
         <a href="contact us.html" class="block px-4 py-2 text-sm font-medium bg-blue-900 text-white rounded-lg text-center">Contact</a>
       </div>
     </div>
@@ -572,52 +477,50 @@
         <h2 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4" style="font-family: 'Poppins', sans-serif;">Our Founders</h2>
         <p class="text-xl text-gray-600 max-w-3xl mx-auto" style="font-family: 'Poppins', sans-serif;">Meet the visionary leaders who founded Arjava and continue to drive innovation and excellence.</p>
       </div>
-      <div class="founders-container">
+      <div class="flex flex-wrap justify-center items-center gap-5 xl:gap-6 max-w-7xl mx-auto md:flex-row flex-col">
         <!-- Founder 1 -->
-        <div class="founder-card">
-          <div class="founder-image">
-            <img src="./assets/palanianna.jpeg" alt="Palani Vairavan">
+        <div class="founder-card bg-white rounded-3xl shadow-lg p-8 text-center w-60 h-80 flex flex-col justify-center items-center md:w-56 md:h-72">
+          <div class="founder-image w-32 h-32 rounded-full overflow-hidden mb-5 border-4 border-white shadow-lg md:w-24 md:h-24">
+            <img src="./assets/palanianna.jpeg" alt="Palani Vairavan" class="w-full h-full object-cover">
           </div>
-          <h3 class="founder-name">Palani Vairavan</h3>
-          <p class="founder-position">Founder & CEO</p>
+          <h3 class="founder-name text-xl font-bold text-gray-900 mb-2 md:text-lg">Palani Vairavan</h3>
+          <p class="text-sm text-gray-600 font-medium">Founder & CEO</p>
         </div>
-         <!-- Founder 2 -->
-          <div class="founder-card">
-          <div class="founder-image">
-               <img src="./assets/Saravanan.png" alt="Saravanan Arumugam">
-            </div>
-          <h3 class="founder-name">Saravanan Arumugam</h3>
-          <p class="founder-position">Manager</p>
+        
+        <!-- Founder 2 -->
+        <div class="founder-card bg-white rounded-3xl shadow-lg p-8 text-center w-60 h-80 flex flex-col justify-center items-center md:w-56 md:h-72">
+          <div class="founder-image w-32 h-32 rounded-full overflow-hidden mb-5 border-4 border-white shadow-lg md:w-24 md:h-24">
+            <img src="./assets/Saravanan.png" alt="Saravanan Arumugam" class="w-full h-full object-cover">
+          </div>
+          <h3 class="founder-name text-xl font-bold text-gray-900 mb-2 md:text-lg">Saravanan Arumugam</h3>
+          <p class="text-sm text-gray-600 font-medium">Manager</p>
         </div>
         
         <!-- Founder 3 -->
-        <div class="founder-card">
-          <div class="founder-image">
-             <img src="./assets/KarthikAnna.png" alt="Raj Kumar">
-            </div>
-          <h3 class="founder-name">Karthikeyan Rajendran </h3>
-          <p class="founder-position">Co-Founder & CEO</p>
+        <div class="founder-card bg-white rounded-3xl shadow-lg p-8 text-center w-60 h-80 flex flex-col justify-center items-center md:w-56 md:h-72">
+          <div class="founder-image w-32 h-32 rounded-full overflow-hidden mb-5 border-4 border-white shadow-lg md:w-24 md:h-24">
+            <img src="./assets/KarthikAnna.png" alt="Karthikeyan Rajendran" class="w-full h-full object-cover">
+          </div>
+          <h3 class="founder-name text-xl font-bold text-gray-900 mb-2 md:text-lg">Karthikeyan Rajendran</h3>
+          <p class="text-sm text-gray-600 font-medium">Co-Founder & CEO</p>
         </div>
-        
-        <!-- Founder 3 -->
-      
         
         <!-- Founder 4 -->
-        <div class="founder-card">
-          <div class="founder-image">
-            <img src="./assets/amrishannapic.png" alt="Raj Kumar">
+        <div class="founder-card bg-white rounded-3xl shadow-lg p-8 text-center w-60 h-80 flex flex-col justify-center items-center md:w-56 md:h-72">
+          <div class="founder-image w-32 h-32 rounded-full overflow-hidden mb-5 border-4 border-white shadow-lg md:w-24 md:h-24">
+            <img src="./assets/amrishannapic.png" alt="Amrish KS" class="w-full h-full object-cover">
           </div>
-          <h3 class="founder-name">Amrish KS</h3>
-          <p class="founder-position">CTO</p>
+          <h3 class="founder-name text-xl font-bold text-gray-900 mb-2 md:text-lg">Amrish KS</h3>
+          <p class="text-sm text-gray-600 font-medium">CTO</p>
         </div>
         
         <!-- Founder 5 -->
-        <div class="founder-card">
-          <div class="founder-image">
-            <img src="./assets/manianna1.png" alt="Sanjay Patel">
+        <div class="founder-card bg-white rounded-3xl shadow-lg p-8 text-center w-60 h-80 flex flex-col justify-center items-center md:w-56 md:h-72">
+          <div class="founder-image w-32 h-32 rounded-full overflow-hidden mb-5 border-4 border-white shadow-lg md:w-24 md:h-24">
+            <img src="./assets/manianna1.png" alt="Pitchaimani Rajaram" class="w-full h-full object-cover">
           </div>
-          <h3 class="founder-name">Pitchaimani Rajaram</h3>
-          <p class="founder-position">CTO/ Senior Developer</p>
+          <h3 class="founder-name text-xl font-bold text-gray-900 mb-2 md:text-lg">Pitchaimani Rajaram</h3>
+          <p class="text-sm text-gray-600 font-medium">CTO/ Senior Developer</p>
         </div>
       </div>
     </div>
