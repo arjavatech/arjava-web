@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Navbar active link */
+  .nav-link-active {
+    @apply text-brand border-b-2 border-brand opacity-100;
+  }
+
+  /* Proposal / CTA button */
+  .btn-proposal {
+    @apply bg-brand text-white border-none rounded-[20px] px-6 py-2 hover:opacity-80 transition-opacity;
+  }
+
+  /* Vision / Mission icon box */
+  .vision-icon-box {
+    @apply bg-brand shadow-md flex items-center justify-center;
+    border-radius: 0px 90px;
+    transform: matrix(1, 0, 0, -1, 0, 0);
+  }
+
+  /* Digital service card header */
+  .service-card-header {
+    @apply bg-brand rounded-t-[20px] flex flex-col items-center py-3;
+  }
+
+  /* Our works tab button */
+  .works-tab-btn {
+    @apply bg-[rgba(75,75,75,0.1)] text-[rgba(75,75,75,0.5)] border border-[rgba(75,75,75,0.2)] rounded-[30px] px-3 py-2 text-sm font-medium transition-all hover:bg-brand hover:text-white;
+  }
+
+  .works-tab-btn.active {
+    @apply bg-brand text-white;
+  }
+
+  /* Footer quick-explore link */
+  .footer-link {
+    @apply text-white no-underline hover:opacity-50 transition-opacity block mb-1;
+  }
+
+  /* Social media icon link */
+  .social-link {
+    @apply text-white inline-block p-1 hover:opacity-50 transition-opacity;
+  }
+}
