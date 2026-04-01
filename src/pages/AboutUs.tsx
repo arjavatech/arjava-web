@@ -6,6 +6,34 @@ import StatCounter from '@/components/ui/StatCounter'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import PageTransition from '@/components/ui/PageTransition'
 
+/* ─── Board members data ─────────────────────────────────────── */
+const BOARD_MEMBERS = [
+  {
+    id: 'palani',
+    name: 'Palani Vairavan',
+    role: 'Founder',
+    photo: '/image/team-palani.jpeg',
+  },
+  {
+    id: 'saravanan',
+    name: 'Saravanan Arumugam',
+    role: 'CEO / MD',
+    photo: '/image/team-saravanan.png',
+  },
+  {
+    id: 'pitchai',
+    name: 'Pitchaimani Rajaram',
+    role: 'CEO / SSE',
+    photo: '/image/team-pitchai.png',
+  },
+  {
+    id: 'amrish',
+    name: 'Amrish KS',
+    role: 'Mentor',
+    photo: '/image/team-amrish.png',
+  },
+]
+
 export default function AboutUs() {
   return (
     <PageTransition>
@@ -73,8 +101,66 @@ export default function AboutUs() {
         </div>
       </section>
 
+      {/* ── LEADERSHIP TEAM ───────────────────────────────────── */}
+      <section className="bg-dark-base py-20">
+        <div className="container mx-auto px-6">
+          <AnimatedSection className="text-center mb-14">
+            <span className="section-tag">Our People</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+              The People <span className="gradient-text">Behind Arjava</span>
+            </h2>
+            <p className="text-slate-400 mt-3 max-w-2xl mx-auto">
+              The visionaries and builders who founded Arjava and continue to drive its growth.
+            </p>
+          </AnimatedSection>
+
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={{ hidden: {}, show: { transition: { staggerChildren: 0.1 } } }}
+            className="flex flex-wrap justify-center gap-6"
+          >
+            {BOARD_MEMBERS.map((member) => (
+              <motion.div
+                key={member.id}
+                variants={{
+                  hidden: { opacity: 0, y: 28 },
+                  show:   { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+                }}
+                whileHover={{ y: -8, transition: { duration: 0.25 } }}
+                className="card-dark p-7 flex flex-col items-center text-center w-full sm:w-56 lg:w-52 xl:w-56 cursor-default"
+              >
+                {/* Avatar */}
+                <div className="relative mb-5">
+                  <div className="w-28 h-28 rounded-full ring-2 ring-teal-400/30 ring-offset-2 ring-offset-[#0D1117] overflow-hidden">
+                    <img
+                      src={member.photo}
+                      alt={member.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {/* Subtle teal glow behind avatar */}
+                  <div className="absolute inset-0 rounded-full bg-teal-400/10 blur-xl -z-10 scale-110" />
+                </div>
+
+                {/* Name */}
+                <h3 className="text-white font-bold text-base leading-snug mb-1">
+                  {member.name}
+                </h3>
+
+                {/* Role */}
+                <p className="gradient-text text-xs font-semibold uppercase tracking-wide">
+                  {member.role}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── VISION & MISSION ──────────────────────────────────── */}
-      <section className="bg-dark-base py-16">
+      <section className="bg-dark-surface py-16">
         <div className="container mx-auto px-6">
           <AnimatedSection className="text-center mb-12">
             <span className="section-tag">Our Foundation</span>
