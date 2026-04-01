@@ -199,8 +199,8 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
     {
       id: 'findabed',
       image: '/image/find-bed-app.jpg',
-      alt: 'Find a Bed App',
-      title: 'Findabed',
+      alt: 'FindBed App',
+      title: 'FindBed',
       description: (
         <ul className="list-disc ml-5 space-y-1">
           <li>Cross-platform app (web, Android, iOS) showing available hospital beds nearby.</li>
@@ -224,7 +224,48 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
         </ul>
       ),
     },
-    { id: 'solladal', image: '/image/solladal-app.jpg', alt: 'Solladal App' },
+    {
+      id: 'rattham',
+      image: '/image/rattham-app.png',
+      alt: 'Rattham Udhavi App',
+      title: 'Rattham Udhavi',
+      description: (
+        <ul className="list-disc ml-5 space-y-1">
+          <li>Blood donation management app connecting donors with recipients.</li>
+          <li>Donor registration and blood bank management system.</li>
+          <li>Emergency blood requests with real-time mobile notifications.</li>
+          <li>Available on Android.</li>
+        </ul>
+      ),
+    },
+    {
+      id: 'brightbrains',
+      image: '/image/brightbrains-app.jpeg',
+      alt: 'Bright Brains App',
+      title: 'Bright Brains',
+      description: (
+        <ul className="list-disc ml-5 space-y-1">
+          <li>Brain training app with engaging games and memory challenges.</li>
+          <li>Cognitive exercises designed to boost mental performance.</li>
+          <li>Progress tracking and performance analytics dashboard.</li>
+          <li>Available on web, iOS, and Android.</li>
+        </ul>
+      ),
+    },
+    {
+      id: 'stockbrains',
+      image: '/image/stock-brains-ai.png',
+      alt: 'StockBrains.ai App',
+      title: 'StockBrains.ai',
+      description: (
+        <ul className="list-disc ml-5 space-y-1">
+          <li>AI-powered stock research app with SWOT analysis.</li>
+          <li>Smart investment tools and real-time market insights.</li>
+          <li>Data-driven stock decision support powered by AI.</li>
+          <li>Available on Android.</li>
+        </ul>
+      ),
+    },
   ],
   uxui: [
     { id: 'arjava-web-design', image: '/image/arjava-web-design.jpg', alt: 'Arjava Web Design' },
@@ -246,13 +287,112 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
         </ul>
       ),
     },
-    { id: 'mugavari',    image: '/image/mugavari-web-app.jpg', alt: 'Mugavari Web App' },
-    { id: 'webapp-soon', image: '',                             alt: 'Update Soon'       },
+    {
+      id: 'mugavari',
+      image: '/image/Mugavari-web-app.jpg',
+      alt: 'Mugavari Web App',
+      title: 'Mugavari',
+      description: (
+        <ul className="list-disc ml-5 space-y-1">
+          <li>Web application for Mugavari Foundation's charitable activities.</li>
+          <li>Donation management and volunteer portal.</li>
+          <li>Event organisation and community engagement features.</li>
+        </ul>
+      ),
+    },
+    {
+      id: 'goddard',
+      image: '/image/goddard-webapp.png',
+      alt: 'Goddard Web App',
+      title: 'Goddard',
+      description: (
+        <ul className="list-disc ml-5 space-y-1">
+          <li>Comprehensive daycare school management web application.</li>
+          <li>Student management with a dedicated parent portal.</li>
+          <li>Staff scheduling and integrated billing system.</li>
+        </ul>
+      ),
+    },
+    {
+      id: 'tap-time',
+      image: '/image/tap-time.png',
+      alt: 'Tap Time Web App',
+      title: 'Tap Time',
+      description: (
+        <ul className="list-disc ml-5 space-y-1">
+          <li>Employee time & attendance tracking web application.</li>
+          <li>Staff check-in / out with daily and salary-based reports.</li>
+          <li>iOS and Android companion apps for on-the-go access.</li>
+        </ul>
+      ),
+    },
   ],
   website: [
-    { id: 'btk',        image: '/image/btk-website.jpg',     alt: 'BTK Website'    },
-    { id: 'h3',         image: '/image/h3-website.jpg',      alt: 'H3 Website'     },
-    { id: 'arjava-site',image: '/image/arjava-website.jpg',  alt: 'Arjava Website' },
+    {
+      id: 'btk',
+      image: '/image/BTK-website.jpg',
+      alt: 'Bharathi Tamil Academy Website',
+      title: 'Bharathi Tamil Academy',
+      description: (
+        <ul className="list-disc ml-5 space-y-1">
+          <li>Website for a 501(c)(3) nonprofit teaching Tamil language and culture.</li>
+          <li>Student portal, class schedules, and community events.</li>
+          <li>Based in Redmond, WA.</li>
+        </ul>
+      ),
+    },
+    {
+      id: 'tnngo',
+      image: '/image/tnngo-website.png',
+      alt: 'TN-NGO Website',
+      title: 'TN-NGO',
+      description: (
+        <ul className="list-disc ml-5 space-y-1">
+          <li>Platform connecting NGOs with students for quality education.</li>
+          <li>NGO registration, student enrollment, and resource management.</li>
+          <li>Community engagement and outreach features.</li>
+        </ul>
+      ),
+    },
+    {
+      id: 'redmond-tamil-school',
+      image: '/image/redmond-tamil-school.jpg',
+      alt: 'Redmond Tamil School Website',
+      title: 'Redmond Tamil School',
+      description: (
+        <ul className="list-disc ml-5 space-y-1">
+          <li>School notification and information website for Redmond Tamil School.</li>
+          <li>Latest news, upcoming events, and student schedules.</li>
+          <li>Tamil language class enrolment and school announcements.</li>
+        </ul>
+      ),
+    },
+    {
+      id: 'seeeds-india',
+      image: '/image/seeds-india.jpg',
+      alt: 'SEEEDS India Website',
+      title: 'SEEEDS India',
+      description: (
+        <ul className="list-disc ml-5 space-y-1">
+          <li>NGO website for SEEEDS Foundation empowering children through education.</li>
+          <li>Scholarship applications and donation / volunteer portal.</li>
+          <li>Admissions support, events, and success stories.</li>
+        </ul>
+      ),
+    },
+    {
+      id: 'grit',
+      image: '/image/grit-web-design.jpg',
+      alt: 'Grit Website',
+      title: 'Grit',
+      description: (
+        <ul className="list-disc ml-5 space-y-1">
+          <li>Performance tracking system for productivity and goal achievement.</li>
+          <li>Custom metrics, progress analytics, and goal setting.</li>
+          <li>Custom reporting dashboard for teams and individuals.</li>
+        </ul>
+      ),
+    },
   ],
 }
 
@@ -282,7 +422,7 @@ export default function Home() {
           <div className="flex flex-col-reverse lg:flex-row items-center gap-12">
 
             {/* Left — text */}
-            <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start gap-6">
+            <div className="w-full lg:w-[45%] flex flex-col items-center lg:items-start gap-6">
               {/* Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
@@ -356,23 +496,31 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.45 }}
                 className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4 w-full"
               >
-                <StatCounter value={10} label="Years Experience" />
-                <StatCounter value={50} label="Projects Delivered" />
-                <StatCounter value={20} label="Happy Clients" />
+                <StatCounter value={5}  label="Years Experience" />
+                <StatCounter value={15} label="Projects Delivered" />
+                <StatCounter value={15} label="Happy Clients" />
                 <StatCounter value={5}  label="Countries Served" />
               </motion.div>
             </div>
 
-            {/* Right — mockup */}
-            <div className="w-full lg:w-1/2 flex justify-center">
-              <motion.img
-                src="/image/arjava logo laptop mockup.png"
-                alt="Arjava Laptop Mockup"
-                initial={{ opacity: 0, scale: 0.88 }}
+            {/* Right — hero image */}
+            <div className="w-full lg:w-[55%] flex justify-center items-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="w-full max-w-lg h-auto animate-float drop-shadow-[0_0_55px_rgba(45,212,191,0.25)]"
-              />
+                transition={{ duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="relative w-full max-w-2xl"
+              >
+                {/* Teal glow halo */}
+                <div className="absolute inset-0 rounded-3xl bg-teal-500/15 blur-[60px] scale-110 pointer-events-none" />
+                <motion.img
+                  src="/image/hero_image.png"
+                  alt="Arjava Technologies — Full Stack IT Solutions"
+                  animate={{ y: [0, -12, 0] }}
+                  transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+                  className="relative w-full h-auto rounded-3xl object-cover shadow-[0_0_80px_rgba(45,212,191,0.18)] border border-white/10"
+                />
+              </motion.div>
             </div>
           </div>
         </div>

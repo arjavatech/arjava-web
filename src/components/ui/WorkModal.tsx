@@ -49,34 +49,41 @@ export default function WorkModal({ item }: WorkModalProps) {
         <AnimatePresence>
           {open && (
             <>
+              {/* Backdrop */}
               <Dialog.Overlay asChild>
                 <motion.div
                   key="overlay"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="fixed inset-0 bg-black/75 backdrop-blur-sm z-50"
+                  transition={{ duration: 0.2 }}
+                  className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[100]"
                 />
               </Dialog.Overlay>
 
-              <Dialog.Content asChild>
+              {/* Modal — centred with flexbox to avoid transform conflicts */}
+              <Dialog.Content
+                className="fixed inset-0 z-[101] flex items-center justify-center p-4 outline-none"
+                onOpenAutoFocus={(e) => e.preventDefault()}
+              >
                 <motion.div
-                  key="content"
-                  initial={{ opacity: 0, scale: 0.92, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.92, y: 20 }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
-                             w-full max-w-2xl max-h-[88vh] overflow-y-auto
+                  key="panel"
+                  initial={{ opacity: 0, scale: 0.93 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.93 }}
+                  transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                  className="w-full max-w-2xl max-h-[90vh] overflow-y-auto
                              bg-dark-surface border border-dark-line rounded-2xl shadow-2xl"
                 >
                   {/* Header */}
-                  <div className="flex items-center justify-between p-5 border-b border-dark-line">
-                    {item.title && (
+                  <div className="flex items-center justify-between p-5 border-b border-dark-line sticky top-0 bg-dark-surface z-10">
+                    {item.title ? (
                       <h3 className="text-white font-semibold text-lg gradient-text">{item.title}</h3>
+                    ) : (
+                      <div />
                     )}
                     <Dialog.Close asChild>
-                      <button className="ml-auto text-slate-400 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/10">
+                      <button className="ml-auto text-slate-400 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-white/10">
                         <X size={20} />
                       </button>
                     </Dialog.Close>

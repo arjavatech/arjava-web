@@ -143,21 +143,51 @@ export default function Footer() {
           </div>
         </motion.div>
 
-        {/* Location Map */}
+        {/* Location */}
         <motion.div variants={colVariants}>
           <h6 className="gradient-text text-xs font-bold uppercase tracking-widest mb-5">
             Our Location
           </h6>
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.7479910917946!2d80.14273187428608!3d12.923912115923658!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525ee2295d5c29%3A0xf83071011e4a93e5!2s19%2C%20Ganesh%20Nagar%20Main%20Rd%2C%20Mahalakshmi%20Nagar%2C%20Tambaram%2C%20Chennai%2C%20Tamil%20Nadu%20600059!5e0!3m2!1sen!2sin!4v1697103920581!5m2!1sen!2sin"
-            className="w-full rounded-xl border border-dark-line"
-            height="200"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Arjava Office Location"
-          />
+
+          <div className="space-y-3">
+            {/* India */}
+            <a
+              href="https://www.google.com/maps/search/19,+Ganesh+Nagar+Main+Road,+Selaiyur,+Chennai+600073"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-start gap-3 p-3 rounded-xl border border-dark-line bg-dark-card hover:border-teal-400/40 hover:bg-teal-400/5 transition-all duration-200"
+            >
+              <div className="w-9 h-9 rounded-lg bg-teal-400/10 border border-teal-400/20 flex items-center justify-center flex-shrink-0 group-hover:bg-teal-400/20 transition-colors duration-200">
+                <MapPin size={16} className="text-teal-400" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-white text-xs font-semibold mb-0.5">India Office</p>
+                <p className="text-slate-500 text-[11px] leading-relaxed">Chennai, Tamil Nadu</p>
+                <span className="inline-flex items-center gap-1 text-teal-400/70 text-[10px] font-medium mt-1 group-hover:text-teal-400 transition-colors">
+                  View on Maps →
+                </span>
+              </div>
+            </a>
+
+            {/* USA */}
+            <a
+              href="https://www.google.com/maps/search/2135+204th+PL+NE,+Sammamish,+WA+98974"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-start gap-3 p-3 rounded-xl border border-dark-line bg-dark-card hover:border-sky-400/40 hover:bg-sky-400/5 transition-all duration-200"
+            >
+              <div className="w-9 h-9 rounded-lg bg-sky-400/10 border border-sky-400/20 flex items-center justify-center flex-shrink-0 group-hover:bg-sky-400/20 transition-colors duration-200">
+                <MapPin size={16} className="text-sky-400" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-white text-xs font-semibold mb-0.5">USA Office</p>
+                <p className="text-slate-500 text-[11px] leading-relaxed">Sammamish, WA</p>
+                <span className="inline-flex items-center gap-1 text-sky-400/70 text-[10px] font-medium mt-1 group-hover:text-sky-400 transition-colors">
+                  View on Maps →
+                </span>
+              </div>
+            </a>
+          </div>
         </motion.div>
 
       </motion.div>
