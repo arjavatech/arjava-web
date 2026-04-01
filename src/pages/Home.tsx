@@ -1,137 +1,172 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
+import {
+  Smartphone, Palette, Code2, Globe, Wrench, SearchCheck,
+  ChevronRight, ArrowRight, Zap,
+} from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ServiceCard from '@/components/ui/ServiceCard'
+import StatCounter from '@/components/ui/StatCounter'
 import WorkModal, { type WorkItem } from '@/components/ui/WorkModal'
+import AnimatedSection from '@/components/ui/AnimatedSection'
+import PageTransition from '@/components/ui/PageTransition'
 import { cn } from '@/lib/utils'
 
-/* ─── Digital Services data ─────────────────────────────────── */
+/* ─── Typewriter hook ────────────────────────────────────────── */
+function useTypewriter(words: string[], speed = 90, pause = 1800) {
+  const [index, setIndex]   = useState(0)
+  const [subIndex, setSubIndex] = useState(0)
+  const [deleting, setDeleting] = useState(false)
+  const [text, setText]     = useState('')
+
+  useEffect(() => {
+    if (!deleting && subIndex === words[index].length) {
+      const t = setTimeout(() => setDeleting(true), pause)
+      return () => clearTimeout(t)
+    }
+    if (deleting && subIndex === 0) {
+      setDeleting(false)
+      setIndex((p) => (p + 1) % words.length)
+      return
+    }
+    const t = setTimeout(
+      () => {
+        setSubIndex((p) => p + (deleting ? -1 : 1))
+        setText(words[index].substring(0, subIndex + (deleting ? -1 : 1)))
+      },
+      deleting ? speed / 2 : speed,
+    )
+    return () => clearTimeout(t)
+  }, [subIndex, deleting, index, words, speed, pause])
+
+  return text
+}
+
+/* ─── Services data ──────────────────────────────────────────── */
 const SERVICES = [
   {
     id: 'mob-app',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
-        <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-      </svg>
-    ),
+    icon: <Smartphone size={22} />,
     title: 'Mobile Application',
     shortText:
-      'Arjava technology has profound providing mobile solutions for every smart device for all the prevalent operating systems. Our expertise in mobile development comes from years of experience. Our paramount focus is to create quality-rich innovative solutions.',
+      'Arjava delivers mobile solutions for every smart device across all major operating systems. From iOS to Android, we craft quality-rich, innovative apps.',
     expanded: (
       <>
         <b>Our mobile development services include:</b>
         <ul className="list-disc ml-5 mt-1 space-y-1">
-          <li>iPhone/iPad/iOS Application Development</li>
+          <li>iPhone / iPad / iOS Application Development</li>
           <li>Android Application Development</li>
-          <li>BlackBerry Application Development</li>
-          <li>Windows Phone Application Development</li>
           <li>Rich Mobile Web Application Development</li>
+          <li>Cross-Platform Development (React Native / Flutter)</li>
         </ul>
       </>
     ),
+    featured: true,
   },
   {
     id: 'uxui',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M15.825.12a.5.5 0 0 1 .132.584c-1.53 3.43-4.743 8.17-7.095 10.64a6.067 6.067 0 0 1-2.373 1.534c-.018.227-.06.538-.16.868-.201.659-.667 1.479-1.708 1.74a8.118 8.118 0 0 1-3.078.132 3.659 3.659 0 0 1-.562-.135 1.382 1.382 0 0 1-.466-.247.714.714 0 0 1-.204-.288.622.622 0 0 1 .004-.443c.095-.245.316-.38.461-.452.394-.197.625-.453.867-.826.095-.144.184-.297.287-.472l.117-.198c.151-.255.326-.54.546-.848.528-.739 1.201-.925 1.746-.896.126.007.243.025.348.048.062-.172.142-.38.238-.608.261-.619.658-1.419 1.187-2.069 2.176-2.67 6.18-6.206 9.117-8.104a.5.5 0 0 1 .596.04z" />
-      </svg>
-    ),
-    title: 'UX/UI Design',
+    icon: <Palette size={22} />,
+    title: 'UX / UI Design',
     shortText:
-      "UI (User Interface) and UX (User Experience) are two essential elements in the virtual world. Unless the UI and UX are up to the mark, it's not possible to reach the audience, perfectly. When you have the best UI/UX, they can elevate your",
+      'UI and UX are the heartbeat of any digital product. Our design team creates pixel-perfect interfaces that elevate your brand and delight users.',
     expanded: (
       <>
-        business even in offline situations. Basically, the UI/UX design is a process of designing
-        visual and functional aspects of a product. It is necessary for both hardware or software
-        products.
+        We design intuitive visual and functional experiences for both hardware and software products
+        — from wireframes to fully polished design systems.
       </>
     ),
   },
   {
     id: 'soft-dev',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M0 4s0-2 2-2h12s2 0 2 2v6s0 2-2 2h-4c0 .667.083 1.167.25 1.5H11a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1h.75c.167-.333.25-.833.25-1.5H2s-2 0-2-2V4zm1.398-.855a.758.758 0 0 0-.254.302A1.46 1.46 0 0 0 1 4.01V10c0 .325.078.502.145.602.07.105.17.188.302.254a1.464 1.464 0 0 0 .538.143L2.01 11H14c.325 0 .502-.078.602-.145a.758.758 0 0 0 .254-.302 1.464 1.464 0 0 0 .143-.538L15 9.99V4c0-.325-.078-.502-.145-.602a.757.757 0 0 0-.302-.254A1.46 1.46 0 0 0 13.99 3H2c-.325 0-.502.078-.602.145z" />
-      </svg>
-    ),
+    icon: <Code2 size={22} />,
     title: 'Software Development',
     shortText:
-      'Software development provides a series of steps for programmers to create computer programs. This process makes up the phases in the software development life cycle. Understanding the software development method offers vast',
-    expanded: <>opportunities in the IT industry.</>,
+      'We guide projects through every phase of the software development lifecycle — from requirements gathering to delivery — using modern methodologies.',
+    expanded: <>Vast opportunities in the IT industry start with a solid development foundation.</>,
   },
   {
     id: 'web-app',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zm-3 0A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4.5h-2z" />
-        <path d="M8.646 6.646a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1 0 .708l-2 2a.5.5 0 0 1-.708-.708L10.293 9 8.646 7.354a.5.5 0 0 1 0-.708zm-1.292 0a.5.5 0 0 0-.708 0l-2 2a.5.5 0 0 0 0 .708l2 2a.5.5 0 0 0 .708-.708L5.707 9l1.647-1.646a.5.5 0 0 0 0-.708z" />
-      </svg>
-    ),
+    icon: <Globe size={22} />,
     title: 'Web Application',
     shortText:
-      'Web Application is one of the core services of Arjava. We specialize in engineering and migration to unique, secure, comprehensive tailor-made',
+      'We specialise in engineering secure, tailor-made web solutions with modern design and top-notch user experience for value-driven, customer-first businesses.',
     expanded: (
       <>
-        web solutions with modern design and user experience. We fundamentally change the way
-        business is delivered, providing solutions for a value-based customer-first approach.
-        <br /><br />
-        <b>We provide a full cycle of custom web development services including:</b>
+        <b>Full-cycle web development services including:</b>
         <ul className="list-disc ml-5 mt-1 space-y-1">
-          <li>Generation/brainstorming of web solution vision and requirements</li>
-          <li>System architecture, security, web and user experience design</li>
-          <li>Prototyping, UI/UX audit, responsive design implementation, design systems development</li>
-          <li>Automated front-end testing, QA under the most popular platforms and browsers</li>
-          <li>Migration from desktop to cloud-native web applications</li>
-          <li>3rd level maintenance, integration with API, cloud architecture and hosting</li>
+          <li>System architecture, security & UX design</li>
+          <li>Prototyping, responsive implementation & design systems</li>
+          <li>Cloud migration, API integration & hosting</li>
         </ul>
       </>
     ),
   },
   {
     id: 'pro-maint',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5 8 5.961 14.154 3.5 8.186 1.113zM15 4.239l-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z" />
-      </svg>
-    ),
+    icon: <Wrench size={22} />,
     title: 'Product Maintenance',
     shortText:
-      'The new technologies driving up complexities of software products, constant evolution in the realm of product maintenance is inevitable.',
-    expanded: (
-      <>
-        It is pivotal to minimize failures and adequately maintain software products to ensure
-        consistency in their performance. Additionally, it is crucial to address that CIO's are often
-        burdened with maintaining and monitoring mission-critical applications while simultaneously
-        reducing costs. With adequate software maintenance services deployed throughout a product's
-        lifecycle, businesses can maintain as well as upgrade existing products to ensure market and
-        brand relevance, and in turn, retain customers more effectively.
-      </>
-    ),
+      'Minimise failures and keep software products consistent with our lifecycle maintenance services — reducing cost while retaining brand relevance.',
   },
   {
     id: 'seo',
-    icon: (
-      <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" fill="currentColor" viewBox="0 0 16 16">
-        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
-      </svg>
-    ),
+    icon: <SearchCheck size={22} />,
     title: 'SEO',
     shortText:
-      'We integrate a new web product into your digital infrastructure, test it in the real environment and use performance insights for future optimization.',
+      'We integrate products into your digital infrastructure, test in real environments, and use performance insights for continuous optimisation.',
   },
 ]
 
-/* ─── Our Works data ─────────────────────────────────────────── */
+/* ─── Dev-process steps ──────────────────────────────────────── */
+const DEV_STEPS = [
+  {
+    id: 'plan',
+    label: 'Plan',
+    description:
+      'We start by understanding your requirements, goals, and business objectives to create a comprehensive project roadmap.',
+  },
+  {
+    id: 'design',
+    label: 'Design',
+    description:
+      'Our designers craft intuitive UI/UX prototypes that align with your brand identity and user expectations.',
+  },
+  {
+    id: 'develop',
+    label: 'Develop',
+    description:
+      'Our engineers build robust, scalable solutions using modern technologies and industry best practices.',
+  },
+  {
+    id: 'test',
+    label: 'Test',
+    description:
+      'Rigorous QA testing ensures your product is bug-free, secure, and performs optimally across all platforms.',
+  },
+  {
+    id: 'deploy',
+    label: 'Deploy',
+    description:
+      'We handle smooth deployment to your chosen infrastructure with zero-downtime release strategies.',
+  },
+  {
+    id: 'support',
+    label: 'Support',
+    description:
+      'Our team provides ongoing maintenance, updates, and 24/7 support to keep your product running perfectly.',
+  },
+]
+
+/* ─── Works data ─────────────────────────────────────────────── */
 type WorkTab = 'mobapp' | 'uxui' | 'webapp' | 'website'
 
 const WORK_TABS: { id: WorkTab; label: string }[] = [
-  { id: 'mobapp', label: 'Mobile Application' },
-  { id: 'uxui', label: 'UX/UI Design' },
-  { id: 'webapp', label: 'Web Application' },
-  { id: 'website', label: 'Website' },
+  { id: 'mobapp',  label: 'Mobile App' },
+  { id: 'uxui',   label: 'UX / UI'    },
+  { id: 'webapp',  label: 'Web App'   },
+  { id: 'website', label: 'Website'   },
 ]
 
 const WORKS: Record<WorkTab, WorkItem[]> = {
@@ -143,11 +178,10 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
       title: 'Findabed',
       description: (
         <ul className="list-disc ml-5 space-y-1">
-          <li>Findabed is a cross platform application available in web, Android and iOS showing available hospital beds nearby.</li>
-          <li>It shows oxygen beds, ICU beds, Normal beds and Corona beds available in various hospitals.</li>
-          <li>Several filters to limit search radius, filter beds and sort hospitals by name, distance or available bed count.</li>
-          <li>Hospital phone numbers are listed for direct contact.</li>
-          <li>Data is fetched from the Indian government website and shows when last refreshed.</li>
+          <li>Cross-platform app (web, Android, iOS) showing available hospital beds nearby.</li>
+          <li>Shows oxygen, ICU, Normal, and Corona beds across hospitals.</li>
+          <li>Filters by radius, bed type; sort by name, distance, or availability.</li>
+          <li>Data sourced from the Indian government portal.</li>
         </ul>
       ),
     },
@@ -158,22 +192,18 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
       title: 'Sehatuka',
       description: (
         <ul className="list-disc ml-5 space-y-1">
-          <li>Sehatuka is a medicare application available on both Android and iOS.</li>
-          <li>Useful for medical checkup notifications, medicine intake reminders, doctor appointments and more.</li>
-          <li>Store important information like emergency contacts, surgeries and prescriptions.</li>
-          <li>Developed in React Native and SQL.</li>
+          <li>Medicare app available on Android and iOS.</li>
+          <li>Medical checkup notifications, medicine reminders, doctor appointments.</li>
+          <li>Store emergency contacts, surgery history, and prescriptions.</li>
+          <li>Built with React Native and SQL.</li>
         </ul>
       ),
     },
-    {
-      id: 'solladal',
-      image: '/image/solladal-app.jpg',
-      alt: 'Solladal App',
-    },
+    { id: 'solladal', image: '/image/solladal-app.jpg', alt: 'Solladal App' },
   ],
   uxui: [
     { id: 'arjava-web-design', image: '/image/arjava-web-design.jpg', alt: 'Arjava Web Design' },
-    { id: 'grit-web-design', image: '/image/grit-web-design.jpg', alt: 'Grit Web Design' },
+    { id: 'grit-web-design',   image: '/image/grit-web-design.jpg',   alt: 'Grit Web Design'  },
     { id: 'sangam-web-design', image: '/image/sangam-web-design.jpg', alt: 'Sangam Web Design' },
   ],
   webapp: [
@@ -184,204 +214,372 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
       title: 'Sorting Analysis',
       description: (
         <ul className="list-disc ml-5 space-y-1">
-          <li>A web application where you input an array and get output with visualisation.</li>
-          <li>See comparisons and swap counts of every sorting technique to determine the best scenario.</li>
-          <li>Accepts integer, string, character, and float inputs with visualisation for random, reverse, nearly sorted, and duplicate arrays.</li>
-          <li>Graphical representation of input and output arrays.</li>
-          <li>View code, time and space complexity for every sorting technique.</li>
+          <li>Input an array and get output with full visualisation.</li>
+          <li>Compare swap counts across every sorting technique.</li>
+          <li>Accepts integers, strings, characters, floats — random, reverse, or nearly-sorted arrays.</li>
+          <li>View code, time, and space complexity per technique.</li>
         </ul>
       ),
     },
-    { id: 'mugavari', image: '/image/mugavari-web-app.jpg', alt: 'Mugavari Web App' },
-    {
-      id: 'webapp-soon',
-      image: '',
-      alt: 'Update Soon',
-    },
+    { id: 'mugavari',    image: '/image/mugavari-web-app.jpg', alt: 'Mugavari Web App' },
+    { id: 'webapp-soon', image: '',                             alt: 'Update Soon'       },
   ],
   website: [
-    { id: 'btk', image: '/image/btk-website.jpg', alt: 'BTK Website' },
-    { id: 'h3', image: '/image/h3-website.jpg', alt: 'H3 Website' },
-    { id: 'arjava-site', image: '/image/arjava-website.jpg', alt: 'Arjava Website' },
+    { id: 'btk',        image: '/image/btk-website.jpg',     alt: 'BTK Website'    },
+    { id: 'h3',         image: '/image/h3-website.jpg',      alt: 'H3 Website'     },
+    { id: 'arjava-site',image: '/image/arjava-website.jpg',  alt: 'Arjava Website' },
   ],
 }
 
 /* ─── Page ───────────────────────────────────────────────────── */
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<WorkTab>('mobapp')
+  const [activeTab,  setActiveTab]  = useState<WorkTab>('mobapp')
+  const [activeStep, setActiveStep] = useState('plan')
+
+  const typeText = useTypewriter(['Experiences', 'Solutions', 'Products', 'Futures'], 85, 2000)
 
   return (
-    <>
+    <PageTransition>
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-6">
-        <div className="flex flex-col-reverse md:flex-row items-center gap-6">
-          {/* Mockup image */}
-          <div className="w-full md:w-1/2 flex justify-center">
-            <img
-              src="/image/arjava logo laptop mockup.png"
-              alt="Arjava Laptop Mockup"
-              className="max-w-full h-auto"
-            />
+      {/* ── HERO ─────────────────────────────────────────────── */}
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-dark-base">
+        {/* Animated blobs */}
+        <div className="absolute top-[-100px] right-[-80px] w-[500px] h-[500px] bg-teal-500/15 rounded-full blur-[120px] animate-blob" />
+        <div className="absolute bottom-[-60px] left-[10%] w-[400px] h-[400px] bg-sky-500/10 rounded-full blur-[100px] animate-blob delay-2000" />
+        <div className="absolute top-[40%] left-[40%] w-[300px] h-[300px] bg-emerald-500/10 rounded-full blur-[90px] animate-blob delay-4000" />
+
+        {/* Dot grid */}
+        <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
+        {/* Edge gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-base via-transparent to-dark-base pointer-events-none" />
+
+        <div className="container mx-auto px-6 py-24 relative z-10">
+          <div className="flex flex-col-reverse lg:flex-row items-center gap-12">
+
+            {/* Left — text */}
+            <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start gap-6">
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <span className="section-tag">
+                  <Zap size={12} />
+                  Full Stack IT Solutions
+                </span>
+              </motion.div>
+
+              {/* Headline */}
+              <motion.h1
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight text-center lg:text-left"
+              >
+                Building Digital<br />
+                <span className="gradient-text">
+                  {typeText}
+                  <span className="inline-block w-[3px] h-[1em] bg-teal-400 align-middle ml-1 animate-pulse" />
+                </span>
+                {' '}That Matter
+              </motion.h1>
+
+              {/* Subtext */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-slate-400 text-lg leading-relaxed text-center lg:text-left max-w-xl"
+              >
+                At Arjava, we develop software and mobile product engineering services for businesses,
+                educational institutions, healthcare and government organisations — helping them achieve
+                their valued objectives.
+              </motion.p>
+
+              {/* CTA row */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="flex flex-wrap gap-3 justify-center lg:justify-start"
+              >
+                <Link to="/contact">
+                  <motion.button
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
+                    className="btn-primary px-7 py-3"
+                  >
+                    Get a Proposal <ArrowRight size={16} />
+                  </motion.button>
+                </Link>
+                <Link to="/products">
+                  <motion.button
+                    whileHover={{ scale: 1.04 }}
+                    whileTap={{ scale: 0.96 }}
+                    className="btn-outline px-7 py-3"
+                  >
+                    Our Works <ChevronRight size={16} />
+                  </motion.button>
+                </Link>
+              </motion.div>
+
+              {/* Stats row */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.45 }}
+                className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4 w-full"
+              >
+                <StatCounter value={10} label="Years Experience" />
+                <StatCounter value={50} label="Projects Delivered" />
+                <StatCounter value={20} label="Happy Clients" />
+                <StatCounter value={5}  label="Countries Served" />
+              </motion.div>
+            </div>
+
+            {/* Right — mockup */}
+            <div className="w-full lg:w-1/2 flex justify-center">
+              <motion.img
+                src="/image/arjava logo laptop mockup.png"
+                alt="Arjava Laptop Mockup"
+                initial={{ opacity: 0, scale: 0.88 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="w-full max-w-lg h-auto animate-float drop-shadow-[0_0_55px_rgba(45,212,191,0.25)]"
+              />
+            </div>
           </div>
-          {/* Text + CTA */}
-          <div className="w-full md:w-1/2 flex flex-col items-center md:items-start gap-4 pt-6 md:pt-16">
-            <h1 className="text-3xl md:text-4xl font-bold text-brand text-center md:text-left">
-              Full Stack IT Solutions
-            </h1>
-            <p className="text-[#4B4B4B] text-center md:text-left leading-relaxed">
-              At Arjava, we develop software and mobile product engineering services for businesses,
-              educational and financial institutions, healthcare and government organizations to help
-              them achieve their valued objectives and targets.
+        </div>
+      </section>
+
+      {/* ── VISION & MISSION ──────────────────────────────────── */}
+      <section className="bg-dark-surface py-20">
+        <div className="container mx-auto px-6">
+          <AnimatedSection className="text-center mb-12">
+            <span className="section-tag">Our DNA</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+              What <span className="gradient-text">Drives</span> Us
+            </h2>
+          </AnimatedSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {/* Vision */}
+            <AnimatedSection direction="left">
+              <div className="glass p-8 h-full">
+                <div className="w-14 h-14 rounded-2xl bg-teal-400/10 border border-teal-400/20 flex items-center justify-center mb-5">
+                  <img src="/image/vision.png" alt="Vision" className="w-8 h-8 object-contain brightness-0 invert" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Our Vision</h3>
+                <p className="text-slate-400 leading-relaxed">
+                  Propel technological innovation that empowers mankind.
+                </p>
+              </div>
+            </AnimatedSection>
+
+            {/* Mission */}
+            <AnimatedSection direction="right">
+              <div className="glass p-8 h-full">
+                <div className="w-14 h-14 rounded-2xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center mb-5">
+                  <img src="/image/mission.png" alt="Mission" className="w-8 h-8 object-contain brightness-0 invert" />
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3">Our Mission</h3>
+                <p className="text-slate-400 leading-relaxed">
+                  Full Stack IT Solutions and services, IoT Solutions and Services, Product Development —
+                  delivered with precision and passion.
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ── DIGITAL SERVICES (bento grid) ─────────────────────── */}
+      <section className="bg-dark-base py-20">
+        <div className="container mx-auto px-6">
+          <AnimatedSection className="text-center mb-12">
+            <span className="section-tag">What We Do</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+              Digital <span className="gradient-text">Services</span>
+            </h2>
+            <p className="text-slate-400 mt-3 max-w-xl mx-auto">
+              End-to-end technology solutions crafted to scale with your business.
             </p>
-            <div className="text-center md:text-left">
+          </AnimatedSection>
+
+          {/* Bento-style grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {SERVICES.map((svc, i) => (
+              <AnimatedSection key={svc.id} delay={i * 0.07}>
+                <ServiceCard
+                  icon={svc.icon}
+                  title={svc.title}
+                  shortText={svc.shortText}
+                  expandedContent={svc.expanded}
+                  featured={svc.featured}
+                  className={svc.featured ? 'lg:col-span-1 border-teal-500/30' : ''}
+                />
+              </AnimatedSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── DEVELOPMENT PROCESS ───────────────────────────────── */}
+      <section className="bg-dark-surface py-20">
+        <div className="container mx-auto px-6">
+          <AnimatedSection className="text-center mb-12">
+            <span className="section-tag">How We Work</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+              Development <span className="gradient-text">Process</span>
+            </h2>
+          </AnimatedSection>
+
+          {/* Step pills */}
+          <AnimatedSection delay={0.1}>
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {DEV_STEPS.map((step, i) => (
+                <button
+                  key={step.id}
+                  onClick={() => setActiveStep(step.id)}
+                  className={cn(
+                    'relative px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200',
+                    activeStep === step.id
+                      ? 'bg-gradient-to-r from-teal-400 to-sky-400 text-gray-900 shadow-[0_0_20px_rgba(45,212,191,0.35)]'
+                      : 'bg-dark-card border border-dark-line text-slate-400 hover:border-teal-400/40 hover:text-teal-400',
+                  )}
+                >
+                  <span className="mr-1.5 text-xs opacity-60">{String(i + 1).padStart(2, '0')}</span>
+                  {step.label}
+                </button>
+              ))}
+            </div>
+          </AnimatedSection>
+
+          {/* Active step card */}
+          <AnimatePresence mode="wait">
+            {DEV_STEPS.filter((s) => s.id === activeStep).map((step) => (
+              <motion.div
+                key={step.id}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                className="max-w-xl mx-auto text-center"
+              >
+                <div className="card-dark p-8">
+                  <p className="gradient-text text-2xl font-bold mb-3">{step.label}</p>
+                  <p className="text-slate-400 leading-relaxed">{step.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </div>
+      </section>
+
+      {/* ── OUR WORKS ─────────────────────────────────────────── */}
+      <section className="bg-dark-base py-20">
+        <div className="container mx-auto px-6">
+          <AnimatedSection className="text-center mb-12">
+            <span className="section-tag">Portfolio</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+              Our <span className="gradient-text">Works</span>
+            </h2>
+            <p className="text-slate-400 mt-3 max-w-xl mx-auto">
+              A selection of projects we're proud to have shipped.
+            </p>
+          </AnimatedSection>
+
+          {/* Tab pills */}
+          <AnimatedSection delay={0.1}>
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {WORK_TABS.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={cn(
+                    'px-5 py-2 rounded-full text-sm font-medium transition-all duration-200',
+                    activeTab === tab.id
+                      ? 'bg-gradient-to-r from-teal-400 to-sky-400 text-gray-900'
+                      : 'bg-dark-card border border-dark-line text-slate-400 hover:border-teal-400/40 hover:text-teal-400',
+                  )}
+                >
+                  {tab.label}
+                </button>
+              ))}
+            </div>
+          </AnimatedSection>
+
+          {/* Work grid */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeTab}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35 }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-5"
+            >
+              {WORKS[activeTab].map((item) =>
+                item.image ? (
+                  item.description ? (
+                    <WorkModal key={item.id} item={item} />
+                  ) : (
+                    <motion.div
+                      key={item.id}
+                      whileHover={{ scale: 1.02 }}
+                      transition={{ duration: 0.25 }}
+                      className="overflow-hidden rounded-2xl border border-dark-line"
+                    >
+                      <img
+                        src={item.image}
+                        alt={item.alt}
+                        className="w-full h-52 object-cover"
+                      />
+                    </motion.div>
+                  )
+                ) : (
+                  <div
+                    key={item.id}
+                    className="h-52 rounded-2xl border border-dark-line bg-dark-surface flex items-center justify-center"
+                  >
+                    <span className="text-slate-500 text-sm font-medium">Update Soon</span>
+                  </div>
+                ),
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </section>
+
+      {/* ── CTA BANNER ────────────────────────────────────────── */}
+      <section className="bg-dark-surface border-y border-dark-line py-20">
+        <div className="container mx-auto px-6">
+          <AnimatedSection className="text-center">
+            <div className="max-w-3xl mx-auto">
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
+                Ready to Build Something{' '}
+                <span className="gradient-text">Amazing?</span>
+              </h2>
+              <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+                Tell us about your project and we'll craft a tailored proposal within 24 hours.
+              </p>
               <Link to="/contact">
-                <button className="btn-proposal">Get a Proposal</button>
+                <motion.button
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="btn-primary px-10 py-4 text-base"
+                >
+                  Get a Proposal <ArrowRight size={18} />
+                </motion.button>
               </Link>
             </div>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Vision & Mission */}
-      <section className="container mx-auto px-4 py-8 flex flex-col items-center gap-0">
-        {/* Vision Box */}
-        <div
-          className="w-full max-w-2xl bg-white border border-[rgba(75,75,75,0.25)] overflow-hidden"
-          style={{ borderRadius: '90px 90px 0 0' }}
-        >
-          <div className="flex items-stretch min-h-[160px]">
-            <div
-              className="bg-brand flex items-center justify-center flex-shrink-0"
-              style={{
-                width: '160px',
-                borderRadius: '0 90px',
-                transform: 'matrix(1,0,0,-1,0,0)',
-                boxShadow: '5px 0 4px rgba(0,0,0,0.25)',
-              }}
-            >
-              <img
-                src="/image/vision.png"
-                alt="Vision Icon"
-                style={{ transform: 'matrix(1,0,0,-1,0,0)', width: '100px', height: '65px' }}
-              />
-            </div>
-            <div className="flex flex-col justify-center px-6 py-4">
-              <h5 className="text-2xl font-medium text-brand mb-2">Our Vision</h5>
-              <p className="text-[#4B4B4B]">
-                Propel technological innovation that empowers mankind.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Mission Box */}
-        <div
-          className="w-full max-w-2xl bg-white border border-[rgba(75,75,75,0.25)] overflow-hidden"
-          style={{ borderRadius: '0 0 90px 90px' }}
-        >
-          <div className="flex items-stretch min-h-[160px]">
-            <div className="flex flex-col justify-center px-6 py-4 flex-1">
-              <h5 className="text-2xl font-medium text-brand mb-2">Our Mission</h5>
-              <p className="text-[#4B4B4B]">
-                Full Stack IT Solutions and services, IOT Solutions and Services, Product Development.
-              </p>
-            </div>
-            <div
-              className="bg-brand flex items-center justify-center flex-shrink-0"
-              style={{
-                width: '160px',
-                borderRadius: '0 90px',
-                transform: 'matrix(1,0,0,-1,0,0)',
-                boxShadow: '-5px 0 4px rgba(0,0,0,0.25)',
-              }}
-            >
-              <img
-                src="/image/mission.png"
-                alt="Mission Icon"
-                style={{ transform: 'matrix(1,0,0,-1,0,0)', width: '90px', height: '80px' }}
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Digital Services */}
-      <section className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-medium text-center text-brand mb-8">Digital Services</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {SERVICES.map((svc) => (
-            <ServiceCard
-              key={svc.id}
-              icon={svc.icon}
-              title={svc.title}
-              shortText={svc.shortText}
-              expandedContent={svc.expanded}
-            />
-          ))}
-        </div>
-      </section>
-
-      {/* Development Process */}
-      <section className="container mx-auto px-4 pt-8 pb-4">
-        <h1 className="text-3xl font-medium text-center text-brand mb-6">Development Process</h1>
-        <div className="flex justify-center">
-          <img
-            src="/image/Development process.png"
-            alt="Development Process"
-            className="w-full max-w-xl h-auto"
-          />
-        </div>
-      </section>
-
-      {/* Our Works */}
-      <section className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-medium text-center text-brand mb-6">Our Works</h1>
-
-        {/* Tab Buttons */}
-        <div className="flex flex-wrap justify-center gap-2 mb-6">
-          {WORK_TABS.map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={cn(
-                'works-tab-btn',
-                activeTab === tab.id && 'active',
-              )}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Tab Content */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-          {WORKS[activeTab].map((item) =>
-            item.image ? (
-              item.description ? (
-                <WorkModal key={item.id} item={item} />
-              ) : (
-                <div key={item.id} className="overflow-hidden rounded-lg">
-                  <img src={item.image} alt={item.alt} className="w-full h-auto object-cover" />
-                </div>
-              )
-            ) : (
-              /* "Update Soon" placeholder */
-              <div
-                key={item.id}
-                className="h-[164px] rounded-[20px] flex items-center justify-center"
-                style={{ background: 'rgba(0,181,72,0.75)', color: '#fff' }}
-              >
-                <h5 className="text-lg font-medium">Update Soon</h5>
-              </div>
-            ),
-          )}
-        </div>
-      </section>
-
-      <br />
       <Footer />
-    </>
+    </PageTransition>
   )
 }

@@ -2,59 +2,101 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Base ───────────────────────────────────────────────────── */
 @layer base {
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+  *, *::before, *::after { box-sizing: border-box; }
 
-  html,
+  html { scroll-behavior: smooth; }
+
   body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Inter', sans-serif;
+    background-color: #080B14;
+    color: #E2E8F0;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 }
 
+/* ── Components ─────────────────────────────────────────────── */
 @layer components {
-  /* Navbar active link */
-  .nav-link-active {
-    @apply text-brand border-b-2 border-brand opacity-100;
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-teal-400 to-sky-400 bg-clip-text text-transparent;
   }
 
-  /* Proposal / CTA button */
-  .btn-proposal {
-    @apply bg-brand text-white border-none rounded-[20px] px-6 py-2 hover:opacity-80 transition-opacity;
+  /* Primary CTA button */
+  .btn-primary {
+    @apply relative inline-flex items-center gap-2
+           bg-gradient-to-r from-teal-400 to-sky-400
+           text-gray-900 font-semibold text-sm
+           px-6 py-3 rounded-xl
+           hover:shadow-[0_0_25px_rgba(45,212,191,0.45)]
+           transition-all duration-300 overflow-hidden
+           active:scale-95;
+  }
+  .btn-primary::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-teal-300 to-sky-300
+           opacity-0 hover:opacity-100 transition-opacity duration-300;
   }
 
-  /* Vision / Mission icon box */
-  .vision-icon-box {
-    @apply bg-brand shadow-md flex items-center justify-center;
-    border-radius: 0px 90px;
-    transform: matrix(1, 0, 0, -1, 0, 0);
+  /* Outline ghost button */
+  .btn-outline {
+    @apply inline-flex items-center gap-2
+           border border-teal-400/40 text-teal-400 font-semibold text-sm
+           px-6 py-3 rounded-xl
+           hover:bg-teal-400/10 hover:border-teal-400
+           transition-all duration-300
+           active:scale-95;
   }
 
-  /* Digital service card header */
-  .service-card-header {
-    @apply bg-brand rounded-t-[20px] flex flex-col items-center py-3;
+  /* Dark card */
+  .card-dark {
+    background-color: #0D1117;
+    border: 1px solid #1E2D40;
+    @apply rounded-2xl
+           hover:border-teal-500/40
+           hover:shadow-[0_0_28px_rgba(45,212,191,0.1)]
+           transition-all duration-300;
   }
 
-  /* Our works tab button */
-  .works-tab-btn {
-    @apply bg-[rgba(75,75,75,0.1)] text-[rgba(75,75,75,0.5)] border border-[rgba(75,75,75,0.2)] rounded-[30px] px-3 py-2 text-sm font-medium transition-all hover:bg-brand hover:text-white;
+  /* Glass card */
+  .glass {
+    @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
   }
 
-  .works-tab-btn.active {
-    @apply bg-brand text-white;
+  /* Small section tag above headings */
+  .section-tag {
+    @apply inline-flex items-center gap-2
+           text-xs font-semibold uppercase tracking-widest
+           text-teal-400 bg-teal-400/10
+           border border-teal-400/20
+           px-3 py-1 rounded-full;
   }
 
-  /* Footer quick-explore link */
+  /* Dot-grid background overlay */
+  .dot-grid {
+    background-image: radial-gradient(rgba(45,212,191,0.12) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  /* Neon teal glow on elements */
+  .neon-teal {
+    box-shadow: 0 0 25px rgba(45,212,191,0.35);
+  }
+
+  /* Footer links */
   .footer-link {
-    @apply text-white no-underline hover:opacity-50 transition-opacity block mb-1;
+    @apply text-slate-400 text-sm hover:text-teal-400
+           transition-colors duration-200 block mb-2
+           hover:translate-x-1 transform;
   }
 
-  /* Social media icon link */
-  .social-link {
-    @apply text-white inline-block p-1 hover:opacity-50 transition-opacity;
-  }
+  /* Animation delay utilities */
+  .delay-200  { animation-delay: 200ms; }
+  .delay-400  { animation-delay: 400ms; }
+  .delay-600  { animation-delay: 600ms; }
+  .delay-2000 { animation-delay: 2000ms; }
+  .delay-4000 { animation-delay: 4000ms; }
 }

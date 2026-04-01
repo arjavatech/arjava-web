@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
-import { X } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { X, ExternalLink } from 'lucide-react'
 
 export interface WorkItem {
   id: string
@@ -20,41 +21,85 @@ export default function WorkModal({ item }: WorkModalProps) {
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger asChild>
-        <div className="card overflow-hidden rounded-lg cursor-pointer group">
+        <motion.div
+          whileHover={{ scale: 1.02 }}
+          transition={{ duration: 0.25 }}
+          className="group relative overflow-hidden rounded-2xl cursor-pointer border border-dark-line"
+        >
           <img
             src={item.image}
             alt={item.alt}
-            className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-110"
+            className="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105"
           />
-        </div>
+          {/* Hover overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-base via-dark-base/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-end p-4">
+            <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+              {item.title && (
+                <h4 className="text-white font-semibold text-sm mb-1">{item.title}</h4>
+              )}
+              <span className="inline-flex items-center gap-1 text-teal-400 text-xs font-medium">
+                <ExternalLink size={12} /> View Details
+              </span>
+            </div>
+          </div>
+        </motion.div>
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 bg-black/50 z-50 animate-fade-in" />
-        <Dialog.Content className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[90vh] overflow-y-auto p-0">
-          {/* Header */}
-          <div className="flex justify-end p-3 border-b">
-            <Dialog.Close asChild>
-              <button
-                className="text-gray-500 hover:text-gray-800 focus:outline-none"
-                aria-label="Close"
-              >
-                <X size={22} />
-              </button>
-            </Dialog.Close>
-          </div>
+        <AnimatePresence>
+          {open && (
+            <>
+              <Dialog.Overlay asChild>
+                <motion.div
+                  key="overlay"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="fixed inset-0 bg-black/75 backdrop-blur-sm z-50"
+                />
+              </Dialog.Overlay>
 
-          {/* Body */}
-          <div className="p-6">
-            <img src={item.image} alt={item.alt} className="w-full h-auto rounded mb-4" />
-            {item.title && (
-              <h4 className="text-lg font-semibold text-brand mb-3">{item.title}:</h4>
-            )}
-            {item.description && (
-              <div className="text-[#4B4B4B] text-sm leading-relaxed">{item.description}</div>
-            )}
-          </div>
-        </Dialog.Content>
+              <Dialog.Content asChild>
+                <motion.div
+                  key="content"
+                  initial={{ opacity: 0, scale: 0.92, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.92, y: 20 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  className="fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                             w-full max-w-2xl max-h-[88vh] overflow-y-auto
+                             bg-dark-surface border border-dark-line rounded-2xl shadow-2xl"
+                >
+                  {/* Header */}
+                  <div className="flex items-center justify-between p-5 border-b border-dark-line">
+                    {item.title && (
+                      <h3 className="text-white font-semibold text-lg gradient-text">{item.title}</h3>
+                    )}
+                    <Dialog.Close asChild>
+                      <button className="ml-auto text-slate-400 hover:text-white transition-colors p-1 rounded-lg hover:bg-white/10">
+                        <X size={20} />
+                      </button>
+                    </Dialog.Close>
+                  </div>
+
+                  {/* Body */}
+                  <div className="p-6 space-y-4">
+                    <img
+                      src={item.image}
+                      alt={item.alt}
+                      className="w-full h-auto rounded-xl border border-dark-line"
+                    />
+                    {item.description && (
+                      <div className="text-slate-300 text-sm leading-relaxed space-y-1">
+                        {item.description}
+                      </div>
+                    )}
+                  </div>
+                </motion.div>
+              </Dialog.Content>
+            </>
+          )}
+        </AnimatePresence>
       </Dialog.Portal>
     </Dialog.Root>
   )
