@@ -4,39 +4,73 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a static HTML/CSS website for **Arjava Technologies** — a full-stack IT solutions company. It is deployed via GitHub Pages at `arjavatech.com` (configured via `CNAME`).
-
-## No Build System
-
-There is no build process, package manager, or test framework. Files are served directly as static assets. To preview locally, open any `.html` file in a browser or use a simple static server:
-
-```bash
-python3 -m http.server 8080
-```
+This is a **React SPA** for **Arjava Technologies** — a full-stack IT solutions company. It is deployed via GitHub Pages at `arjavatech.com` (configured via `CNAME`).
 
 ## Tech Stack
 
-- **Bootstrap 5.1.3** — layout, grid, responsive components (loaded via CDN)
-- **Font Awesome 6.2.0** — icons (loaded via CDN)
-- **Vanilla JS** — minimal scripting only
-- **No backend** — the contact form (`contact us.html`) currently posts to `/action_page.php`, which is a placeholder
+- **React 18** — functional components + hooks only
+- **TypeScript** — strict mode, no `any`
+- **Vite** — build tool and dev server
+- **Tailwind CSS** — all styling (no Bootstrap, no inline styles)
+- **React Router DOM v6** — client-side routing
+- **@radix-ui/react-dialog** — modal dialogs (Our Works section)
+- **lucide-react** — icons
 
-## File Naming Convention
+## Dev Commands
 
-HTML pages and CSS files use **spaces in filenames** (e.g., `about us.html`, `contact us style.css`). Preserve this convention when creating new pages.
+```bash
+npm run dev      # start dev server → http://localhost:5173
+npm run build    # production build → dist/
+npm run preview  # preview production build locally
+```
 
-## Structure
+## Routes
 
-Each page has a dedicated stylesheet:
-- `style.css` — global/shared styles used by `index.html`
-- `about us style.css`, `contact us style.css`, `services style.css`, `products style.css` — page-specific
+| Path | Page |
+|------|------|
+| `/` | Home |
+| `/about` | About Us |
+| `/services` | Our Services |
+| `/products` | Our Products |
+| `/contact` | Contact Us |
+| `/privacy-policy` | Privacy Policy |
 
-Images live in the `image/` directory. There are 58 assets including logos, product mockups, service icons, and social media icons.
+## Project Structure
 
-## Authentication
+```
+src/
+  components/
+    layout/
+      Navbar.tsx       ← sticky navbar, NavLink active state, mobile hamburger
+      Footer.tsx       ← dark navy, 4-col grid, social icons, Google Maps embed
+    ui/
+      ServiceCard.tsx  ← dark navy header + expandable read-more (useState)
+      WorkModal.tsx    ← Radix Dialog triggered by clicking a work image
+      PageCover.tsx    ← AJ cover.jpg + page title overlay (reused on inner pages)
+  pages/
+    Home.tsx           ← Hero, Vision/Mission, Digital Services, Dev Process, Our Works
+    AboutUs.tsx
+    OurServices.tsx
+    OurProducts.tsx
+    ContactUs.tsx      ← proposal form (no backend yet — TODO: wire to API)
+    PrivacyPolicy.tsx
+  lib/
+    utils.ts           ← cn() helper (clsx + tailwind-merge)
+  App.tsx              ← BrowserRouter + Routes
+  main.tsx
+  index.css            ← Tailwind directives + custom component classes
+```
 
-`auth.html` is a Google OAuth landing page that communicates with a FastAPI backend. It reads the OAuth token from the URL hash and posts it to the backend.
+## Brand Tokens (tailwind.config.js)
+
+- `brand` / `bg-brand` → `#00095A` (primary navy)
+- `text-body` → `#4B4B4B`
+- Font: Roboto (Google Fonts, loaded in index.html)
+
+## Images
+
+All images live in the `image/` directory (served as public assets). Reference them as `/image/filename.ext`.
 
 ## Deployment
 
-Pushing to `main` deploys automatically via GitHub Pages. The custom domain is set in `CNAME` as `arjavatech.com`.
+GitHub Pages deploys from the `dist/` folder on push to `main`. Because this is a SPA with client-side routing, a `404.html` redirect may be needed for deep-link support on GitHub Pages.
