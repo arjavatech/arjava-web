@@ -64,7 +64,8 @@ interface ProjectCard {
   liveUrl?: string
   iosUrl?: string
   androidUrl?: string
-  isLogoImage?: boolean   // true → centre the image with padding instead of cover-crop
+  isLogoImage?: boolean          // true → centre the image with padding instead of cover-crop
+  comingSoon?: ('web' | 'ios' | 'android')[]  // show grayed-out "Coming Soon" pill for these
 }
 
 const ALL_PROJECTS: ProjectCard[] = [
@@ -94,6 +95,8 @@ const ALL_PROJECTS: ProjectCard[] = [
     description:
       'Blood donation management system connecting donors with recipients and managing blood bank operations efficiently.',
     features: ['Donor Registration', 'Blood Bank Management', 'Emergency Requests', 'Mobile Notifications'],
+    androidUrl: 'https://play.google.com/store/apps/details?id=com.thiri.raththam&pcampaignid=web_share',
+    comingSoon: ['web', 'ios'],
   },
   {
     id: 'brightbrains',
@@ -106,6 +109,16 @@ const ALL_PROJECTS: ProjectCard[] = [
     liveUrl: 'http://bright-brains.net/',
     iosUrl: 'https://apps.apple.com/us/app/bright-brains/id6471830069',
     androidUrl: 'https://play.google.com/store/apps/details?id=com.arjava.brightbrains&hl=en_US',
+  },
+  {
+    id: 'stockbrains',
+    name: 'StockBrains.ai',
+    category: 'Mobile App',
+    image: '/image/stock-brains-ai.png',
+    description:
+      'AI-powered stock research app featuring SWOT analysis, market insights, and smart investment tools to help users make data-driven stock decisions.',
+    features: ['SWOT Analysis', 'AI Stock Research', 'Market Insights', 'Investment Analytics'],
+    androidUrl: 'https://apkcombo.com/fr/stocks-brain-ai/org.vavtech.stocksbrainai/',
   },
   {
     id: 'sorting-grid',
@@ -333,9 +346,11 @@ function ProjectCardTile({ project, index }: { project: ProjectCard; index: numb
             </li>
           ))}
         </ul>
-        {(project.liveUrl || project.iosUrl || project.androidUrl) && (
+        {(project.liveUrl || project.iosUrl || project.androidUrl ||
+          project.comingSoon?.length) && (
           <div className="flex flex-wrap items-center gap-2 mt-1">
-            {project.liveUrl && (
+            {/* Visit Site */}
+            {project.liveUrl ? (
               <a
                 href={project.liveUrl}
                 target="_blank"
@@ -345,8 +360,13 @@ function ProjectCardTile({ project, index }: { project: ProjectCard; index: numb
                 <ExternalLink size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
                 Visit Site
               </a>
+            ) : project.comingSoon?.includes('web') && (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-800/60 border border-slate-700/40 text-slate-600 text-[10px] font-medium cursor-not-allowed select-none">
+                🌐 Web · Soon
+              </span>
             )}
-            {project.iosUrl && (
+            {/* iOS */}
+            {project.iosUrl ? (
               <a
                 href={project.iosUrl}
                 target="_blank"
@@ -355,8 +375,13 @@ function ProjectCardTile({ project, index }: { project: ProjectCard; index: numb
               >
                 🍎 App Store
               </a>
+            ) : project.comingSoon?.includes('ios') && (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-800/60 border border-slate-700/40 text-slate-600 text-[10px] font-medium cursor-not-allowed select-none">
+                🍎 iOS · Soon
+              </span>
             )}
-            {project.androidUrl && (
+            {/* Android */}
+            {project.androidUrl ? (
               <a
                 href={project.androidUrl}
                 target="_blank"
@@ -365,6 +390,10 @@ function ProjectCardTile({ project, index }: { project: ProjectCard; index: numb
               >
                 🤖 Play Store
               </a>
+            ) : project.comingSoon?.includes('android') && (
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-800/60 border border-slate-700/40 text-slate-600 text-[10px] font-medium cursor-not-allowed select-none">
+                🤖 Android · Soon
+              </span>
             )}
           </div>
         )}
