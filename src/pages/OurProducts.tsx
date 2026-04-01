@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { CheckCircle2 } from 'lucide-react'
+import { CheckCircle2, ExternalLink } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from '@/components/layout/Navbar'
@@ -61,6 +61,10 @@ interface ProjectCard {
   image: string
   description: string
   features: string[]
+  liveUrl?: string
+  iosUrl?: string
+  androidUrl?: string
+  isLogoImage?: boolean   // true → centre the image with padding instead of cover-crop
 }
 
 const ALL_PROJECTS: ProjectCard[] = [
@@ -97,8 +101,11 @@ const ALL_PROJECTS: ProjectCard[] = [
     category: 'Mobile App',
     image: '/image/brightbrains-app.jpeg',
     description:
-      'An innovative app that boosts brain power through engaging games, memory challenges, and cognitive exercises.',
+      'An innovative app that boosts brain power through engaging games, memory challenges, and cognitive exercises. Available on web, iOS and Android.',
     features: ['Brain Training Games', 'Memory Exercises', 'Progress Tracking', 'Cognitive Challenges'],
+    liveUrl: 'http://bright-brains.net/',
+    iosUrl: 'https://apps.apple.com/us/app/bright-brains/id6471830069',
+    androidUrl: 'https://play.google.com/store/apps/details?id=com.arjava.brightbrains&hl=en_US',
   },
   {
     id: 'sorting-grid',
@@ -108,6 +115,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     description:
       'Advanced sorting algorithm analysis and visualisation tool for educational and research purposes.',
     features: ['Algorithm Visualisation', 'Performance Analysis', 'Interactive Learning', 'Complexity View'],
+    liveUrl: 'https://sortinganalysis.hope3.org/',
   },
   {
     id: 'mugavari',
@@ -126,6 +134,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     description:
       'Comprehensive web application for daycare school management — streamlining admin, parent communication and billing.',
     features: ['Student Management', 'Parent Portal', 'Staff Scheduling', 'Billing System'],
+    liveUrl: 'https://goddardschool.org/',
   },
   {
     id: 'grit',
@@ -144,6 +153,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     description:
       'Website for a registered 501(c)(3) nonprofit teaching Tamil language and culture in the Redmond area.',
     features: ['Language Classes', 'Cultural Programs', 'Student Portal', 'Community Events'],
+    liveUrl: 'https://www.btaredmond.org/',
   },
   {
     id: 'tnngo',
@@ -153,6 +163,39 @@ const ALL_PROJECTS: ProjectCard[] = [
     description:
       'Platform connecting NGOs with students to provide quality education, resource sharing, and community engagement.',
     features: ['NGO Registration', 'Student Enrollment', 'Resource Management', 'Community Features'],
+    liveUrl: 'https://tnngo.org/',
+  },
+  {
+    id: 'redmond-tamil-school',
+    name: 'Redmond Tamil School',
+    category: 'Website',
+    image: '/image/redmond-tamil-school.jpg',
+    description:
+      'School notification and information website for Redmond Tamil School — featuring news, events, student schedules, and Tamil language class enrolment.',
+    features: ['Latest News & Events', 'Student Schedule', 'Class Enrolment', 'School Announcements'],
+    liveUrl: 'https://www.redmondtamilschool.org/',
+  },
+  {
+    id: 'tap-time',
+    name: 'Tap Time',
+    category: 'Web App',
+    image: '/image/tap-time.png',
+    description:
+      'Employee time & attendance tracking web app — staff check in/out, managers get daily and salary-based reports, with iOS and Android apps for on-the-go access.',
+    features: ['Employee Check-In / Out', 'Daily & Salary Reports', 'Employee Management', 'Multi-device Support'],
+    liveUrl: 'https://tap-time.com/',
+    iosUrl: 'https://apps.apple.com/us/app/tap-time-employee-tracker/id6756376037',
+    androidUrl: 'https://play.google.com/store/apps/details?id=com.icode.punchcard&pcampaignid=web_share',
+  },
+  {
+    id: 'seeeds-india',
+    name: 'SEEEDS India',
+    category: 'Website',
+    image: '/image/seeds-india.jpg',
+    description:
+      'NGO website for SEEEDS Foundation — empowering economically challenged children through education with scholarships, donations, volunteer drives and admissions support.',
+    features: ['Scholarship Applications', 'Donation & Volunteer Portal', 'Admissions & Events', 'Success Stories'],
+    liveUrl: 'https://seeedsindia.org/',
   },
 ]
 
@@ -248,13 +291,23 @@ function ProjectCardTile({ project, index }: { project: ProjectCard; index: numb
     >
       {/* Image / Placeholder */}
       {project.image ? (
-        <div className="relative overflow-hidden h-48">
+        <div className={cn(
+          'relative overflow-hidden h-48',
+          project.isLogoImage && 'bg-gradient-to-br from-dark-card to-dark-surface flex items-center justify-center'
+        )}>
           <img
             src={project.image}
             alt={project.name}
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+            className={cn(
+              'transition-transform duration-500',
+              project.isLogoImage
+                ? 'max-h-28 max-w-[70%] object-contain drop-shadow-[0_0_24px_rgba(45,212,191,0.2)] hover:scale-105'
+                : 'w-full h-full object-cover hover:scale-105'
+            )}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-dark-card/80 to-transparent" />
+          {!project.isLogoImage && (
+            <div className="absolute inset-0 bg-gradient-to-t from-dark-card/80 to-transparent" />
+          )}
           <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-teal-400/15 text-teal-300 border border-teal-400/20 backdrop-blur-sm">
             {project.category}
           </span>
@@ -272,7 +325,7 @@ function ProjectCardTile({ project, index }: { project: ProjectCard; index: numb
       <div className="p-5 flex flex-col flex-1">
         <h4 className="text-white font-bold text-base mb-2">{project.name}</h4>
         <p className="text-slate-400 text-sm leading-relaxed mb-4 flex-1">{project.description}</p>
-        <ul className="space-y-1.5">
+        <ul className="space-y-1.5 mb-4">
           {project.features.map((f, i) => (
             <li key={i} className="flex items-start gap-2 text-slate-500 text-xs">
               <CheckCircle2 size={13} className="text-teal-400 flex-shrink-0 mt-0.5" />
@@ -280,6 +333,41 @@ function ProjectCardTile({ project, index }: { project: ProjectCard; index: numb
             </li>
           ))}
         </ul>
+        {(project.liveUrl || project.iosUrl || project.androidUrl) && (
+          <div className="flex flex-wrap items-center gap-2 mt-1">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-teal-400 text-xs font-medium hover:text-teal-300 transition-colors duration-200 group"
+              >
+                <ExternalLink size={12} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
+                Visit Site
+              </a>
+            )}
+            {project.iosUrl && (
+              <a
+                href={project.iosUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-700/60 border border-slate-600/50 text-slate-300 text-[10px] font-medium hover:border-teal-400/40 hover:text-teal-300 transition-colors duration-200"
+              >
+                🍎 App Store
+              </a>
+            )}
+            {project.androidUrl && (
+              <a
+                href={project.androidUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-700/60 border border-slate-600/50 text-slate-300 text-[10px] font-medium hover:border-teal-400/40 hover:text-teal-300 transition-colors duration-200"
+              >
+                🤖 Play Store
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </motion.div>
   )
