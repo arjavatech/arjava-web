@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   Smartphone, Palette, Code2, Globe, Wrench, SearchCheck,
   ChevronRight, ArrowRight, Zap,
+  ClipboardList, Bug, Rocket, LifeBuoy,
 } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -123,39 +124,63 @@ const SERVICES = [
 const DEV_STEPS = [
   {
     id: 'plan',
+    num: '01',
     label: 'Plan',
-    description:
-      'We start by understanding your requirements, goals, and business objectives to create a comprehensive project roadmap.',
+    Icon: ClipboardList,
+    accent: 'from-teal-400/25 to-teal-400/5',
+    border: 'border-teal-400/20',
+    glow: 'text-teal-400',
+    description: 'We map your requirements, goals, and timelines into a clear project roadmap before a single line of code is written.',
   },
   {
     id: 'design',
+    num: '02',
     label: 'Design',
-    description:
-      'Our designers craft intuitive UI/UX prototypes that align with your brand identity and user expectations.',
+    Icon: Palette,
+    accent: 'from-sky-400/25 to-sky-400/5',
+    border: 'border-sky-400/20',
+    glow: 'text-sky-400',
+    description: 'Our designers craft pixel-perfect UI/UX prototypes that align with your brand and delight your users.',
   },
   {
     id: 'develop',
+    num: '03',
     label: 'Develop',
-    description:
-      'Our engineers build robust, scalable solutions using modern technologies and industry best practices.',
+    Icon: Code2,
+    accent: 'from-violet-400/25 to-violet-400/5',
+    border: 'border-violet-400/20',
+    glow: 'text-violet-400',
+    description: 'Engineers build robust, scalable solutions using modern stacks, clean architecture, and agile sprint cycles.',
   },
   {
     id: 'test',
+    num: '04',
     label: 'Test',
-    description:
-      'Rigorous QA testing ensures your product is bug-free, secure, and performs optimally across all platforms.',
+    Icon: Bug,
+    accent: 'from-amber-400/25 to-amber-400/5',
+    border: 'border-amber-400/20',
+    glow: 'text-amber-400',
+    description: 'Rigorous QA — unit, integration, security, and cross-device testing — ensures a flawless product launch.',
   },
   {
     id: 'deploy',
+    num: '05',
     label: 'Deploy',
-    description:
-      'We handle smooth deployment to your chosen infrastructure with zero-downtime release strategies.',
+    Icon: Rocket,
+    accent: 'from-emerald-400/25 to-emerald-400/5',
+    border: 'border-emerald-400/20',
+    glow: 'text-emerald-400',
+    description: 'CI/CD pipelines and zero-downtime strategies get your product live — on your cloud of choice — without interruption.',
   },
   {
     id: 'support',
+    num: '06',
     label: 'Support',
-    description:
-      'Our team provides ongoing maintenance, updates, and 24/7 support to keep your product running perfectly.',
+    Icon: LifeBuoy,
+    accent: 'from-rose-400/25 to-rose-400/5',
+    border: 'border-rose-400/20',
+    glow: 'text-rose-400',
+    description: 'We stay in your corner with monitoring, updates, and continuous improvements long after go-live.',
   },
 ]
 
@@ -233,8 +258,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
 
 /* ─── Page ───────────────────────────────────────────────────── */
 export default function Home() {
-  const [activeTab,  setActiveTab]  = useState<WorkTab>('mobapp')
-  const [activeStep, setActiveStep] = useState('plan')
+  const [activeTab, setActiveTab] = useState<WorkTab>('mobapp')
 
   const typeText = useTypewriter(['Experiences', 'Solutions', 'Products', 'Futures'], 85, 2000)
 
@@ -427,54 +451,71 @@ export default function Home() {
       </section>
 
       {/* ── DEVELOPMENT PROCESS ───────────────────────────────── */}
-      <section className="bg-dark-surface py-20">
+      <section className="bg-dark-surface py-20 overflow-hidden">
         <div className="container mx-auto px-6">
-          <AnimatedSection className="text-center mb-12">
+          <AnimatedSection className="text-center mb-14">
             <span className="section-tag">How We Work</span>
             <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
               Development <span className="gradient-text">Process</span>
             </h2>
+            <p className="text-slate-400 mt-3 max-w-xl mx-auto text-sm">
+              A structured approach that takes your idea from concept to a live, supported product.
+            </p>
           </AnimatedSection>
 
-          {/* Step pills */}
-          <AnimatedSection delay={0.1}>
-            <div className="flex flex-wrap justify-center gap-2 mb-8">
-              {DEV_STEPS.map((step, i) => (
-                <button
-                  key={step.id}
-                  onClick={() => setActiveStep(step.id)}
-                  className={cn(
-                    'relative px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-200',
-                    activeStep === step.id
-                      ? 'bg-gradient-to-r from-teal-400 to-sky-400 text-gray-900 shadow-[0_0_20px_rgba(45,212,191,0.35)]'
-                      : 'bg-dark-card border border-dark-line text-slate-400 hover:border-teal-400/40 hover:text-teal-400',
-                  )}
+          {/* 3 × 2 step card grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {DEV_STEPS.map((step, i) => (
+              <AnimatedSection key={step.id} delay={i * 0.09}>
+                <motion.div
+                  whileHover={{ y: -4, transition: { duration: 0.22 } }}
+                  className="group relative card-dark p-6 h-full overflow-hidden cursor-default"
                 >
-                  <span className="mr-1.5 text-xs opacity-60">{String(i + 1).padStart(2, '0')}</span>
-                  {step.label}
-                </button>
-              ))}
-            </div>
-          </AnimatedSection>
+                  {/* Top accent line — reveals on hover */}
+                  <div className={cn(
+                    'absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent to-transparent via-current opacity-0 group-hover:opacity-100 transition-opacity duration-300',
+                    step.glow,
+                  )} />
 
-          {/* Active step card */}
-          <AnimatePresence mode="wait">
-            {DEV_STEPS.filter((s) => s.id === activeStep).map((step) => (
-              <motion.div
-                key={step.id}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -16 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="max-w-xl mx-auto text-center"
-              >
-                <div className="card-dark p-8">
-                  <p className="gradient-text text-2xl font-bold mb-3">{step.label}</p>
-                  <p className="text-slate-400 leading-relaxed">{step.description}</p>
-                </div>
-              </motion.div>
+                  {/* Watermark number */}
+                  <span className="absolute -top-3 -right-1 text-[96px] font-black text-white/[0.03] select-none leading-none pointer-events-none">
+                    {step.num}
+                  </span>
+
+                  {/* Icon bubble */}
+                  <div className={cn(
+                    'w-12 h-12 rounded-xl bg-gradient-to-br border flex items-center justify-center mb-5 transition-shadow duration-300 group-hover:shadow-[0_0_24px_currentColor]',
+                    step.accent, step.border, step.glow,
+                  )}>
+                    <step.Icon size={22} />
+                  </div>
+
+                  {/* Step number badge */}
+                  <span className={cn('text-xs font-mono font-semibold tracking-widest mb-1 block', step.glow)}>
+                    {step.num}
+                  </span>
+
+                  {/* Title */}
+                  <h3 className="text-white font-bold text-lg mb-2 leading-tight">
+                    {step.label}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-slate-400 text-sm leading-relaxed">
+                    {step.description}
+                  </p>
+
+                  {/* Bottom connector arrow — shows between steps in a row */}
+                  {i % 3 !== 2 && (
+                    <ChevronRight
+                      size={16}
+                      className="absolute -right-3 top-1/2 -translate-y-1/2 text-teal-400/20 hidden lg:block z-10"
+                    />
+                  )}
+                </motion.div>
+              </AnimatedSection>
             ))}
-          </AnimatePresence>
+          </div>
         </div>
       </section>
 
