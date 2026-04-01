@@ -1,5 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
-import { AnimatePresence } from 'framer-motion'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Home from '@/pages/Home'
 import AboutUs from '@/pages/AboutUs'
 import OurServices from '@/pages/OurServices'
@@ -7,11 +6,10 @@ import OurProducts from '@/pages/OurProducts'
 import ContactUs from '@/pages/ContactUs'
 import PrivacyPolicy from '@/pages/PrivacyPolicy'
 
-function AnimatedRoutes() {
-  const location = useLocation()
+export default function App() {
   return (
-    <AnimatePresence mode="wait">
-      <Routes location={location} key={location.pathname}>
+    <BrowserRouter>
+      <Routes>
         <Route path="/"               element={<Home />} />
         <Route path="/about"          element={<AboutUs />} />
         <Route path="/services"       element={<OurServices />} />
@@ -19,14 +17,6 @@ function AnimatedRoutes() {
         <Route path="/contact"        element={<ContactUs />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
-    </AnimatePresence>
-  )
-}
-
-export default function App() {
-  return (
-    <BrowserRouter>
-      <AnimatedRoutes />
     </BrowserRouter>
   )
 }

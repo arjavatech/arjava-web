@@ -23,13 +23,13 @@ const BOARD_MEMBERS = [
   {
     id: 'pitchai',
     name: 'Pitchaimani Rajaram',
-    role: 'CEO / SSE',
+    role: 'CTO / SSE',
     photo: '/image/team-pitchai.png',
   },
   {
     id: 'amrish',
     name: 'Amrish KS',
-    role: 'Mentor',
+    role: 'CTO / Mentor',
     photo: '/image/team-amrish.png',
   },
 ]

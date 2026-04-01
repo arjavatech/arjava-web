@@ -7,12 +7,11 @@ import { cn } from '@/lib/utils'
 interface NavItem { label: string; to: string }
 
 const NAV_ITEMS: NavItem[] = [
-  { label: 'Home',           to: '/' },
-  { label: 'About Us',       to: '/about' },
-  { label: 'Our Services',   to: '/services' },
-  { label: 'Our Products',   to: '/products' },
-  { label: 'Contact Us',     to: '/contact' },
-  { label: 'Privacy Policy', to: '/privacy-policy' },
+  { label: 'Home',         to: '/' },
+  { label: 'About Us',     to: '/about' },
+  { label: 'Our Services', to: '/services' },
+  { label: 'Our Products', to: '/products' },
+  { label: 'Contact Us',   to: '/contact' },
 ]
 
 export default function Navbar() {
@@ -47,7 +46,7 @@ export default function Navbar() {
           </NavLink>
 
           {/* Desktop nav */}
-          <ul className="hidden lg:flex items-center gap-1">
+          <ul className="hidden lg:flex items-center gap-0.5">
             {NAV_ITEMS.map((item) => (
               <li key={item.to}>
                 <NavLink
@@ -55,10 +54,10 @@ export default function Navbar() {
                   end={item.to === '/'}
                   className={({ isActive }) =>
                     cn(
-                      'relative px-3 py-2 text-sm font-medium transition-colors duration-200 rounded-lg',
+                      'relative px-4 py-2 text-sm font-medium transition-colors duration-200 rounded-lg block',
                       isActive
-                        ? 'text-teal-400'
-                        : 'text-slate-400 hover:text-white hover:bg-white/5',
+                        ? 'text-white'
+                        : 'text-slate-400 hover:text-slate-200',
                     )
                   }
                 >
@@ -67,9 +66,9 @@ export default function Navbar() {
                       {item.label}
                       {isActive && (
                         <motion.span
-                          layoutId="nav-pill"
-                          className="absolute inset-0 rounded-lg bg-teal-400/10 border border-teal-400/20 -z-10"
-                          transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                          layoutId="nav-underline"
+                          className="absolute bottom-0 left-3 right-3 h-[2px] rounded-full bg-gradient-to-r from-teal-400 to-sky-400"
+                          transition={{ type: 'spring', stiffness: 400, damping: 34 }}
                         />
                       )}
                     </>
