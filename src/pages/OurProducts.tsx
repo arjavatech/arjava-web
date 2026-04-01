@@ -1,12 +1,15 @@
+import { useState } from 'react'
 import { CheckCircle2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import PageHero from '@/components/ui/PageHero'
 import AnimatedSection from '@/components/ui/AnimatedSection'
 import PageTransition from '@/components/ui/PageTransition'
+import { cn } from '@/lib/utils'
 
+/* ─── Featured Products (own-built) ─────────────────────────── */
 interface Product {
   id: string
   image: string
@@ -48,6 +51,119 @@ const PRODUCTS: Product[] = [
   },
 ]
 
+/* ─── All Projects grid data ─────────────────────────────────── */
+type ProjectCategory = 'Mobile App' | 'Web App' | 'Website'
+
+interface ProjectCard {
+  id: string
+  name: string
+  category: ProjectCategory
+  image: string
+  description: string
+  features: string[]
+}
+
+const ALL_PROJECTS: ProjectCard[] = [
+  {
+    id: 'findbed',
+    name: 'FindBed',
+    category: 'Mobile App',
+    image: '/image/find-bed-app.jpg',
+    description:
+      'Healthcare bed booking platform connecting patients with available hospital beds in real-time across India.',
+    features: ['Real-time Bed Availability', 'Hospital Network', 'Booking System', 'Emergency Services'],
+  },
+  {
+    id: 'sehatuka-grid',
+    name: 'Sehatuka',
+    category: 'Mobile App',
+    image: '/image/sehatuka-app.jpg',
+    description:
+      'Medicare app on Android and iOS for medical checkups, medicine reminders, doctor appointments and health records.',
+    features: ['Checkup Notifications', 'Medicine Reminders', 'Doctor Appointments', 'Health Records'],
+  },
+  {
+    id: 'rattham',
+    name: 'Rattham Udhavi',
+    category: 'Mobile App',
+    image: '/image/rattham-app.png',
+    description:
+      'Blood donation management system connecting donors with recipients and managing blood bank operations efficiently.',
+    features: ['Donor Registration', 'Blood Bank Management', 'Emergency Requests', 'Mobile Notifications'],
+  },
+  {
+    id: 'brightbrains',
+    name: 'Bright Brains',
+    category: 'Mobile App',
+    image: '/image/brightbrains-app.jpeg',
+    description:
+      'An innovative app that boosts brain power through engaging games, memory challenges, and cognitive exercises.',
+    features: ['Brain Training Games', 'Memory Exercises', 'Progress Tracking', 'Cognitive Challenges'],
+  },
+  {
+    id: 'sorting-grid',
+    name: 'Sorting Analysis',
+    category: 'Web App',
+    image: '/image/sorting-analysis-web-app.jpg',
+    description:
+      'Advanced sorting algorithm analysis and visualisation tool for educational and research purposes.',
+    features: ['Algorithm Visualisation', 'Performance Analysis', 'Interactive Learning', 'Complexity View'],
+  },
+  {
+    id: 'mugavari',
+    name: 'Mugavari',
+    category: 'Web App',
+    image: '/image/Mugavari-web-app.jpg',
+    description:
+      'Web application for Mugavari Foundation to manage charitable activities, donations, and community outreach.',
+    features: ['Donation Management', 'Volunteer Portal', 'Event Organisation', 'Community Engagement'],
+  },
+  {
+    id: 'goddard',
+    name: 'Goddard',
+    category: 'Web App',
+    image: '/image/goddard-webapp.png',
+    description:
+      'Comprehensive web application for daycare school management — streamlining admin, parent communication and billing.',
+    features: ['Student Management', 'Parent Portal', 'Staff Scheduling', 'Billing System'],
+  },
+  {
+    id: 'grit',
+    name: 'Grit',
+    category: 'Website',
+    image: '/image/grit-web-design.jpg',
+    description:
+      'Performance tracking system designed to monitor and analyse metrics for improved productivity and goal achievement.',
+    features: ['Performance Metrics', 'Goal Setting', 'Progress Analytics', 'Custom Reports'],
+  },
+  {
+    id: 'btk',
+    name: 'Bharathi Tamil Academy',
+    category: 'Website',
+    image: '/image/BTK-website.jpg',
+    description:
+      'Website for a registered 501(c)(3) nonprofit teaching Tamil language and culture in the Redmond area.',
+    features: ['Language Classes', 'Cultural Programs', 'Student Portal', 'Community Events'],
+  },
+  {
+    id: 'tnngo',
+    name: 'TN-NGO',
+    category: 'Website',
+    image: '/image/tnngo-website.png',
+    description:
+      'Platform connecting NGOs with students to provide quality education, resource sharing, and community engagement.',
+    features: ['NGO Registration', 'Student Enrollment', 'Resource Management', 'Community Features'],
+  },
+]
+
+const FILTER_TABS: Array<{ id: string; label: string }> = [
+  { id: 'all', label: 'All' },
+  { id: 'Mobile App', label: 'Mobile App' },
+  { id: 'Web App', label: 'Web App' },
+  { id: 'Website', label: 'Website' },
+]
+
+/* ─── Featured Product Row ───────────────────────────────────── */
 function ProductRow({ product }: { product: Product }) {
   const isLeft = product.imageLeft
 
@@ -113,7 +229,71 @@ function ProductRow({ product }: { product: Product }) {
   )
 }
 
+/* ─── Project Card Tile ──────────────────────────────────────── */
+function ProjectCardTile({ project, index }: { project: ProjectCard; index: number }) {
+  const initials = project.name
+    .split(' ')
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join('')
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, y: 24 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 16, scale: 0.97 }}
+      transition={{ duration: 0.4, delay: index * 0.05, ease: [0.22, 1, 0.36, 1] }}
+      className="card-dark overflow-hidden flex flex-col"
+    >
+      {/* Image / Placeholder */}
+      {project.image ? (
+        <div className="relative overflow-hidden h-48">
+          <img
+            src={project.image}
+            alt={project.name}
+            className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-dark-card/80 to-transparent" />
+          <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-teal-400/15 text-teal-300 border border-teal-400/20 backdrop-blur-sm">
+            {project.category}
+          </span>
+        </div>
+      ) : (
+        <div className="relative h-48 bg-gradient-to-br from-teal-900/25 to-dark-card flex items-center justify-center border-b border-dark-line">
+          <span className="text-4xl font-black gradient-text select-none">{initials}</span>
+          <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-xs font-medium bg-teal-400/15 text-teal-300 border border-teal-400/20">
+            {project.category}
+          </span>
+        </div>
+      )}
+
+      {/* Body */}
+      <div className="p-5 flex flex-col flex-1">
+        <h4 className="text-white font-bold text-base mb-2">{project.name}</h4>
+        <p className="text-slate-400 text-sm leading-relaxed mb-4 flex-1">{project.description}</p>
+        <ul className="space-y-1.5">
+          {project.features.map((f, i) => (
+            <li key={i} className="flex items-start gap-2 text-slate-500 text-xs">
+              <CheckCircle2 size={13} className="text-teal-400 flex-shrink-0 mt-0.5" />
+              {f}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </motion.div>
+  )
+}
+
+/* ─── Page ───────────────────────────────────────────────────── */
 export default function OurProducts() {
+  const [activeFilter, setActiveFilter] = useState<string>('all')
+
+  const filtered =
+    activeFilter === 'all'
+      ? ALL_PROJECTS
+      : ALL_PROJECTS.filter((p) => p.category === activeFilter)
+
   return (
     <PageTransition>
       <Navbar />
@@ -143,7 +323,7 @@ export default function OurProducts() {
         </div>
       </section>
 
-      {/* ── PRODUCTS ──────────────────────────────────────────── */}
+      {/* ── FEATURED PRODUCTS ─────────────────────────────────── */}
       <section className="bg-dark-surface py-16">
         <div className="container mx-auto px-6 max-w-5xl">
           <AnimatedSection className="text-center mb-14">
@@ -156,6 +336,72 @@ export default function OurProducts() {
           {PRODUCTS.map((product) => (
             <ProductRow key={product.id} product={product} />
           ))}
+        </div>
+      </section>
+
+      {/* ── ALL PROJECTS GRID ─────────────────────────────────── */}
+      <section className="bg-dark-base py-16">
+        <div className="container mx-auto px-6 max-w-6xl">
+
+          {/* Heading */}
+          <AnimatedSection className="text-center mb-10">
+            <span className="section-tag">Portfolio</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+              All <span className="gradient-text">Projects</span>
+            </h2>
+            <p className="text-slate-400 mt-3 max-w-xl mx-auto text-sm">
+              A complete collection of innovative solutions we've built for clients across industries.
+            </p>
+          </AnimatedSection>
+
+          {/* Filter tabs */}
+          <AnimatedSection>
+            <div className="flex flex-wrap justify-center gap-2 mb-10">
+              {FILTER_TABS.map((tab) => (
+                <motion.button
+                  key={tab.id}
+                  onClick={() => setActiveFilter(tab.id)}
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  className={cn(
+                    'px-5 py-2 rounded-full text-sm font-medium transition-colors duration-200 border',
+                    activeFilter === tab.id
+                      ? 'bg-teal-400/15 border-teal-400/50 text-teal-300'
+                      : 'border-dark-line text-slate-400 hover:border-teal-400/30 hover:text-slate-300'
+                  )}
+                >
+                  {tab.label}
+                </motion.button>
+              ))}
+            </div>
+          </AnimatedSection>
+
+          {/* Grid */}
+          <motion.div
+            layout
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            <AnimatePresence mode="popLayout">
+              {filtered.map((project, index) => (
+                <ProjectCardTile key={project.id} project={project} index={index} />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+
+          {/* CTA */}
+          <AnimatedSection className="text-center mt-14">
+            <p className="text-slate-400 mb-5 text-sm">Have a project idea in mind?</p>
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.96 }}
+                className="btn-primary px-8 py-3"
+              >
+                Start a Project
+              </motion.button>
+            </Link>
+          </AnimatedSection>
+
         </div>
       </section>
 
