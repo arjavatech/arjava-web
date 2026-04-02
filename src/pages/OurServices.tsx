@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Smartphone, Palette, Code2, Globe, Wrench, SearchCheck,
-  ClipboardList, Bug, Rocket, LifeBuoy, CheckCircle2,
+  ClipboardList, Bug, Rocket, LifeBuoy,
 } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -95,6 +95,12 @@ const SERVICES = [
     title: 'SEO',
     shortText:
       'We integrate products into your digital infrastructure, test in real environments, and use performance insights for continuous optimisation.',
+    expanded: (
+      <>
+        Our SEO services cover technical audits, on-page optimisation, keyword strategy, and
+        performance monitoring — ensuring your product ranks and retains visibility over time.
+      </>
+    ),
   },
 ]
 
@@ -186,9 +192,59 @@ const DEV_STEPS = [
   },
 ]
 
+const AUTO_INTERVAL = 3000
+
+function StepCircle({ step, index, activeIndex, activeStep }: {
+  step: typeof DEV_STEPS[0], index: number, activeIndex: number, activeStep: string
+}) {
+  return (
+    <motion.div
+      animate={{
+        background: index <= activeIndex ? 'linear-gradient(135deg,#2dd4bf,#38bdf8)' : 'rgb(22,27,39)',
+        borderColor: index <= activeIndex ? 'rgba(45,212,191,0.6)' : 'rgb(30,45,64)',
+        boxShadow: activeStep === step.id ? '0 0 20px rgba(45,212,191,0.5)' : 'none',
+      }}
+      transition={{ duration: 0.35 }}
+      className="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 flex items-center justify-center z-10 relative transition-transform duration-200 group-hover:scale-110"
+    >
+      {index <= activeIndex ? (
+        <step.Icon size={14} className="text-gray-900" />
+      ) : (
+        <span className="font-bold text-xs text-slate-500 group-hover:text-teal-400 transition-colors">{step.num}</span>
+      )}
+    </motion.div>
+  )
+}
+
+function StepLabel({ step, activeStep }: { step: typeof DEV_STEPS[0], activeStep: string }) {
+  return (
+    <span className={cn('text-xs font-medium transition-colors duration-200',
+      activeStep === step.id ? 'text-teal-400' : 'text-slate-500 group-hover:text-slate-300'
+    )}>
+      {step.label}
+    </span>
+  )
+}
+
 export default function OurServices() {
   const [activeStep, setActiveStep] = useState('plan')
+  const [paused, setPaused] = useState(false)
   const activeIndex = DEV_STEPS.findIndex((s) => s.id === activeStep)
+
+  useEffect(() => {
+    if (paused) return
+    const timer = setTimeout(
+      () => setActiveStep(DEV_STEPS[(activeIndex + 1) % DEV_STEPS.length].id),
+      AUTO_INTERVAL,
+    )
+    return () => clearTimeout(timer)
+  }, [activeStep, paused])
+
+  function handleStepClick(id: string) {
+    setActiveStep(id)
+    setPaused(true)
+    setTimeout(() => setPaused(false), AUTO_INTERVAL * 2)
+  }
 
   return (
     <PageTransition>
@@ -200,16 +256,16 @@ export default function OurServices() {
       />
 
       {/* ── INTRO ─────────────────────────────────────────────── */}
-      <section className="bg-dark-base py-16">
-        <div className="container mx-auto px-6 max-w-4xl">
+      <section className="bg-dark-base py-10 sm:py-16">
+        <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
           <AnimatedSection>
-            <div className="card-dark p-8 border-l-4 border-teal-400/50">
-              <p className="text-slate-300 leading-relaxed text-lg mb-5">
+            <div className="card-dark p-5 sm:p-8 border-l-4 border-teal-400/50">
+              <p className="text-slate-300 leading-relaxed text-sm sm:text-base md:text-lg mb-4 md:mb-5">
                 At Arjava, we help enterprises expand their businesses through custom application
                 development, Business Intelligence, IT services, testing, mobile application development,
                 and Cloud solutions — capable of performing across several platforms and infrastructures.
               </p>
-              <p className="text-slate-400 leading-relaxed">
+              <p className="text-slate-400 leading-relaxed text-sm sm:text-base">
                 Our core value revolves around being a well-respected technology company focused on
                 delivering best-in-class innovative solutions to our customers and partners.
               </p>
@@ -219,16 +275,16 @@ export default function OurServices() {
       </section>
 
       {/* ── SERVICE CARDS ─────────────────────────────────────── */}
-      <section className="bg-dark-surface py-16">
-        <div className="container mx-auto px-6">
-          <AnimatedSection className="text-center mb-12">
+      <section className="bg-dark-surface py-10 sm:py-16">
+        <div className="container mx-auto px-4 sm:px-6">
+          <AnimatedSection className="text-center mb-8 md:mb-12">
             <span className="section-tag">What We Offer</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-3 md:mt-4">
               Service <span className="gradient-text">Catalogue</span>
             </h2>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-start">
             {SERVICES.map((svc, i) => (
               <AnimatedSection key={svc.id} delay={i * 0.07}>
                 <ServiceCard
@@ -244,23 +300,23 @@ export default function OurServices() {
       </section>
 
       {/* ── DEVELOPMENT PROCESS ───────────────────────────────── */}
-      <section className="bg-dark-base py-20 overflow-hidden">
-        <div className="container mx-auto px-6 max-w-6xl">
+      <section className="bg-dark-base py-12 sm:py-20 overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
 
           {/* Heading */}
-          <AnimatedSection className="text-center mb-14">
+          <AnimatedSection className="text-center mb-8 sm:mb-14">
             <span className="section-tag">How We Work</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-3 md:mt-4">
               Development <span className="gradient-text">Process</span>
             </h2>
-            <p className="text-slate-400 mt-3 max-w-xl mx-auto text-sm">
+            <p className="text-slate-400 mt-2 md:mt-3 max-w-xl mx-auto text-sm">
               A structured approach that takes your idea from concept to a live, supported product.
             </p>
           </AnimatedSection>
 
           {/* ── Timeline stepper ──────────────────────────────── */}
           <AnimatedSection delay={0.1}>
-            <div className="relative max-w-4xl mx-auto mb-10 px-4">
+            <div className="relative max-w-4xl mx-auto mb-10 px-2 sm:px-4">
               {/* Background connector line */}
               <div className="absolute top-5 left-[calc(8.33%+1rem)] right-[calc(8.33%+1rem)] h-px bg-dark-line hidden sm:block" />
               {/* Animated progress line */}
@@ -271,59 +327,55 @@ export default function OurServices() {
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               />
 
-              <div className="flex justify-between">
+              {/* Mobile: two-row snake layout */}
+              <div className="sm:hidden flex flex-col gap-4">
+                {/* Row 1: Plan → Design → Develop */}
+                <div className="flex justify-between">
+                  {DEV_STEPS.slice(0, 3).map((step, i) => (
+                    <button
+                      key={step.id}
+                      onClick={() => handleStepClick(step.id)}
+                      className="flex flex-col items-center gap-2 group outline-none relative flex-1"
+                    >
+                      {i < 2 && <div className="absolute top-4 left-1/2 right-[-50%] h-px bg-dark-line z-0" />}
+                      {i < 2 && i < activeIndex && <div className="absolute top-4 left-1/2 right-[-50%] h-px bg-gradient-to-r from-teal-400 to-sky-400 z-0" />}
+                      {i === 2 && <div className="absolute top-4 left-1/2 -translate-x-1/2 w-px h-[calc(100%+1rem)] bg-dark-line z-0" />}
+                      {i === 2 && activeIndex >= 3 && <div className="absolute top-4 left-1/2 -translate-x-1/2 w-px h-[calc(100%+1rem)] bg-gradient-to-b from-teal-400 to-sky-400 z-0" />}
+                      <StepCircle step={step} index={i} activeIndex={activeIndex} activeStep={activeStep} />
+                      <StepLabel step={step} activeStep={activeStep} />
+                    </button>
+                  ))}
+                </div>
+                {/* Row 2: reversed so Test aligns under Develop, lines go right-to-left */}
+                <div className="flex justify-between">
+                  {[DEV_STEPS[5], DEV_STEPS[4], DEV_STEPS[3]].map((step, i) => {
+                    const realIndex = DEV_STEPS.findIndex(s => s.id === step.id)
+                    return (
+                      <button
+                        key={step.id}
+                        onClick={() => handleStepClick(step.id)}
+                        className="flex flex-col items-center gap-2 group outline-none relative flex-1"
+                      >
+                        {i < 2 && <div className="absolute top-4 left-1/2 right-[-50%] h-px bg-dark-line z-0" />}
+                        {i < 2 && realIndex <= activeIndex && <div className="absolute top-4 left-1/2 right-[-50%] h-px bg-gradient-to-r from-sky-400 to-teal-400 z-0" />}
+                        <StepCircle step={step} index={realIndex} activeIndex={activeIndex} activeStep={activeStep} />
+                        <StepLabel step={step} activeStep={activeStep} />
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* Desktop: single row */}
+              <div className="hidden sm:flex justify-between">
                 {DEV_STEPS.map((step, i) => (
                   <button
                     key={step.id}
-                    onClick={() => setActiveStep(step.id)}
+                    onClick={() => handleStepClick(step.id)}
                     className="flex flex-col items-center gap-2 group outline-none"
                   >
-                    {/* Circle */}
-                    <motion.div
-                      animate={{
-                        background:
-                          i <= activeIndex
-                            ? 'linear-gradient(135deg,#2dd4bf,#38bdf8)'
-                            : 'rgb(22,27,39)',
-                        borderColor:
-                          i <= activeIndex
-                            ? 'rgba(45,212,191,0.6)'
-                            : 'rgb(30,45,64)',
-                        boxShadow:
-                          activeStep === step.id
-                            ? '0 0 20px rgba(45,212,191,0.5)'
-                            : 'none',
-                      }}
-                      transition={{ duration: 0.35 }}
-                      className="w-10 h-10 rounded-full border-2 flex items-center justify-center z-10 relative transition-transform duration-200 group-hover:scale-110"
-                    >
-                      {i < activeIndex ? (
-                        <CheckCircle2 size={14} className="text-gray-900" />
-                      ) : (
-                        <span
-                          className={cn(
-                            'font-bold text-xs',
-                            i === activeIndex
-                              ? 'text-gray-900'
-                              : 'text-slate-500 group-hover:text-teal-400 transition-colors',
-                          )}
-                        >
-                          {step.num}
-                        </span>
-                      )}
-                    </motion.div>
-
-                    {/* Label */}
-                    <span
-                      className={cn(
-                        'text-xs font-medium transition-colors duration-200',
-                        activeStep === step.id
-                          ? 'text-teal-400'
-                          : 'text-slate-500 group-hover:text-slate-300',
-                      )}
-                    >
-                      {step.label}
-                    </span>
+                    <StepCircle step={step} index={i} activeIndex={activeIndex} activeStep={activeStep} />
+                    <StepLabel step={step} activeStep={activeStep} />
                   </button>
                 ))}
               </div>
@@ -340,27 +392,41 @@ export default function OurServices() {
                 exit={{ opacity: 0, y: -20 }}
                 transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 className="card-dark overflow-hidden border border-dark-line"
+                onMouseEnter={() => setPaused(true)}
+                onMouseLeave={() => setPaused(false)}
               >
-                <div className="grid grid-cols-1 lg:grid-cols-5">
+                <div className="flex flex-col lg:grid lg:grid-cols-5">
 
                   {/* ── LEFT: text content (3 cols) ──────────── */}
-                  <div className="lg:col-span-3 p-8 lg:p-10">
+                  <div className="order-2 lg:order-1 lg:col-span-3 p-5 sm:p-8 lg:p-10">
                     {/* Step number + icon header */}
-                    <div className="flex items-start gap-4 mb-6">
-                      <span className="text-[72px] font-black leading-none text-white/[0.05] select-none tabular-nums">
-                        {step.num}
-                      </span>
-                      <div className="pt-2">
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-teal-400/20 to-sky-400/10 border border-teal-400/25 flex items-center justify-center text-teal-400 mb-3">
-                          <step.Icon size={20} />
+                    <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-6">
+                      <motion.div
+                        key={`icon-${step.id}`}
+                        initial={{ opacity: 0, scale: 0.5 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        className="pt-2"
+                      >
+                        <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-teal-400/20 to-sky-400/10 border border-teal-400/25 flex items-center justify-center text-teal-400 mb-2 sm:mb-3">
+                          <step.Icon size={18} />
                         </div>
-                        <h3 className="text-2xl font-bold text-white leading-tight">
+                        <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white leading-tight">
                           {step.label}
                         </h3>
-                      </div>
+                      </motion.div>
+                      <motion.span
+                        key={`num-${step.id}`}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.3, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                        className="ml-auto text-[48px] sm:text-[72px] font-black leading-none text-white/[0.05] select-none tabular-nums"
+                      >
+                        {step.num}
+                      </motion.span>
                     </div>
 
-                    <p className="text-slate-400 leading-relaxed mb-8 text-sm lg:text-base">
+                    <p className="text-slate-400 leading-relaxed mb-4 sm:mb-8 text-xs sm:text-sm lg:text-base">
                       {step.description}
                     </p>
 
@@ -384,7 +450,7 @@ export default function OurServices() {
                   </div>
 
                   {/* ── RIGHT: visual panel (2 cols) ─────────── */}
-                  <div className="lg:col-span-2 relative overflow-hidden min-h-[280px] border-t lg:border-t-0 lg:border-l border-dark-line">
+                  <div className="order-1 lg:order-2 lg:col-span-2 relative overflow-hidden min-h-[160px] sm:min-h-[240px] lg:min-h-[280px] border-b lg:border-b-0 lg:border-l border-dark-line">
                     {/* Development process diagram as background */}
                     <img
                       src="/image/Development process.png"
@@ -417,9 +483,10 @@ export default function OurServices() {
                         initial={{ scale: 0.4, opacity: 0, rotate: -10 }}
                         animate={{ scale: 1, opacity: 1, rotate: 0 }}
                         transition={{ delay: 0.1, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-                        className="w-28 h-28 rounded-3xl bg-gradient-to-br from-teal-400/25 to-sky-400/15 border border-teal-400/30 flex items-center justify-center text-teal-400 drop-shadow-[0_0_45px_rgba(45,212,191,0.35)]"
+                        className="w-20 h-20 sm:w-28 sm:h-28 rounded-3xl bg-gradient-to-br from-teal-400/25 to-sky-400/15 border border-teal-400/30 flex items-center justify-center text-teal-400 drop-shadow-[0_0_45px_rgba(45,212,191,0.35)]"
                       >
-                        <step.Icon size={52} strokeWidth={1.4} />
+                        <step.Icon size={36} strokeWidth={1.4} className="sm:hidden" />
+                        <step.Icon size={52} strokeWidth={1.4} className="hidden sm:block" />
                       </motion.div>
 
                       {/* Step label under icon */}
@@ -450,7 +517,7 @@ export default function OurServices() {
             {DEV_STEPS.map((step) => (
               <button
                 key={step.id}
-                onClick={() => setActiveStep(step.id)}
+                onClick={() => handleStepClick(step.id)}
                 className={cn(
                   'h-1.5 rounded-full transition-all duration-300',
                   activeStep === step.id

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { NavLink, Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
@@ -24,6 +25,11 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [menuOpen])
+
   return (
     <nav
       className={cn(
@@ -33,7 +39,7 @@ export default function Navbar() {
           : 'bg-dark-base border-b border-dark-line/50',
       )}
     >
-      <div className="container mx-auto px-6">
+      <div className="container mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
 
           {/* Logo */}
@@ -102,51 +108,88 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {createPortal(
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            key="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:hidden border-t border-dark-line overflow-hidden bg-dark-surface"
-          >
-            <ul className="container mx-auto px-6 py-4 flex flex-col gap-1">
-              {NAV_ITEMS.map((item, i) => (
-                <motion.li
-                  key={item.to}
-                  initial={{ opacity: 0, x: -16 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.05 }}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+              onClick={() => setMenuOpen(false)}
+            />
+
+            {/* Sidebar */}
+            <motion.div
+              key="sidebar"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed top-0 right-0 z-50 h-full w-72 bg-dark-surface border-l border-dark-line shadow-2xl flex flex-col lg:hidden"
+            >
+              {/* Sidebar header */}
+              <div className="flex items-center justify-between px-5 h-16 border-b border-dark-line flex-shrink-0">
+                <NavLink to="/" onClick={() => setMenuOpen(false)}>
+                  <img
+                    src="/image/Arjava Logo.png"
+                    alt="Arjava"
+                    className="h-8 w-auto object-contain brightness-0 invert"
+                  />
+                </NavLink>
+                <button
+                  onClick={() => setMenuOpen(false)}
+                  className="text-slate-400 hover:text-white p-2 rounded-lg hover:bg-white/5 transition-colors"
+                  aria-label="Close menu"
                 >
-                  <NavLink
-                    to={item.to}
-                    end={item.to === '/'}
-                    onClick={() => setMenuOpen(false)}
-                    className={({ isActive }) =>
-                      cn(
-                        'block px-3 py-2.5 rounded-xl text-sm font-medium transition-colors',
-                        isActive
-                          ? 'bg-teal-400/10 text-teal-400 border border-teal-400/20'
-                          : 'text-slate-400 hover:text-white hover:bg-white/5',
-                      )
-                    }
+                  <X size={20} />
+                </button>
+              </div>
+
+              {/* Nav links */}
+              <ul className="flex flex-col gap-1 px-4 py-5 flex-1">
+                {NAV_ITEMS.map((item, i) => (
+                  <motion.li
+                    key={item.to}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
                   >
-                    {item.label}
-                  </NavLink>
-                </motion.li>
-              ))}
-              <li className="pt-2">
+                    <NavLink
+                      to={item.to}
+                      end={item.to === '/'}
+                      onClick={() => setMenuOpen(false)}
+                      className={({ isActive }) =>
+                        cn(
+                          'block px-4 py-2.5 rounded-xl text-sm font-medium transition-colors',
+                          isActive
+                            ? 'bg-teal-400/10 text-teal-400 border border-teal-400/20'
+                            : 'text-slate-400 hover:text-white hover:bg-white/5',
+                        )
+                      }
+                    >
+                      {item.label}
+                    </NavLink>
+                  </motion.li>
+                ))}
+              </ul>
+
+              {/* CTA */}
+              <div className="px-4 pb-6">
                 <Link to="/contact" onClick={() => setMenuOpen(false)}>
                   <button className="btn-primary w-full justify-center">Get a Proposal</button>
                 </Link>
-              </li>
-            </ul>
-          </motion.div>
+              </div>
+            </motion.div>
+          </>
         )}
-      </AnimatePresence>
+      </AnimatePresence>,
+      document.body
+      )}
     </nav>
   )
 }

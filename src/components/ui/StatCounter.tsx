@@ -41,10 +41,10 @@ export default function StatCounter({
 
   return (
     <div ref={ref} className="flex flex-col items-center gap-1">
-      <span className="text-3xl md:text-4xl font-bold gradient-text">
+      <span className="text-2xl sm:text-3xl md:text-4xl font-bold gradient-text">
         {prefix}{count}{suffix}
       </span>
-      <span className="text-slate-400 text-xs md:text-sm text-center leading-tight">{label}</span>
+      <span className="text-slate-400 text-xs text-center leading-tight">{label}</span>
     </div>
   )
 }

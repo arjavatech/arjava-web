@@ -5,6 +5,7 @@ interface AnimatedSectionProps {
   className?: string
   delay?: number
   direction?: 'up' | 'left' | 'right' | 'none'
+  once?: boolean
 }
 
 export default function AnimatedSection({
@@ -12,6 +13,7 @@ export default function AnimatedSection({
   className,
   delay = 0,
   direction = 'up',
+  once = true,
 }: AnimatedSectionProps) {
   const initial = {
     opacity: 0,
@@ -23,7 +25,7 @@ export default function AnimatedSection({
     <motion.div
       initial={initial}
       whileInView={{ opacity: 1, y: 0, x: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
+      viewport={{ once, margin: '-80px' }}
       transition={{ duration: 0.65, delay, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >

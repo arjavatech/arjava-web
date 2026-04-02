@@ -210,6 +210,18 @@ const ALL_PROJECTS: ProjectCard[] = [
     features: ['Scholarship Applications', 'Donation & Volunteer Portal', 'Admissions & Events', 'Success Stories'],
     liveUrl: 'https://seeedsindia.org/',
   },
+  {
+    id: 'element-explorer',
+    name: 'Element Explorer',
+    category: 'Mobile App',
+    image: '/image/element-explorer.png',
+    description:
+      'Interactive periodic table app for exploring chemical elements — featuring detailed element data, properties, and an engaging learning experience on web, iOS and Android.',
+    features: ['Interactive Periodic Table', 'Element Details & Properties', 'Educational Tools', 'Cross-platform'],
+    liveUrl: 'https://element-explorer.com/',
+    iosUrl: 'https://apps.apple.com/us/app/element-explorer/id6739361632',
+    androidUrl: 'https://play.google.com/store/apps/details?id=com.electroniq.app',
+  },
 ]
 
 const FILTER_TABS: Array<{ id: string; label: string }> = [
@@ -234,7 +246,7 @@ function ProductRow({ product }: { product: Product }) {
       <img
         src={product.image}
         alt={product.alt}
-        className="max-w-full h-auto rounded-2xl drop-shadow-[0_0_40px_rgba(45,212,191,0.18)]"
+        className="w-full max-w-sm sm:max-w-md lg:max-w-full h-auto rounded-2xl drop-shadow-[0_0_40px_rgba(45,212,191,0.18)]"
       />
     </motion.div>
   )
@@ -247,7 +259,7 @@ function ProductRow({ product }: { product: Product }) {
       transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
       className="w-full lg:w-1/2 flex items-center"
     >
-      <div className="card-dark p-7 w-full border-t-2 border-teal-400/40">
+      <div className="card-dark p-5 sm:p-7 w-full border-t-2 border-teal-400/40">
         <h5 className="text-2xl font-bold text-white mb-1">{product.name}</h5>
         <p className="text-teal-400 text-sm font-medium mb-5">{product.subtitle}</p>
         <ul className="space-y-3">
@@ -272,15 +284,12 @@ function ProductRow({ product }: { product: Product }) {
   )
 
   return (
-    <div className="flex flex-col lg:flex-row gap-10 items-center mb-16">
-      {isLeft ? (
-        <>{imgEl}{cardEl}</>
-      ) : (
-        <div className="flex flex-col lg:flex-row-reverse w-full gap-10 items-center">
-          {imgEl}
-          {cardEl}
-        </div>
-      )}
+    <div className={cn(
+      'flex flex-col gap-8 md:gap-10 items-center mb-12 md:mb-16 w-full',
+      isLeft ? 'lg:flex-row' : 'lg:flex-row-reverse'
+    )}>
+      {imgEl}
+      {cardEl}
     </div>
   )
 }
@@ -421,11 +430,11 @@ export default function OurProducts() {
       />
 
       {/* ── INTRO ─────────────────────────────────────────────── */}
-      <section className="bg-dark-base py-16">
-        <div className="container mx-auto px-6 max-w-4xl">
+      <section className="bg-dark-base py-10 md:py-16">
+        <div className="container mx-auto px-4 sm:px-6 max-w-4xl">
           <AnimatedSection>
-            <div className="card-dark p-8 border-l-4 border-teal-400/50">
-              <p className="text-slate-300 leading-relaxed text-lg mb-5">
+            <div className="card-dark p-5 sm:p-8 border-l-4 border-teal-400/50">
+              <p className="text-slate-300 leading-relaxed text-base sm:text-lg mb-5">
                 Our creative team of software product developers provides B2B and B2C solutions for
                 customers and end-users. Being aware of the latest market trends and constantly
                 communicating with our users — we go beyond traditional software development.
@@ -441,11 +450,11 @@ export default function OurProducts() {
       </section>
 
       {/* ── FEATURED PRODUCTS ─────────────────────────────────── */}
-      <section className="bg-dark-surface py-16">
-        <div className="container mx-auto px-6 max-w-5xl">
+      <section className="bg-dark-surface py-10 md:py-16">
+        <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
           <AnimatedSection className="text-center mb-14">
             <span className="section-tag">What We've Built</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-4">
               Featured <span className="gradient-text">Products</span>
             </h2>
           </AnimatedSection>
@@ -457,13 +466,13 @@ export default function OurProducts() {
       </section>
 
       {/* ── ALL PROJECTS GRID ─────────────────────────────────── */}
-      <section className="bg-dark-base py-16">
-        <div className="container mx-auto px-6 max-w-6xl">
+      <section className="bg-dark-base py-10 md:py-16">
+        <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
 
           {/* Heading */}
           <AnimatedSection className="text-center mb-10">
             <span className="section-tag">Portfolio</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-4">
               All <span className="gradient-text">Projects</span>
             </h2>
             <p className="text-slate-400 mt-3 max-w-xl mx-auto text-sm">
@@ -473,7 +482,7 @@ export default function OurProducts() {
 
           {/* Filter tabs */}
           <AnimatedSection>
-            <div className="flex flex-wrap justify-center gap-2 mb-10">
+            <div className="flex flex-wrap justify-center gap-2 mb-8 md:mb-10">
               {FILTER_TABS.map((tab) => (
                 <motion.button
                   key={tab.id}

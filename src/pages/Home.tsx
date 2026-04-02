@@ -407,22 +407,22 @@ export default function Home() {
       <Navbar />
 
       {/* ── HERO ─────────────────────────────────────────────── */}
-      <section className="relative min-h-screen flex items-center overflow-hidden bg-dark-base">
+      <section className="relative flex items-center overflow-hidden bg-dark-base">
         {/* Animated blobs */}
-        <div className="absolute top-[-100px] right-[-80px] w-[500px] h-[500px] bg-teal-500/15 rounded-full blur-[120px] animate-blob" />
-        <div className="absolute bottom-[-60px] left-[10%] w-[400px] h-[400px] bg-sky-500/10 rounded-full blur-[100px] animate-blob delay-2000" />
-        <div className="absolute top-[40%] left-[40%] w-[300px] h-[300px] bg-emerald-500/10 rounded-full blur-[90px] animate-blob delay-4000" />
+        <div className="absolute top-[-60px] right-[-40px] w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] lg:w-[500px] lg:h-[500px] bg-teal-500/15 rounded-full blur-[80px] sm:blur-[120px] animate-blob" />
+        <div className="absolute bottom-[-40px] left-[5%] w-[220px] h-[220px] sm:w-[320px] sm:h-[320px] lg:w-[400px] lg:h-[400px] bg-sky-500/10 rounded-full blur-[70px] sm:blur-[100px] animate-blob delay-2000" />
+        <div className="absolute top-[40%] left-[40%] w-[180px] h-[180px] sm:w-[240px] sm:h-[240px] lg:w-[300px] lg:h-[300px] bg-emerald-500/10 rounded-full blur-[60px] sm:blur-[90px] animate-blob delay-4000" />
 
         {/* Dot grid */}
         <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
         {/* Edge gradient */}
         <div className="absolute inset-0 bg-gradient-to-b from-dark-base via-transparent to-dark-base pointer-events-none" />
 
-        <div className="container mx-auto px-6 py-24 relative z-10">
-          <div className="flex flex-col-reverse lg:flex-row items-center gap-12">
+        <div className="container mx-auto px-4 sm:px-6 py-16 sm:py-20 lg:py-24 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-10 lg:gap-12">
 
             {/* Left — text */}
-            <div className="w-full lg:w-[45%] flex flex-col items-center lg:items-start gap-6">
+            <div className="w-full lg:w-[50%] flex flex-col items-center lg:items-start gap-4 sm:gap-6">
               {/* Badge */}
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
@@ -440,7 +440,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 24 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.65, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight text-center lg:text-left"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight text-center lg:text-left"
               >
                 Building Digital<br />
                 <span className="gradient-text">
@@ -455,7 +455,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="text-slate-400 text-lg leading-relaxed text-center lg:text-left max-w-xl"
+                className="text-slate-400 text-base sm:text-lg leading-relaxed text-center lg:text-left max-w-xl"
               >
                 At Arjava, we develop software and mobile product engineering services for businesses,
                 educational institutions, healthcare and government organisations — helping them achieve
@@ -467,22 +467,22 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
-                className="flex flex-wrap gap-3 justify-center lg:justify-start"
+                className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto justify-center lg:justify-start"
               >
-                <Link to="/contact">
+                <Link to="/contact" className="w-full sm:w-auto">
                   <motion.button
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.96 }}
-                    className="btn-primary px-7 py-3"
+                    className="btn-primary px-7 py-3 w-full sm:w-auto justify-center"
                   >
                     Get a Proposal <ArrowRight size={16} />
                   </motion.button>
                 </Link>
-                <Link to="/products">
+                <Link to="/products" className="w-full sm:w-auto">
                   <motion.button
                     whileHover={{ scale: 1.04 }}
                     whileTap={{ scale: 0.96 }}
-                    className="btn-outline px-7 py-3"
+                    className="btn-outline px-7 py-3 w-full sm:w-auto justify-center"
                   >
                     Our Works <ChevronRight size={16} />
                   </motion.button>
@@ -494,7 +494,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.45 }}
-                className="grid grid-cols-2 sm:grid-cols-4 gap-6 pt-4 w-full"
+                className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 pt-2 sm:pt-4 w-full"
               >
                 <StatCounter value={5}  label="Years Experience" />
                 <StatCounter value={15} label="Projects Delivered" />
@@ -503,13 +503,13 @@ export default function Home() {
               </motion.div>
             </div>
 
-            {/* Right — hero image */}
-            <div className="w-full lg:w-[55%] flex justify-center items-center">
+            {/* Right — hero image (desktop only) */}
+            <div className="hidden lg:flex w-full lg:w-[50%] justify-center items-center">
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.85, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                className="relative w-full max-w-2xl"
+                className="relative w-full max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl"
               >
                 {/* Teal glow halo */}
                 <div className="absolute inset-0 rounded-3xl bg-teal-500/15 blur-[60px] scale-110 pointer-events-none" />
@@ -527,24 +527,24 @@ export default function Home() {
       </section>
 
       {/* ── VISION & MISSION ──────────────────────────────────── */}
-      <section className="bg-dark-surface py-20">
-        <div className="container mx-auto px-6">
-          <AnimatedSection className="text-center mb-12">
+      <section className="bg-dark-surface py-14 sm:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <AnimatedSection className="text-center mb-8 sm:mb-12">
             <span className="section-tag">Our DNA</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-3 sm:mt-4">
               What <span className="gradient-text">Drives</span> Us
             </h2>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
             {/* Vision */}
             <AnimatedSection direction="left">
-              <div className="glass p-8 h-full">
-                <div className="w-14 h-14 rounded-2xl bg-teal-400/10 border border-teal-400/20 flex items-center justify-center mb-5">
+              <div className="glass p-5 sm:p-8 h-full">
+                <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-teal-400/10 border border-teal-400/20 flex items-center justify-center mb-3 sm:mb-5">
                   <img src="/image/vision.png" alt="Vision" className="w-8 h-8 object-contain brightness-0 invert" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">Our Vision</h3>
-                <p className="text-slate-400 leading-relaxed">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Our Vision</h3>
+                <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
                   Propel technological innovation that empowers mankind.
                 </p>
               </div>
@@ -552,12 +552,12 @@ export default function Home() {
 
             {/* Mission */}
             <AnimatedSection direction="right">
-              <div className="glass p-8 h-full">
-                <div className="w-14 h-14 rounded-2xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center mb-5">
+              <div className="glass p-5 sm:p-8 h-full">
+                <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center mb-3 sm:mb-5">
                   <img src="/image/mission.png" alt="Mission" className="w-8 h-8 object-contain brightness-0 invert" />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3">Our Mission</h3>
-                <p className="text-slate-400 leading-relaxed">
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Our Mission</h3>
+                <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
                   Full Stack IT Solutions and services, IoT Solutions and Services, Product Development —
                   delivered with precision and passion.
                 </p>
@@ -568,20 +568,20 @@ export default function Home() {
       </section>
 
       {/* ── DIGITAL SERVICES (bento grid) ─────────────────────── */}
-      <section className="bg-dark-base py-20">
-        <div className="container mx-auto px-6">
-          <AnimatedSection className="text-center mb-12">
+      <section className="bg-dark-base py-14 sm:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <AnimatedSection className="text-center mb-8 sm:mb-12">
             <span className="section-tag">What We Do</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-3 sm:mt-4">
               Digital <span className="gradient-text">Services</span>
             </h2>
-            <p className="text-slate-400 mt-3 max-w-xl mx-auto">
+            <p className="text-slate-400 text-sm sm:text-base mt-2 sm:mt-3 max-w-xl mx-auto">
               End-to-end technology solutions crafted to scale with your business.
             </p>
           </AnimatedSection>
 
           {/* Bento-style grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {SERVICES.map((svc, i) => (
               <AnimatedSection key={svc.id} delay={i * 0.07}>
                 <ServiceCard
@@ -599,25 +599,25 @@ export default function Home() {
       </section>
 
       {/* ── DEVELOPMENT PROCESS ───────────────────────────────── */}
-      <section className="bg-dark-surface py-20 overflow-hidden">
-        <div className="container mx-auto px-6">
-          <AnimatedSection className="text-center mb-14">
+      <section className="bg-dark-surface py-14 sm:py-20 overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6">
+          <AnimatedSection className="text-center mb-8 sm:mb-14">
             <span className="section-tag">How We Work</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-3 sm:mt-4">
               Development <span className="gradient-text">Process</span>
             </h2>
-            <p className="text-slate-400 mt-3 max-w-xl mx-auto text-sm">
+            <p className="text-slate-400 mt-2 sm:mt-3 max-w-xl mx-auto text-sm">
               A structured approach that takes your idea from concept to a live, supported product.
             </p>
           </AnimatedSection>
 
           {/* 3 × 2 step card grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
             {DEV_STEPS.map((step, i) => (
               <AnimatedSection key={step.id} delay={i * 0.09}>
                 <motion.div
                   whileHover={{ y: -4, transition: { duration: 0.22 } }}
-                  className="group relative card-dark p-6 h-full overflow-hidden cursor-default"
+                  className="group relative card-dark p-4 sm:p-6 h-full overflow-hidden cursor-default"
                 >
                   {/* Top accent line — reveals on hover */}
                   <div className={cn(
@@ -632,7 +632,7 @@ export default function Home() {
 
                   {/* Icon bubble */}
                   <div className={cn(
-                    'w-12 h-12 rounded-xl bg-gradient-to-br border flex items-center justify-center mb-5 transition-shadow duration-300 group-hover:shadow-[0_0_24px_currentColor]',
+                    'w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br border flex items-center justify-center mb-3 sm:mb-5 transition-shadow duration-300 group-hover:shadow-[0_0_24px_currentColor]',
                     step.accent, step.border, step.glow,
                   )}>
                     <step.Icon size={22} />
@@ -644,7 +644,7 @@ export default function Home() {
                   </span>
 
                   {/* Title */}
-                  <h3 className="text-white font-bold text-lg mb-2 leading-tight">
+                  <h3 className="text-white font-bold text-base sm:text-lg mb-2 leading-tight">
                     {step.label}
                   </h3>
 
@@ -668,21 +668,21 @@ export default function Home() {
       </section>
 
       {/* ── OUR WORKS ─────────────────────────────────────────── */}
-      <section className="bg-dark-base py-20">
-        <div className="container mx-auto px-6">
-          <AnimatedSection className="text-center mb-12">
+      <section className="bg-dark-base py-14 sm:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
+          <AnimatedSection className="text-center mb-8 sm:mb-12">
             <span className="section-tag">Portfolio</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mt-3 sm:mt-4">
               Our <span className="gradient-text">Works</span>
             </h2>
-            <p className="text-slate-400 mt-3 max-w-xl mx-auto">
+            <p className="text-slate-400 text-sm sm:text-base mt-2 sm:mt-3 max-w-xl mx-auto">
               A selection of projects we're proud to have shipped.
             </p>
           </AnimatedSection>
 
           {/* Tab pills */}
           <AnimatedSection delay={0.1}>
-            <div className="flex flex-wrap justify-center gap-2 mb-8">
+            <div className="flex flex-wrap justify-center gap-2 mb-6 sm:mb-8">
               {WORK_TABS.map((tab) => (
                 <button
                   key={tab.id}
@@ -708,33 +708,35 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.35 }}
-              className="grid grid-cols-1 md:grid-cols-3 gap-5"
+              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5"
             >
-              {WORKS[activeTab].map((item) =>
+              {WORKS[activeTab].map((item, i) =>
                 item.image ? (
                   item.description ? (
-                    <WorkModal key={item.id} item={item} />
+                    <AnimatedSection key={item.id} delay={i * 0.08} once={false}>
+                      <WorkModal item={item} />
+                    </AnimatedSection>
                   ) : (
-                    <motion.div
-                      key={item.id}
-                      whileHover={{ scale: 1.02 }}
-                      transition={{ duration: 0.25 }}
-                      className="overflow-hidden rounded-2xl border border-dark-line"
-                    >
-                      <img
-                        src={item.image}
-                        alt={item.alt}
-                        className="w-full h-52 object-cover"
-                      />
-                    </motion.div>
+                    <AnimatedSection key={item.id} delay={i * 0.08} once={false}>
+                      <motion.div
+                        whileHover={{ scale: 1.02 }}
+                        transition={{ duration: 0.25 }}
+                        className="overflow-hidden rounded-2xl border border-dark-line"
+                      >
+                        <img
+                          src={item.image}
+                          alt={item.alt}
+                          className="w-full h-44 sm:h-52 object-cover"
+                        />
+                      </motion.div>
+                    </AnimatedSection>
                   )
                 ) : (
-                  <div
-                    key={item.id}
-                    className="h-52 rounded-2xl border border-dark-line bg-dark-surface flex items-center justify-center"
-                  >
-                    <span className="text-slate-500 text-sm font-medium">Update Soon</span>
-                  </div>
+                  <AnimatedSection key={item.id} delay={i * 0.08} once={false}>
+                    <div className="h-44 sm:h-52 rounded-2xl border border-dark-line bg-dark-surface flex items-center justify-center">
+                      <span className="text-slate-500 text-sm font-medium">Update Soon</span>
+                    </div>
+                  </AnimatedSection>
                 ),
               )}
             </motion.div>
@@ -743,22 +745,22 @@ export default function Home() {
       </section>
 
       {/* ── CTA BANNER ────────────────────────────────────────── */}
-      <section className="bg-dark-surface border-y border-dark-line py-20">
-        <div className="container mx-auto px-6">
+      <section className="bg-dark-surface border-y border-dark-line py-14 sm:py-20">
+        <div className="container mx-auto px-4 sm:px-6">
           <AnimatedSection className="text-center">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 leading-tight">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-white mb-4 sm:mb-5 leading-tight">
                 Ready to Build Something{' '}
                 <span className="gradient-text">Amazing?</span>
               </h2>
-              <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+              <p className="text-slate-400 text-base sm:text-lg mb-6 sm:mb-8 leading-relaxed">
                 Tell us about your project and we'll craft a tailored proposal within 24 hours.
               </p>
-              <Link to="/contact">
+              <Link to="/contact" className="block w-full sm:w-auto">
                 <motion.button
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
-                  className="btn-primary px-10 py-4 text-base"
+                  className="btn-primary w-full sm:w-auto justify-center px-6 py-3 sm:px-10 sm:py-4 text-sm sm:text-base"
                 >
                   Get a Proposal <ArrowRight size={18} />
                 </motion.button>

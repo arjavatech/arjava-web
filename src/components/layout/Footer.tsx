@@ -1,22 +1,21 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { MapPin, Mail, Phone, Facebook, Instagram, Twitter, Linkedin, Youtube } from 'lucide-react'
+import { MapPin, Mail, Phone, Facebook, Instagram, Twitter, Linkedin } from 'lucide-react'
 
 const QUICK_LINKS = [
-  { label: 'Home',         to: '/' },
-  { label: 'About Us',     to: '/about' },
+  { label: 'Home', to: '/' },
+  { label: 'About Us', to: '/about' },
   { label: 'Our Services', to: '/services' },
   { label: 'Our Products', to: '/products' },
-  { label: 'Contact Us',   to: '/contact' },
+  { label: 'Contact Us', to: '/contact' },
   { label: 'Privacy Policy', to: '/privacy-policy' },
 ]
 
 const SOCIAL_LINKS = [
-  { name: 'Facebook',  href: '#', Icon: Facebook  },
-  { name: 'Instagram', href: '#', Icon: Instagram },
-  { name: 'Twitter',   href: '#', Icon: Twitter   },
-  { name: 'LinkedIn',  href: '#', Icon: Linkedin  },
-  { name: 'YouTube',   href: '#', Icon: Youtube   },
+  { name: 'Facebook', href: 'https://www.facebook.com/p/Arjava-Technologies-100067001514838/', Icon: Facebook },
+  { name: 'Instagram', href: 'https://www.instagram.com/arjavatech', Icon: Instagram },
+  { name: 'Twitter', href: '#', Icon: Twitter },
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/company/arjavatech', Icon: Linkedin },
 ]
 
 const OFFICES = [
@@ -43,7 +42,7 @@ const containerVariants = {
 
 const colVariants = {
   hidden: { opacity: 0, y: 20 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
 }
 
 export default function Footer() {
@@ -54,7 +53,7 @@ export default function Footer() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: '-60px' }}
-        className="container mx-auto px-6 py-14 grid grid-cols-1 md:grid-cols-3 gap-10"
+        className="container mx-auto px-4 sm:px-6 py-10 sm:py-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10"
       >
 
         {/* ── Col 1: Brand ─────────────────────────────────────── */}
@@ -66,7 +65,7 @@ export default function Footer() {
               className="h-9 w-auto object-contain brightness-0 invert"
             />
           </Link>
-          <p className="text-slate-400 text-sm leading-relaxed max-w-xs">
+          <p className="text-slate-400 text-sm leading-relaxed max-w-xs sm:max-w-none md:max-w-xs">
             Full Stack IT Solutions — delivering innovative software and mobile
             engineering services for businesses worldwide.
           </p>
@@ -94,7 +93,7 @@ export default function Footer() {
         </motion.div>
 
         {/* ── Col 2: Quick Links ───────────────────────────────── */}
-        <motion.div variants={colVariants}>
+        <motion.div variants={colVariants} className="sm:col-span-1">
           <h6 className="gradient-text text-xs font-bold uppercase tracking-widest mb-5">
             Quick Links
           </h6>
@@ -114,7 +113,7 @@ export default function Footer() {
         </motion.div>
 
         {/* ── Col 3: Contact & Offices ─────────────────────────── */}
-        <motion.div variants={colVariants}>
+        <motion.div variants={colVariants} className="sm:col-span-2 md:col-span-1">
           <h6 className="gradient-text text-xs font-bold uppercase tracking-widest mb-5">
             Contact Us
           </h6>
@@ -156,7 +155,7 @@ export default function Footer() {
                   <MapPin size={14} className={office.color === 'teal' ? 'text-teal-400' : 'text-sky-400'} />
                 </div>
                 <div>
-                  <p className="text-white text-xs font-semibold leading-none mb-1">
+                  <p className="text-white text-xs font-semibold leading-snug mb-1">
                     {office.label} — {office.company}
                   </p>
                   <p className="text-slate-500 text-[11px] leading-relaxed">{office.address}</p>
@@ -176,7 +175,7 @@ export default function Footer() {
       </motion.div>
 
       {/* Copyright bar */}
-      <div className="border-t border-dark-line py-4">
+      <div className="border-t border-dark-line py-4 px-4">
         <p className="text-center text-xs text-slate-500">
           &copy; {new Date().getFullYear()} Arjava Technologies. All rights reserved.
         </p>
