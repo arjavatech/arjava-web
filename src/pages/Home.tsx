@@ -287,19 +287,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
         </ul>
       ),
     },
-    {
-      id: 'mugavari',
-      image: '/image/Mugavari-web-app.jpg',
-      alt: 'Mugavari Web App',
-      title: 'Mugavari',
-      description: (
-        <ul className="list-disc ml-5 space-y-1">
-          <li>Web application for Mugavari Foundation's charitable activities.</li>
-          <li>Donation management and volunteer portal.</li>
-          <li>Event organisation and community engagement features.</li>
-        </ul>
-      ),
-    },
+    
     {
       id: 'goddard',
       image: '/image/goddard-webapp.png',

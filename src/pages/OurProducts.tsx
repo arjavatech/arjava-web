@@ -22,30 +22,30 @@ interface Product {
 
 const PRODUCTS: Product[] = [
   {
-    id: 'sorting',
-    image: '/image/Sorting Analysis mockup.png',
-    alt: 'Sorting Analysis Mockup',
-    name: 'Sorting Analysis',
-    subtitle: 'Sorting Technique Visualiser',
+    id: 'tap-time',
+    image: '/image/tap-time.png',
+    alt: 'Tap Time Mockup',
+    name: 'Tap Time',
+    subtitle: 'Employee Time & Attendance Tracker',
     features: [
-      'Input an array and get the output with its full visualisation.',
-      'See comparisons and swap counts of every sorting technique to determine the best for each scenario.',
-      'Visualisation graph giving graphical representation of input and output arrays.',
-      'View code, time and space complexity of every sorting technique.',
+      'Staff check in/out with real-time tracking across all devices.',
+      'Daily and salary-based reports for managers to monitor attendance.',
+      'Full employee management with role-based access control.',
+      'Available on web, iOS and Android for on-the-go access.',
     ],
     imageLeft: true,
   },
   {
-    id: 'sehatuka',
-    image: '/image/Sehatuka mockup.jpg',
-    alt: 'Sehatuka Mockup',
-    name: 'Sehatuka',
-    subtitle: 'Healthcare Application',
+    id: 'goddard',
+    image: '/image/goddard-webapp.png',
+    alt: 'Goddard Mockup',
+    name: 'Goddard',
+    subtitle: 'Daycare School Management Platform',
     features: [
-      'A medicare application available on both Android and iOS.',
-      'Useful for medical checkup notifications, medicine intake, doctor appointments and more.',
-      'Store important information like emergency contacts, surgeries and prescriptions.',
-      'Developed in React Native and SQL.',
+      'Comprehensive student management for daycare administrators.',
+      'Parent portal for real-time communication and updates.',
+      'Staff scheduling and shift management tools.',
+      'Integrated billing system for seamless fee collection.',
     ],
     imageLeft: false,
   },
@@ -69,6 +69,63 @@ interface ProjectCard {
 }
 
 const ALL_PROJECTS: ProjectCard[] = [
+    {
+    id: 'goddard',
+    name: 'Goddard',
+    category: 'Web App',
+    image: '/image/goddard-webapp.png',
+    description:
+      'Comprehensive web application for daycare school management — streamlining admin, parent communication and billing.',
+    features: ['Student Management', 'Parent Portal', 'Staff Scheduling', 'Billing System'],
+    liveUrl: 'https://goddardschool.org/',
+  },
+  {
+    id: 'tap-time',
+    name: 'Tap Time',
+    category: 'Web App',
+    image: '/image/tap-time.png',
+    description:
+      'Employee time & attendance tracking web app — staff check in/out, managers get daily and salary-based reports, with iOS and Android apps for on-the-go access.',
+    features: ['Employee Check-In / Out', 'Daily & Salary Reports', 'Employee Management', 'Multi-device Support'],
+    liveUrl: 'https://tap-time.com/',
+    iosUrl: 'https://apps.apple.com/us/app/tap-time-employee-tracker/id6756376037',
+    androidUrl: 'https://play.google.com/store/apps/details?id=com.icode.punchcard&pcampaignid=web_share',
+  },
+  {
+    id: 'brightbrains',
+    name: 'Bright Brains',
+    category: 'Mobile App',
+    image: '/image/brightbrains-app.jpeg',
+    description:
+      'An innovative app that boosts brain power through engaging games, memory challenges, and cognitive exercises. Available on web, iOS and Android.',
+    features: ['Brain Training Games', 'Memory Exercises', 'Progress Tracking', 'Cognitive Challenges'],
+    liveUrl: 'http://bright-brains.net/',
+    iosUrl: 'https://apps.apple.com/us/app/bright-brains/id6471830069',
+    androidUrl: 'https://play.google.com/store/apps/details?id=com.arjava.brightbrains&hl=en_US',
+  },
+  {
+    id: 'rattham',
+    name: 'Rattham Udhavi',
+    category: 'Mobile App',
+    image: '/image/rattham-app.png',
+    description:
+      'Blood donation management system connecting donors with recipients and managing blood bank operations efficiently.',
+    features: ['Donor Registration', 'Blood Bank Management', 'Emergency Requests', 'Mobile Notifications'],
+    androidUrl: 'https://play.google.com/store/apps/details?id=com.thiri.raththam&pcampaignid=web_share',
+    comingSoon: ['web', 'ios'],
+  },
+   {
+    id: 'element-explorer',
+    name: 'Element Explorer',
+    category: 'Mobile App',
+    image: '/image/element-explorer.png',
+    description:
+      'Interactive periodic table app for exploring chemical elements — featuring detailed element data, properties, and an engaging learning experience on web, iOS and Android.',
+    features: ['Interactive Periodic Table', 'Element Details & Properties', 'Educational Tools', 'Cross-platform'],
+    liveUrl: 'https://element-explorer.com/',
+    iosUrl: 'https://apps.apple.com/us/app/element-explorer/id6739361632',
+    androidUrl: 'https://play.google.com/store/apps/details?id=com.electroniq.app',
+  },
   {
     id: 'findbed',
     name: 'FindBed',
@@ -87,29 +144,8 @@ const ALL_PROJECTS: ProjectCard[] = [
       'Medicare app on Android and iOS for medical checkups, medicine reminders, doctor appointments and health records.',
     features: ['Checkup Notifications', 'Medicine Reminders', 'Doctor Appointments', 'Health Records'],
   },
-  {
-    id: 'rattham',
-    name: 'Rattham Udhavi',
-    category: 'Mobile App',
-    image: '/image/rattham-app.png',
-    description:
-      'Blood donation management system connecting donors with recipients and managing blood bank operations efficiently.',
-    features: ['Donor Registration', 'Blood Bank Management', 'Emergency Requests', 'Mobile Notifications'],
-    androidUrl: 'https://play.google.com/store/apps/details?id=com.thiri.raththam&pcampaignid=web_share',
-    comingSoon: ['web', 'ios'],
-  },
-  {
-    id: 'brightbrains',
-    name: 'Bright Brains',
-    category: 'Mobile App',
-    image: '/image/brightbrains-app.jpeg',
-    description:
-      'An innovative app that boosts brain power through engaging games, memory challenges, and cognitive exercises. Available on web, iOS and Android.',
-    features: ['Brain Training Games', 'Memory Exercises', 'Progress Tracking', 'Cognitive Challenges'],
-    liveUrl: 'http://bright-brains.net/',
-    iosUrl: 'https://apps.apple.com/us/app/bright-brains/id6471830069',
-    androidUrl: 'https://play.google.com/store/apps/details?id=com.arjava.brightbrains&hl=en_US',
-  },
+  
+  
   {
     id: 'stockbrains',
     name: 'StockBrains.ai',
@@ -130,34 +166,8 @@ const ALL_PROJECTS: ProjectCard[] = [
     features: ['Algorithm Visualisation', 'Performance Analysis', 'Interactive Learning', 'Complexity View'],
     liveUrl: 'https://sortinganalysis.hope3.org/',
   },
-  {
-    id: 'mugavari',
-    name: 'Mugavari',
-    category: 'Web App',
-    image: '/image/Mugavari-web-app.jpg',
-    description:
-      'Web application for Mugavari Foundation to manage charitable activities, donations, and community outreach.',
-    features: ['Donation Management', 'Volunteer Portal', 'Event Organisation', 'Community Engagement'],
-  },
-  {
-    id: 'goddard',
-    name: 'Goddard',
-    category: 'Web App',
-    image: '/image/goddard-webapp.png',
-    description:
-      'Comprehensive web application for daycare school management — streamlining admin, parent communication and billing.',
-    features: ['Student Management', 'Parent Portal', 'Staff Scheduling', 'Billing System'],
-    liveUrl: 'https://goddardschool.org/',
-  },
-  {
-    id: 'grit',
-    name: 'Grit',
-    category: 'Website',
-    image: '/image/grit-web-design.jpg',
-    description:
-      'Performance tracking system designed to monitor and analyse metrics for improved productivity and goal achievement.',
-    features: ['Performance Metrics', 'Goal Setting', 'Progress Analytics', 'Custom Reports'],
-  },
+
+  
   {
     id: 'btk',
     name: 'Bharathi Tamil Academy',
@@ -188,18 +198,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     features: ['Latest News & Events', 'Student Schedule', 'Class Enrolment', 'School Announcements'],
     liveUrl: 'https://www.redmondtamilschool.org/',
   },
-  {
-    id: 'tap-time',
-    name: 'Tap Time',
-    category: 'Web App',
-    image: '/image/tap-time.png',
-    description:
-      'Employee time & attendance tracking web app — staff check in/out, managers get daily and salary-based reports, with iOS and Android apps for on-the-go access.',
-    features: ['Employee Check-In / Out', 'Daily & Salary Reports', 'Employee Management', 'Multi-device Support'],
-    liveUrl: 'https://tap-time.com/',
-    iosUrl: 'https://apps.apple.com/us/app/tap-time-employee-tracker/id6756376037',
-    androidUrl: 'https://play.google.com/store/apps/details?id=com.icode.punchcard&pcampaignid=web_share',
-  },
+  
   {
     id: 'seeeds-india',
     name: 'SEEEDS India',
@@ -210,17 +209,15 @@ const ALL_PROJECTS: ProjectCard[] = [
     features: ['Scholarship Applications', 'Donation & Volunteer Portal', 'Admissions & Events', 'Success Stories'],
     liveUrl: 'https://seeedsindia.org/',
   },
+ 
   {
-    id: 'element-explorer',
-    name: 'Element Explorer',
-    category: 'Mobile App',
-    image: '/image/element-explorer.png',
+    id: 'grit',
+    name: 'Grit',
+    category: 'Website',
+    image: '/image/grit-web-design.jpg',
     description:
-      'Interactive periodic table app for exploring chemical elements — featuring detailed element data, properties, and an engaging learning experience on web, iOS and Android.',
-    features: ['Interactive Periodic Table', 'Element Details & Properties', 'Educational Tools', 'Cross-platform'],
-    liveUrl: 'https://element-explorer.com/',
-    iosUrl: 'https://apps.apple.com/us/app/element-explorer/id6739361632',
-    androidUrl: 'https://play.google.com/store/apps/details?id=com.electroniq.app',
+      'Performance tracking system designed to monitor and analyse metrics for improved productivity and goal achievement.',
+    features: ['Performance Metrics', 'Goal Setting', 'Progress Analytics', 'Custom Reports'],
   },
 ]
 
