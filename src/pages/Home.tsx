@@ -197,6 +197,34 @@ const WORK_TABS: { id: WorkTab; label: string }[] = [
 const WORKS: Record<WorkTab, WorkItem[]> = {
   mobapp: [
     {
+      id: 'brightbrains',
+      image: '/image/brightbrains-app.jpeg',
+      alt: 'Bright Brains App',
+      title: 'Bright Brains',
+      description: (
+        <ul className="list-disc ml-5 space-y-1">
+          <li>Brain training app with engaging games and memory challenges.</li>
+          <li>Cognitive exercises designed to boost mental performance.</li>
+          <li>Progress tracking and performance analytics dashboard.</li>
+          <li>Available on web, iOS, and Android.</li>
+        </ul>
+      ),
+    },
+    {
+      id: 'rattham',
+      image: '/image/rattham-app.png',
+      alt: 'Rattham Udhavi App',
+      title: 'Rattham Udhavi',
+      description: (
+        <ul className="list-disc ml-5 space-y-1">
+          <li>Blood donation management app connecting donors with recipients.</li>
+          <li>Donor registration and blood bank management system.</li>
+          <li>Emergency blood requests with real-time mobile notifications.</li>
+          <li>Available on Android.</li>
+        </ul>
+      ),
+    },
+    {
       id: 'findabed',
       image: '/image/find-bed-app.jpg',
       alt: 'FindBed App',
@@ -224,34 +252,8 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
         </ul>
       ),
     },
-    {
-      id: 'rattham',
-      image: '/image/rattham-app.png',
-      alt: 'Rattham Udhavi App',
-      title: 'Rattham Udhavi',
-      description: (
-        <ul className="list-disc ml-5 space-y-1">
-          <li>Blood donation management app connecting donors with recipients.</li>
-          <li>Donor registration and blood bank management system.</li>
-          <li>Emergency blood requests with real-time mobile notifications.</li>
-          <li>Available on Android.</li>
-        </ul>
-      ),
-    },
-    {
-      id: 'brightbrains',
-      image: '/image/brightbrains-app.jpeg',
-      alt: 'Bright Brains App',
-      title: 'Bright Brains',
-      description: (
-        <ul className="list-disc ml-5 space-y-1">
-          <li>Brain training app with engaging games and memory challenges.</li>
-          <li>Cognitive exercises designed to boost mental performance.</li>
-          <li>Progress tracking and performance analytics dashboard.</li>
-          <li>Available on web, iOS, and Android.</li>
-        </ul>
-      ),
-    },
+    
+    
     {
       id: 'stockbrains',
       image: '/image/stock-brains-ai.png',
