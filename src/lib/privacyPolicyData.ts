@@ -61,6 +61,7 @@ export type AppDataEntry = {
   description: string  // One-line description of the app / feature
   purposes: string[]   // List of purposes for which the app is used
   fields: DataField[]
+  noLocationTracking?: boolean  // True if the app does not track location
 }
 
 export const APP_DATA_COLLECTION: AppDataEntry[] = [
@@ -71,6 +72,7 @@ export const APP_DATA_COLLECTION: AppDataEntry[] = [
     type: 'Mobile App',
     appUrl: 'https://tap-time.com',
     description: 'Employee time and attendance tracking mobile app available on iOS and Android.',
+    noLocationTracking: true,
     purposes: [
       'To enable employees to check in and out with real-time attendance tracking across all devices.',
       'To provide managers with daily and salary-based attendance reports.',
@@ -89,6 +91,7 @@ export const APP_DATA_COLLECTION: AppDataEntry[] = [
     type: 'Mobile App',
     appUrl: 'http://bright-brains.net',
     description: 'Brain training mobile app with cognitive games and memory challenges, available on iOS and Android.',
+    noLocationTracking: true,
     purposes: [
       'To deliver brain training games, memory exercises, and cognitive challenges to users.',
       'To track individual progress and performance across training sessions.',
@@ -99,32 +102,13 @@ export const APP_DATA_COLLECTION: AppDataEntry[] = [
     ],
   },
 
-  // ── 3. Rattham Udhavi ────────────────────────────────────────────────────────
-  {
-    app: 'Rattham Udhavi',
-    type: 'Mobile App',
-    appUrl: undefined,
-    description: 'Blood donation management app connecting donors with recipients and blood banks, available on Android.',
-    purposes: [
-      'To register blood donors and maintain a searchable donor database.',
-      'To connect recipients with compatible donors during emergencies.',
-      'To manage blood bank inventory and operations.',
-      'To send mobile notifications for urgent blood requests.',
-    ],
-    fields: [
-      { label: 'Full Name',                                                               purpose: 'Donor registration and identity verification.',                                         storage: 'Server',                                    sharedWith: 'Blood banks and verified recipients (on request)' },
-      { label: 'Blood Group',                                                             purpose: 'Matching donors with compatible recipients.',                                           storage: 'Server',                                    sharedWith: 'Blood banks and verified recipients (on request)' },
-      { label: 'Contact Number',                                                          purpose: 'Coordinating between donors, recipients, and blood banks.',                            storage: 'Server',                                    sharedWith: 'Blood banks and verified recipients (on request)' },
-      { label: 'Location Data (city or region)',                                          purpose: 'Matching donors with nearby recipients and blood banks.',                               storage: 'Server',                                    sharedWith: 'Blood banks and verified recipients (on request)' },
-    ],
-  },
-
-  // ── 4. Element Explorer ──────────────────────────────────────────────────────
+   // ── 4. Element Explorer ──────────────────────────────────────────────────────
   {
     app: 'Element Explorer',
     type: 'Mobile App',
     appUrl: 'https://element-explorer.com',
     description: 'Interactive periodic table and chemistry learning mobile app available on iOS and Android.',
+    noLocationTracking: true,
     purposes: [
       'To provide an interactive and educational experience for exploring chemical elements.',
       'To support students and educators with detailed element data and properties.',
@@ -132,41 +116,6 @@ export const APP_DATA_COLLECTION: AppDataEntry[] = [
     fields: [],
   },
 
-  // ── 5. FindBed ───────────────────────────────────────────────────────────────
-  {
-    app: 'FindBed',
-    type: 'Mobile App',
-    appUrl: undefined,
-    description: 'Healthcare bed booking platform connecting patients with available hospital beds in real-time across India.',
-    purposes: [
-      'To display real-time hospital bed availability to patients and caregivers.',
-      'To facilitate bed booking and reservation for patients.',
-      'To support emergency services by connecting patients with the nearest available beds.',
-    ],
-    fields: [
-      { label: 'Patient Name and Contact Information',                                    purpose: 'Bed booking, reservation confirmation, and hospital coordination.',                     storage: 'Server',                                    sharedWith: 'Relevant hospital or healthcare facility' },
-      { label: 'Location Data',                                                           purpose: 'Identifying nearby hospitals with available beds.',                                     storage: 'Server',                                    sharedWith: 'No third parties' },
-      { label: 'Medical Requirement Details (bed type, urgency)',                         purpose: 'Matching patients with appropriate bed availability.',                                  storage: 'Server',                                    sharedWith: 'Relevant hospital or healthcare facility' },
-    ],
-  },
-
-  // ── 6. Sehatuka ──────────────────────────────────────────────────────────────
-  {
-    app: 'Sehatuka',
-    type: 'Mobile App',
-    appUrl: undefined,
-    description: 'Medicare app for medical checkups, medicine reminders, doctor appointments, and health records on Android and iOS.',
-    purposes: [
-      'To send timely reminders for medications, checkups, and doctor appointments.',
-      'To maintain a personal health record for the user.',
-      'To help users manage and track their overall health and wellness.',
-    ],
-    fields: [
-      { label: 'Name, Age, and Gender',                                                   purpose: 'Personalized health tracking and reminder scheduling.',                                 storage: 'Server',                                    sharedWith: 'No third parties' },
-      { label: 'Health Records (medications, appointments, checkup history)',             purpose: 'Health record management and reminder generation.',                                     storage: 'Server (encrypted)',                        sharedWith: 'No third parties' },
-      { label: 'Device Identifiers',                                                      purpose: 'Push notification delivery for reminders.',                                            storage: 'Server',                                    sharedWith: 'Firebase Cloud Messaging' },
-    ],
-  },
 
   // ── 7. StockBrains.ai ────────────────────────────────────────────────────────
   {
@@ -174,6 +123,7 @@ export const APP_DATA_COLLECTION: AppDataEntry[] = [
     type: 'Mobile App',
     appUrl: undefined,
     description: 'AI-powered stock research app with SWOT analysis, market insights, and investment analytics.',
+    noLocationTracking: true,
     purposes: [
       'To provide AI-driven stock research, SWOT analysis, and market insights to users.',
       'To support data-driven investment decision-making.',
@@ -187,19 +137,7 @@ export const APP_DATA_COLLECTION: AppDataEntry[] = [
   },
 
   // ── 8. Facial Recognition Feature ───────────────────────────────────────────
-  {
-    app: 'Facial Recognition Feature',
-    type: 'Feature',
-    appUrl: undefined,
-    description: 'An optional on-device capability available within select Arjava applications.',
-    purposes: [
-      'To authenticate users securely without transmitting biometric data over the network.',
-      'To personalize the application experience based on the recognized user profile.',
-    ],
-    fields: [
-      { label: 'Camera Feed & Facial Recognition Data',                                   purpose: 'Client-side user authentication and personalization only.',                             storage: 'Device only — never transmitted to servers', sharedWith: 'No third parties' },
-    ],
-  },
+ 
 
   // ── Add new mobile applications below ────────────────────────────────────────
   // {
