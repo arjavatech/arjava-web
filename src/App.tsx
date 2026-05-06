@@ -4,7 +4,7 @@ import AboutUs from '@/pages/AboutUs'
 import OurServices from '@/pages/OurServices'
 import OurProducts from '@/pages/OurProducts'
 import ContactUs from '@/pages/ContactUs'
-import PrivacyPolicy from '@/pages/PrivacyPolicy'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 
 export default function App() {
   return (
@@ -15,7 +15,7 @@ export default function App() {
         <Route path="/services"       element={<OurServices />} />
         <Route path="/products"       element={<OurProducts />} />
         <Route path="/contact"        element={<ContactUs />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />        
       </Routes>
     </BrowserRouter>
   )
