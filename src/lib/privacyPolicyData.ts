@@ -136,6 +136,51 @@ export const APP_DATA_COLLECTION: AppDataEntry[] = [
     ],
   },
 
+  {
+    app: 'Selvagam Parent App',
+    type: 'Mobile App',
+    description: 'A mobile application designed for parents and guardians to track their student\'s transportation journey and receive real-time updates.',
+    noLocationTracking: true, // The app does not continuously track or store the Parent's background location.
+    purposes: [
+      'To allow parents and guardians to securely track their student\'s school vehicle journey on a map.',
+      'To send critical push notifications regarding trip starts, trip completions, or emergency alerts.',
+      'To provide secure access to student transportation data managed by school or transportation administrators.',
+      'To facilitate account management and communicate technical notices, updates, and support messages.',
+    ],
+    fields: [
+      { 
+        label: 'Identification Data (Name & Student ID)', 
+        purpose: 'To identify the parent/guardian and securely associate them with the correct student.', 
+        storage: 'Server', 
+        sharedWith: 'School Administrators / Transportation Authorities' 
+      },
+      { 
+        label: 'Contact Data (Phone & Email)', 
+        purpose: 'Used for secure account setup, verification, and critical service updates.', 
+        storage: 'Server', 
+        sharedWith: 'No third parties' 
+      },
+      { 
+        label: 'Device Information & FCM Tokens', 
+        purpose: 'Device identification and delivery of essential push notifications (e.g., trip updates) to the user\'s device.', 
+        storage: 'Server', 
+        sharedWith: 'Trusted Service Providers (e.g., Firebase)' 
+      },
+      { 
+        label: 'Location Data (Foreground Only)', 
+        purpose: 'To display the user\'s current position on the map relative to the vehicle while the app is actively in use.', 
+        storage: 'Not stored on server', 
+        sharedWith: 'No third parties' 
+      },
+      { 
+        label: 'Usage & Diagnostic Data', 
+        purpose: 'To analyze crash logs and usage data to fix bugs and improve the overall app stability.', 
+        storage: 'Server', 
+        sharedWith: 'Trusted Service Providers' 
+      },
+    ],
+},
+
   // ── 8. Facial Recognition Feature ───────────────────────────────────────────
  
 
