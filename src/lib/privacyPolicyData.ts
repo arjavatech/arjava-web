@@ -181,6 +181,77 @@ export const APP_DATA_COLLECTION: AppDataEntry[] = [
     ],
 },
 
+  {
+    app: 'Chola Cabs Driver App',
+    type: 'Mobile App (Service Provider)',
+    description: 'A professional mobile application for cab drivers to manage trip requests, track live earnings, and provide safe transportation services with real-time tracking.',
+    noLocationTracking: false, // Background tracking is ENABLED for trip safety and automated distance calculation.
+    purposes: [
+      'To enable real-time trip assignment based on the driver\'s current proximity to customers.',
+      'To ensure passenger safety and provide continuous route tracking during active trips.',
+      'To calculate accurate trip distances for fare generation and automated wallet payouts.',
+      'To verify professional identity and maintain compliance with local transportation regulations (KYC).',
+      'To allow drivers to contact passengers or support via phone calls for trip coordination.',
+      'To manage the driver\'s digital wallet, track earnings, and process secure top-ups via Razorpay.',
+    ],
+    fields: [
+      { 
+        label: 'KYC & Identification Data (Name, Aadhaar, License)', 
+        purpose: 'To verify the driver\'s legal identity and ensure only authorized professionals operate on the platform.', 
+        storage: 'Server (Encrypted)', 
+        sharedWith: 'Internal Verification Team / Regulatory Authorities' 
+      },
+      { 
+        label: 'Camera & Media Access', 
+        purpose: 'Required to capture and upload photos of mandatory documents (DL, Aadhaar, Vehicle RC) and odometer readings for trip validation.', 
+        storage: 'Server', 
+        sharedWith: 'No third parties' 
+      },
+      { 
+        label: 'Contact Data (Phone & Email)', 
+        purpose: 'Primary account identification, secure login via OTP, and critical service communications.', 
+        storage: 'Server', 
+        sharedWith: 'No third parties' 
+      },
+      { 
+        label: 'Phone Call Access', 
+        purpose: 'Enables drivers to call passengers or customer support directly through the app to coordinate pickups and resolve issues.', 
+        storage: 'Not stored on server', 
+        sharedWith: 'No third parties' 
+      },
+      { 
+        label: 'Device Information & Foreground Service', 
+        purpose: 'Ensures the app remains active in the background for continuous trip tracking and delivery of urgent ride requests via FCM.', 
+        storage: 'Server', 
+        sharedWith: 'Trusted Service Providers (e.g., Firebase)' 
+      },
+      { 
+        label: 'Location Data (Foreground & Background)', 
+        purpose: 'Crucial for matching nearby ride requests and providing live tracking to passengers for safety and transparency.', 
+        storage: 'Server (Trip Logs)', 
+        sharedWith: 'Passengers (during active trips) / Support Team' 
+      },
+      { 
+        label: 'Vehicle Documentation (Photos, RC, Insurance)', 
+        purpose: 'To verify vehicle safety standards and ensure insurance coverage is active for passenger protection.', 
+        storage: 'Server', 
+        sharedWith: 'No third parties' 
+      },
+      { 
+        label: 'Wallet & Transaction Data', 
+        purpose: 'To track earnings, manage service fee deductions, and facilitate secure financial transactions.', 
+        storage: 'Server', 
+        sharedWith: 'Payment Gateways (e.g., Razorpay)' 
+      },
+      { 
+        label: 'Usage & Diagnostic Data', 
+        purpose: 'To analyze app performance, fix crashes, and optimize the battery consumption of background tracking.', 
+        storage: 'Server', 
+        sharedWith: 'Diagnostic Service Providers' 
+      },
+    ],
+},
+
   // ── 8. Facial Recognition Feature ───────────────────────────────────────────
  
 
