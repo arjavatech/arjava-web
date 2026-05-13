@@ -179,11 +179,11 @@ export const APP_DATA_COLLECTION: AppDataEntry[] = [
         sharedWith: 'Trusted Service Providers' 
       },
     ],
-},
+  },
 
   {
-    app: 'Chola Cabs Driver App',
-    type: 'Mobile App (Service Provider)',
+    app: 'Chola Cabs Driver App' ,
+    type: 'Mobile App',
     description: 'A professional mobile application for cab drivers to manage trip requests, track live earnings, and provide safe transportation services with real-time tracking.',
     noLocationTracking: false, // Background tracking is ENABLED for trip safety and automated distance calculation.
     purposes: [
@@ -250,7 +250,7 @@ export const APP_DATA_COLLECTION: AppDataEntry[] = [
         sharedWith: 'Diagnostic Service Providers' 
       },
     ],
-},
+  },
 
   // ── 8. Facial Recognition Feature ───────────────────────────────────────────
  
