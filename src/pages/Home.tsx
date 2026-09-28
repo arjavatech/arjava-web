@@ -198,7 +198,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
   mobapp: [
     {
       id: 'brightbrains',
-      image: '/arjava-web/image/brightbrains-app.jpeg',
+      image: '/image/brightbrains-app.jpeg',
       alt: 'Bright Brains App',
       title: 'Bright Brains',
       description: (
@@ -212,7 +212,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
     },
     {
       id: 'rattham',
-      image: '/arjava-web/image/rattham-app.png',
+      image: '/image/rattham-app.png',
       alt: 'Rattham Udhavi App',
       title: 'Rattham Udhavi',
       description: (
@@ -226,7 +226,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
     },
     {
       id: 'findabed',
-      image: '/arjava-web/image/find-bed-app.jpg',
+      image: '/image/find-bed-app.jpg',
       alt: 'FindBed App',
       title: 'FindBed',
       description: (
@@ -240,7 +240,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
     },
     {
       id: 'sehatuka',
-      image: '/arjava-web/image/sehatuka-app.jpg',
+      image: '/image/sehatuka-app.jpg',
       alt: 'Sehatuka App',
       title: 'Sehatuka',
       description: (
@@ -256,7 +256,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
     
     {
       id: 'stockbrains',
-      image: '/arjava-web/image/stock-brains-ai.png',
+      image: '/image/stock-brains-ai.png',
       alt: 'StockBrains.ai App',
       title: 'StockBrains.ai',
       description: (
@@ -270,14 +270,14 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
     },
   ],
   uxui: [
-    { id: 'arjava-web-design', image: '/arjava-web/image/arjava-web-design.jpg', alt: 'Arjava Web Design' },
-    { id: 'grit-web-design',   image: '/arjava-web/image/grit-web-design.jpg',   alt: 'Grit Web Design'  },
-    { id: 'sangam-web-design', image: '/arjava-web/image/sangam-web-design.jpg', alt: 'Sangam Web Design' },
+    { id: 'arjava-web-design', image: '/image/arjava-web-design.jpg', alt: 'Arjava Web Design' },
+    { id: 'grit-web-design',   image: '/image/grit-web-design.jpg',   alt: 'Grit Web Design'  },
+    { id: 'sangam-web-design', image: '/image/sangam-web-design.jpg', alt: 'Sangam Web Design' },
   ],
   webapp: [
     {
       id: 'sorting',
-      image: '/arjava-web/image/sorting-analysis-web-app.jpg',
+      image: '/image/sorting-analysis-web-app.jpg',
       alt: 'Sorting Analysis Web App',
       title: 'Sorting Analysis',
       description: (
@@ -292,7 +292,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
     
     {
       id: 'goddard',
-      image: '/arjava-web/image/goddard-webapp.png',
+      image: '/image/goddard-webapp.png',
       alt: 'Goddard Web App',
       title: 'Goddard',
       description: (
@@ -305,7 +305,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
     },
     {
       id: 'tap-time',
-      image: '/arjava-web/image/tap-time.png',
+      image: '/image/tap-time.png',
       alt: 'Tap Time Web App',
       title: 'Tap Time',
       description: (
@@ -320,7 +320,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
   website: [
     {
       id: 'btk',
-      image: '/arjava-web/image/BTK-website.jpg',
+      image: '/image/BTK-website.jpg',
       alt: 'Bharathi Tamil Academy Website',
       title: 'Bharathi Tamil Academy',
       description: (
@@ -333,7 +333,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
     },
     {
       id: 'tnngo',
-      image: '/arjava-web/image/tnngo-website.png',
+      image: '/image/tnngo-website.png',
       alt: 'TN-NGO Website',
       title: 'TN-NGO',
       description: (
@@ -346,7 +346,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
     },
     {
       id: 'redmond-tamil-school',
-      image: '/arjava-web/image/redmond-tamil-school.jpg',
+      image: '/image/redmond-tamil-school.jpg',
       alt: 'Redmond Tamil School Website',
       title: 'Redmond Tamil School',
       description: (
@@ -359,7 +359,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
     },
     {
       id: 'seeeds-india',
-      image: '/arjava-web/image/seeds-india.jpg',
+      image: '/image/seeds-india.jpg',
       alt: 'SEEEDS India Website',
       title: 'SEEEDS India',
       description: (
@@ -372,7 +372,7 @@ const WORKS: Record<WorkTab, WorkItem[]> = {
     },
     {
       id: 'grit',
-      image: '/arjava-web/image/grit-web-design.jpg',
+      image: '/image/grit-web-design.jpg',
       alt: 'Grit Website',
       title: 'Grit',
       description: (
@@ -504,7 +504,7 @@ export default function Home() {
                 {/* Teal glow halo */}
                 <div className="absolute inset-0 rounded-3xl bg-teal-500/15 blur-[60px] scale-110 pointer-events-none" />
                 <motion.img
-                  src="/arjava-web/image/hero_image.png"
+                  src="/image/hero_image.png"
                   alt="Arjava Technologies — Full Stack IT Solutions"
                   animate={{ y: [0, -12, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
@@ -531,7 +531,7 @@ export default function Home() {
             <AnimatedSection direction="left">
               <div className="glass p-5 sm:p-8 h-full">
                 <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-teal-400/10 border border-teal-400/20 flex items-center justify-center mb-3 sm:mb-5">
-                  <img src="/arjava-web/image/vision.png" alt="Vision" className="w-8 h-8 object-contain brightness-0 invert" />
+                  <img src="/image/vision.png" alt="Vision" className="w-8 h-8 object-contain brightness-0 invert" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Our Vision</h3>
                 <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
@@ -544,7 +544,7 @@ export default function Home() {
             <AnimatedSection direction="right">
               <div className="glass p-5 sm:p-8 h-full">
                 <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center mb-3 sm:mb-5">
-                  <img src="/arjava-web/image/mission.png" alt="Mission" className="w-8 h-8 object-contain brightness-0 invert" />
+                  <img src="/image/mission.png" alt="Mission" className="w-8 h-8 object-contain brightness-0 invert" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Our Mission</h3>
                 <p className="text-slate-400 text-sm sm:text-base leading-relaxed">

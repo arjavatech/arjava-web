@@ -8,7 +8,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy'
 
 export default function App() {
   return (
-    <BrowserRouter basename="/arjava-web">
+    <BrowserRouter basename="/">
       <Routes>
         <Route path="/"               element={<Home />} />
         <Route path="/about"          element={<AboutUs />} />

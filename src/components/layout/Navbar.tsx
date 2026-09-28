@@ -45,7 +45,7 @@ export default function Navbar() {
           {/* Logo */}
           <NavLink to="/" className="flex-shrink-0">
             <img
-              src="/arjava-web/image/Arjava Logo.png"
+              src="/image/Arjava Logo.png"
               alt="Arjava"
               className="h-10 w-auto object-contain brightness-0 invert"
             />
@@ -136,7 +136,7 @@ export default function Navbar() {
               <div className="flex items-center justify-between px-5 h-16 border-b border-dark-line flex-shrink-0">
                 <NavLink to="/" onClick={() => setMenuOpen(false)}>
                   <img
-                    src="/arjava-web/image/Arjava Logo.png"
+                    src="/image/Arjava Logo.png"
                     alt="Arjava"
                     className="h-8 w-auto object-contain brightness-0 invert"
                   />

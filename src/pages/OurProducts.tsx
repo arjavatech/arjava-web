@@ -23,7 +23,7 @@ interface Product {
 const PRODUCTS: Product[] = [
   {
     id: 'tap-time',
-    image: '/arjava-web/image/tap-time.png',
+    image: '/image/tap-time.png',
     alt: 'Tap Time Mockup',
     name: 'Tap Time',
     subtitle: 'Employee Time & Attendance Tracker',
@@ -37,7 +37,7 @@ const PRODUCTS: Product[] = [
   },
   {
     id: 'goddard',
-    image: '/arjava-web/image/goddard-webapp.png',
+    image: '/image/goddard-webapp.png',
     alt: 'Goddard Mockup',
     name: 'Goddard',
     subtitle: 'Daycare School Management Platform',
@@ -73,7 +73,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'goddard',
     name: 'Goddard',
     category: 'Web App',
-    image: '/arjava-web/image/goddard-webapp.png',
+    image: '/image/goddard-webapp.png',
     description:
       'Comprehensive web application for daycare school management — streamlining admin, parent communication and billing.',
     features: ['Student Management', 'Parent Portal', 'Staff Scheduling', 'Billing System'],
@@ -83,7 +83,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'tap-time',
     name: 'Tap Time',
     category: 'Web App',
-    image: '/arjava-web/image/tap-time.png',
+    image: '/image/tap-time.png',
     description:
       'Employee time & attendance tracking web app — staff check in/out, managers get daily and salary-based reports, with iOS and Android apps for on-the-go access.',
     features: ['Employee Check-In / Out', 'Daily & Salary Reports', 'Employee Management', 'Multi-device Support'],
@@ -95,7 +95,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'brightbrains',
     name: 'Bright Brains',
     category: 'Mobile App',
-    image: '/arjava-web/image/brightbrains-app.jpeg',
+    image: '/image/brightbrains-app.jpeg',
     description:
       'An innovative app that boosts brain power through engaging games, memory challenges, and cognitive exercises. Available on web, iOS and Android.',
     features: ['Brain Training Games', 'Memory Exercises', 'Progress Tracking', 'Cognitive Challenges'],
@@ -107,7 +107,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'rattham',
     name: 'Rattham Udhavi',
     category: 'Mobile App',
-    image: '/arjava-web/image/rattham-app.png',
+    image: '/image/rattham-app.png',
     description:
       'Blood donation management system connecting donors with recipients and managing blood bank operations efficiently.',
     features: ['Donor Registration', 'Blood Bank Management', 'Emergency Requests', 'Mobile Notifications'],
@@ -118,7 +118,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'element-explorer',
     name: 'Element Explorer',
     category: 'Mobile App',
-    image: '/arjava-web/image/element-explorer.png',
+    image: '/image/element-explorer.png',
     description:
       'Interactive periodic table app for exploring chemical elements — featuring detailed element data, properties, and an engaging learning experience on web, iOS and Android.',
     features: ['Interactive Periodic Table', 'Element Details & Properties', 'Educational Tools', 'Cross-platform'],
@@ -130,7 +130,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'findbed',
     name: 'FindBed',
     category: 'Mobile App',
-    image: '/arjava-web/image/find-bed-app.jpg',
+    image: '/image/find-bed-app.jpg',
     description:
       'Healthcare bed booking platform connecting patients with available hospital beds in real-time across India.',
     features: ['Real-time Bed Availability', 'Hospital Network', 'Booking System', 'Emergency Services'],
@@ -139,7 +139,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'sehatuka-grid',
     name: 'Sehatuka',
     category: 'Mobile App',
-    image: '/arjava-web/image/sehatuka-app.jpg',
+    image: '/image/sehatuka-app.jpg',
     description:
       'Medicare app on Android and iOS for medical checkups, medicine reminders, doctor appointments and health records.',
     features: ['Checkup Notifications', 'Medicine Reminders', 'Doctor Appointments', 'Health Records'],
@@ -150,7 +150,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'stockbrains',
     name: 'StockBrains.ai',
     category: 'Mobile App',
-    image: '/arjava-web/image/stock-brains-ai.png',
+    image: '/image/stock-brains-ai.png',
     description:
       'AI-powered stock research app featuring SWOT analysis, market insights, and smart investment tools to help users make data-driven stock decisions.',
     features: ['SWOT Analysis', 'AI Stock Research', 'Market Insights', 'Investment Analytics'],
@@ -160,7 +160,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'sorting-grid',
     name: 'Sorting Analysis',
     category: 'Web App',
-    image: '/arjava-web/image/sorting-analysis-web-app.jpg',
+    image: '/image/sorting-analysis-web-app.jpg',
     description:
       'Advanced sorting algorithm analysis and visualisation tool for educational and research purposes.',
     features: ['Algorithm Visualisation', 'Performance Analysis', 'Interactive Learning', 'Complexity View'],
@@ -172,7 +172,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'btk',
     name: 'Bharathi Tamil Academy',
     category: 'Website',
-    image: '/arjava-web/image/BTK-website.jpg',
+    image: '/image/BTK-website.jpg',
     description:
       'Website for a registered 501(c)(3) nonprofit teaching Tamil language and culture in the Redmond area.',
     features: ['Language Classes', 'Cultural Programs', 'Student Portal', 'Community Events'],
@@ -182,7 +182,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'tnngo',
     name: 'TN-NGO',
     category: 'Website',
-    image: '/arjava-web/image/tnngo-website.png',
+    image: '/image/tnngo-website.png',
     description:
       'Platform connecting NGOs with students to provide quality education, resource sharing, and community engagement.',
     features: ['NGO Registration', 'Student Enrollment', 'Resource Management', 'Community Features'],
@@ -192,7 +192,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'redmond-tamil-school',
     name: 'Redmond Tamil School',
     category: 'Website',
-    image: '/arjava-web/image/redmond-tamil-school.jpg',
+    image: '/image/redmond-tamil-school.jpg',
     description:
       'School notification and information website for Redmond Tamil School — featuring news, events, student schedules, and Tamil language class enrolment.',
     features: ['Latest News & Events', 'Student Schedule', 'Class Enrolment', 'School Announcements'],
@@ -203,7 +203,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'seeeds-india',
     name: 'SEEEDS India',
     category: 'Website',
-    image: '/arjava-web/image/seeds-india.jpg',
+    image: '/image/seeds-india.jpg',
     description:
       'NGO website for SEEEDS Foundation — empowering economically challenged children through education with scholarships, donations, volunteer drives and admissions support.',
     features: ['Scholarship Applications', 'Donation & Volunteer Portal', 'Admissions & Events', 'Success Stories'],
@@ -214,7 +214,7 @@ const ALL_PROJECTS: ProjectCard[] = [
     id: 'grit',
     name: 'Grit',
     category: 'Website',
-    image: '/arjava-web/image/grit-web-design.jpg',
+    image: '/image/grit-web-design.jpg',
     description:
       'Performance tracking system designed to monitor and analyse metrics for improved productivity and goal achievement.',
     features: ['Performance Metrics', 'Goal Setting', 'Progress Analytics', 'Custom Reports'],

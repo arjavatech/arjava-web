@@ -12,25 +12,25 @@ const BOARD_MEMBERS = [
     id: 'palani',
     name: 'Palani Vairavan',
     role: 'Founder',
-    photo: '/arjava-web/image/team-palani.jpeg',
+    photo: '/image/team-palani.jpeg',
   },
   {
     id: 'saravanan',
     name: 'Saravanan Arumugam',
     role: 'CEO / MD',
-    photo: '/arjava-web/image/team-saravanan.png',
+    photo: '/image/team-saravanan.png',
   },
   {
     id: 'pitchai',
     name: 'Pitchaimani Rajaram',
     role: 'CTO / SSE',
-    photo: '/arjava-web/image/team-pitchai.png',
+    photo: '/image/team-pitchai.png',
   },
   {
     id: 'amrish',
     name: 'Amrish KS',
     role: 'CTO / Mentor',
-    photo: '/arjava-web/image/team-amrish.png',
+    photo: '/image/team-amrish.png',
   },
 ]
 
@@ -175,7 +175,7 @@ export default function AboutUs() {
               <div className="glass p-5 md:p-8 h-full">
                 <div className="w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-teal-400/10 border border-teal-400/20 flex items-center justify-center mb-3 md:mb-5">
                   <img
-                    src="/arjava-web/image/vision.png"
+                    src="/image/vision.png"
                     alt="Vision"
                     className="w-6 h-6 md:w-8 md:h-8 object-contain brightness-0 invert"
                   />
@@ -192,7 +192,7 @@ export default function AboutUs() {
               <div className="glass p-5 md:p-8 h-full">
                 <div className="w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center mb-3 md:mb-5">
                   <img
-                    src="/arjava-web/image/mission.png"
+                    src="/image/mission.png"
                     alt="Mission"
                     className="w-6 h-6 md:w-8 md:h-8 object-contain brightness-0 invert"
                   />
