@@ -60,7 +60,7 @@ export default function Footer() {
         <motion.div variants={colVariants} className="flex flex-col gap-5">
           <Link to="/" className="inline-block">
             <img
-              src="/image/Arjava Logo.png"
+              src="/arjava-web/image/Arjava Logo.png"
               alt="Arjava Technologies"
               className="h-9 w-auto object-contain brightness-0 invert"
             />

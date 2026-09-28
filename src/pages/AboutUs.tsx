@@ -175,7 +175,7 @@ export default function AboutUs() {
               <div className="glass p-5 md:p-8 h-full">
                 <div className="w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-teal-400/10 border border-teal-400/20 flex items-center justify-center mb-3 md:mb-5">
                   <img
-                    src="/image/vision.png"
+                    src="/arjava-web/image/vision.png"
                     alt="Vision"
                     className="w-6 h-6 md:w-8 md:h-8 object-contain brightness-0 invert"
                   />
@@ -192,7 +192,7 @@ export default function AboutUs() {
               <div className="glass p-5 md:p-8 h-full">
                 <div className="w-10 h-10 md:w-14 md:h-14 rounded-2xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center mb-3 md:mb-5">
                   <img
-                    src="/image/mission.png"
+                    src="/arjava-web/image/mission.png"
                     alt="Mission"
                     className="w-6 h-6 md:w-8 md:h-8 object-contain brightness-0 invert"
                   />

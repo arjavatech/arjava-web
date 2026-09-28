@@ -504,7 +504,7 @@ export default function Home() {
                 {/* Teal glow halo */}
                 <div className="absolute inset-0 rounded-3xl bg-teal-500/15 blur-[60px] scale-110 pointer-events-none" />
                 <motion.img
-                  src="/image/hero_image.png"
+                  src="/arjava-web/image/hero_image.png"
                   alt="Arjava Technologies — Full Stack IT Solutions"
                   animate={{ y: [0, -12, 0] }}
                   transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
@@ -531,7 +531,7 @@ export default function Home() {
             <AnimatedSection direction="left">
               <div className="glass p-5 sm:p-8 h-full">
                 <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-teal-400/10 border border-teal-400/20 flex items-center justify-center mb-3 sm:mb-5">
-                  <img src="/image/vision.png" alt="Vision" className="w-8 h-8 object-contain brightness-0 invert" />
+                  <img src="/arjava-web/image/vision.png" alt="Vision" className="w-8 h-8 object-contain brightness-0 invert" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Our Vision</h3>
                 <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
@@ -544,7 +544,7 @@ export default function Home() {
             <AnimatedSection direction="right">
               <div className="glass p-5 sm:p-8 h-full">
                 <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-2xl bg-sky-400/10 border border-sky-400/20 flex items-center justify-center mb-3 sm:mb-5">
-                  <img src="/image/mission.png" alt="Mission" className="w-8 h-8 object-contain brightness-0 invert" />
+                  <img src="/arjava-web/image/mission.png" alt="Mission" className="w-8 h-8 object-contain brightness-0 invert" />
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">Our Mission</h3>
                 <p className="text-slate-400 text-sm sm:text-base leading-relaxed">

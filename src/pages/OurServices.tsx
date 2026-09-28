@@ -453,7 +453,7 @@ export default function OurServices() {
                   <div className="order-1 lg:order-2 lg:col-span-2 relative overflow-hidden min-h-[160px] sm:min-h-[240px] lg:min-h-[280px] border-b lg:border-b-0 lg:border-l border-dark-line">
                     {/* Development process diagram as background */}
                     <img
-                      src="/image/Development process.png"
+                      src="/arjava-web/image/Development process.png"
                       alt="Development Process"
                       className="absolute inset-0 w-full h-full object-cover opacity-[0.08]"
                     />
