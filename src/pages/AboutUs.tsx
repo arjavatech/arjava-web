@@ -12,25 +12,25 @@ const BOARD_MEMBERS = [
     id: 'palani',
     name: 'Palani Vairavan',
     role: 'Founder',
-    photo: '/image/team-palani.jpeg',
+    photo: '/arjava-web/image/team-palani.jpeg',
   },
   {
     id: 'saravanan',
     name: 'Saravanan Arumugam',
     role: 'CEO / MD',
-    photo: '/image/team-saravanan.png',
+    photo: '/arjava-web/image/team-saravanan.png',
   },
   {
     id: 'pitchai',
     name: 'Pitchaimani Rajaram',
     role: 'CTO / SSE',
-    photo: '/image/team-pitchai.png',
+    photo: '/arjava-web/image/team-pitchai.png',
   },
   {
     id: 'amrish',
     name: 'Amrish KS',
     role: 'CTO / Mentor',
-    photo: '/image/team-amrish.png',
+    photo: '/arjava-web/image/team-amrish.png',
   },
 ]
 
